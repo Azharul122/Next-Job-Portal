@@ -1,0 +1,58 @@
+const plugin = require('tailwindcss/plugin');
+
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        primaryColor: '#16A865', // Primary color in hex
+        secondaryColor: '#FF5733', // Secondary color in hex
+      },
+      backgroundImage: {
+        gradientTextLight: 'linear-gradient(90deg, #FFFFFF 0%, #16A865 100%)',
+        gradientTextDark: 'linear-gradient(90deg, #000000 0%, #16A865 100%)',
+        gradientBgLight: 'linear-gradient(90deg, #E0F7FA 0%, #16A865 100%)',
+        gradientBgDark: 'linear-gradient(90deg, #000000 0%, #16A865 100%)',
+      },
+    },
+  },
+  plugins: [
+    plugin(function({ addUtilities }) {
+      addUtilities({
+        '.gradient-text-light': {
+          backgroundImage: 'linear-gradient(90deg, #FFFFFF 0%, #16A865 100%)',
+          backgroundClip: 'text',
+          color: 'transparent',
+        },
+        '.gradient-text-dark': {
+          backgroundImage: 'linear-gradient(90deg, #000000 0%, #16A865 100%)',
+          backgroundClip: 'text',
+          color: 'transparent',
+        },
+        '.gradient-bg-light': {
+          backgroundImage: 'linear-gradient(90deg, #E0F7FA 0%, #16A865 100%)',
+        },
+        '.gradient-bg-dark': {
+          backgroundImage: 'linear-gradient(90deg, #000000 0%, #16A865 100%)',
+        },
+        // Custom button styles
+        '.btn': {
+          padding: '0.5rem 1rem',
+          borderRadius: '0.375rem',
+          fontWeight: '600',
+          transition: 'background-color 0.3s, transform 0.3s',
+        },
+        '.btn-primary': {
+          backgroundColor: '#16A865',
+          color: '#FFFFFF',
+        },
+        '.btn-secondary': {
+          backgroundColor: '#FF5733',
+          color: '#FFFFFF',
+        },
+        '.btn:hover': {
+          transform: 'scale(1.05)',
+        },
+      });
+    }),
+  ],
+};

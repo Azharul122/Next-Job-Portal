@@ -1,0 +1,51 @@
+dropwon -> user,admin => message= default role user
+number of result/job found
+
+
+
+
+
+
+Here's a breakdown of features you could assign to each role in your job portal website:
+
+### 1. **Super Admin**
+- **Full Access:** Can manage all aspects of the platform, including:
+  - **User Management:** Create, edit, delete any user (including Admins and Recruiters), assign roles, and manage permissions.
+  - **Platform Settings:** Access and modify global settings like site configurations, payment settings, and other high-level configurations.
+  - **Analytics & Reporting:** View detailed reports on user activity, job postings, and overall site performance.
+  - **Content Management:** Manage site-wide content, such as blog posts, FAQs, and other informational pages.
+  - **Audit Logs:** Access and review all actions taken by Admins and other users.
+  - **Job Management:** Full control over job postings, categories, and featured listings.
+  
+### 2. **Admin**
+- **User Management:** Can create, edit, and delete Recruiter and User accounts.
+- **Job Posting Management:** Review, approve, or reject job postings submitted by Recruiters.
+- **Reporting:** Access reports related to job postings, recruiter performance, and user activity.
+- **Content Management:** Manage blog posts, newsletters, and other site content (but with less control than Super Admin).
+- **Moderation:** Manage user reviews, feedback, and flag inappropriate content.
+- **Notifications:** Send notifications to users or recruiters regarding platform updates or changes.
+
+### 3. **Recruiter**
+- **Job Postings:** Create, edit, and manage job listings.
+- **Candidate Management:** View and manage applications, communicate with applicants, and schedule interviews.
+- **Profile Management:** Update company profile, including logo, description, and contact information.
+- **Subscription & Payments:** Manage subscription plans for posting jobs, and view payment history.
+- **Analytics:** Access basic analytics related to job postings (e.g., views, applications received).
+
+### 4. **User**
+- **Profile Management:** Create and manage their profile, upload resumes, and update personal information.
+- **Job Search:** Browse, search, and filter job listings based on various criteria.
+- **Job Applications:** Apply for jobs, track application status, and manage job preferences.
+- **Notifications:** Receive notifications for job alerts, application status, and relevant updates.
+- **Saved Jobs:** Save job postings for future reference.
+- **Reviews & Feedback:** Leave reviews or feedback on companies and job postings.
+
+### Optional Features:
+- **Super Admin:**
+  - **Custom Role Creation:** Ability to create custom roles with specific permissions.
+  - **Integration Management:** Manage and set up integrations with third-party services (e.g., ATS, CRM).
+  
+- **Recruiter:**
+  - **Team Management:** Ability to add and manage team members who can assist in recruiting.
+
+This setup gives each role distinct responsibilities, ensuring a clear hierarchy and organized management of your job portal.
