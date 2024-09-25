@@ -99,7 +99,7 @@ const Navbar = async () => {
                         <Link className='px-4 py-2 text-sm  rounded' href={"/jobs"}>Jobs</Link>
                     </div> */}
                     <div className="hidden sm:block">
-                        <UserNavabarLinkItems />
+                        <UserNavabarLinkItems setShow={""}/>
                     </div>
 
                 </div>
