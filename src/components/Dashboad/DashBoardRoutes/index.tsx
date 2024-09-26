@@ -3,8 +3,8 @@
 import { BriefcaseBusinessIcon, Home, List, LucideHome, Settings, Users } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useRouter } from "next/router"
-import { FaCaretSquareUp } from "react-icons/fa"
+// import { useRouter } from "next/router"
+// import { FaCaretSquareUp } from "react-icons/fa"
 
 
 
@@ -30,7 +30,7 @@ const adminRoutes = [
         route_name: "Manage Company",
         link: "/dashboard/admin/manage-company"
     },
-   
+
 ]
 const recruiterRoutes = [
     {
@@ -47,7 +47,7 @@ const recruiterRoutes = [
     {
         icon: List,
         route_name: "Manage Jobs",
-        link: "/dashboard/admin/manage-jobs"
+        link: "/dashboard/recruiter/manage-jobs"
     },
 
 ]
@@ -63,11 +63,10 @@ const DashBoardRoutes = () => {
 
                 route.map((routes) => {
                     const isActive = pathname === routes?.link || (pathname.startsWith(`${routes?.link}/`) && pathname !== "/dashboard/admin")
-                    console.log(pathname.startsWith(routes?.link))
-                    console.log(pathname)
+                   
                     return (
 
-                        <Link href={routes.link} key={routes.link} className={`w-full flex items-center gap-2  pl-3  py-2 ${isActive ? "border-gradient-end border-r-4 text-gradient-start bg-transparentBGprimary overflow-hidden" : "border-0"}`}>
+                        <Link href={routes.link} key={routes.link} className={`w-full flex items-center gap-2  pl-3  py-2 ${isActive ? "border-gradient-end border-r-2 text-gradient-start bg-transparentBGprimary overflow-hidden" : "border-0"}`}>
                             {routes.icon && <routes.icon size={20} />}
                             {routes.route_name}
                         </Link>

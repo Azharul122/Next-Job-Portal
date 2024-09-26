@@ -13,12 +13,13 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import GradientIcon from "../GradientIcon"
+import { cn } from "@/lib/utils"
 
 export function ModeToggle() {
   const { setTheme } = useTheme()
 
   return (
-    <DropdownMenu>
+    <DropdownMenu className={cn("focus:outline-none focus:ring-0 border-none")}>
       <DropdownMenuTrigger asChild>
         <Button className="!focus-visible:ring-0 focus-visible:ring-offset-0 " variant="ghost" size="icon">
           {/* <GradientIcon style={{ fill: 'url(#gradient)' }} id="gradient"  icon={<FaSun className="h-[1.2rem] w-[1.2rem]"/>}/> */}

@@ -96,9 +96,9 @@ export const signUp = async (
   // await auth()
 
   // if(useOk && useOk.ok){
-  //   console.log('ok')
+
   // }
-  // console.log(usersignIn)
+
   // // redirect("/")
   // if (usersignIn && usersignIn.ok) {
   //   // Redirect to home

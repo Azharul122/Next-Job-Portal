@@ -28,37 +28,19 @@ import UserNavabarLinkItems from './UserNavabarLinkItems'
 import { DropdownMenu, DropdownMenuTrigger } from '../ui/dropdown-menu'
 import ProfileMenuItems from './ProfileMenuItems'
 import BottomNavbar from './BottomNavbar'
+import ButtonPlus from './ButtonPlus'
+import { LayoutDashboardIcon } from 'lucide-react'
+import { cn } from '@/lib/utils'
 // import { useRouter } from 'next/router'
 // import { LoaderCircle } from 'lucide-react'
 
 
 const Navbar = async () => {
     const sesssion = await auth()
-    // console.log(sesssion)
-    // const { data, status } = useSession()
-    // if (status === "loading") {
-    //     return <div className="h-screen w-full flex justify-start items-center">loading</div>
-    // }
     const user = sesssion?.user
 
-    // if(!sesssion?.user) return <LoaderCircle/>
-
-    // const sesssion=getSession()
-
-    // const { setTheme } = useTheme()
-    // const isSignedIn = false
-
-    // if(isLoaded){
-    //     return <p>Loading</p>
-    // }
-
-
-
-    // const getLinkClasses = (path):string => {
-    //     "use client"
-    //     const router=()
-    //     return `px-4 py-2 text-sm rounded ${router.pathname === path ? 'active:text-red-300 active:font-extrabold' : ''}`;
-    //   };
+   
+  
 
     return (
         <div>
@@ -73,7 +55,7 @@ const Navbar = async () => {
                         </div>
                         <div className="menu">
 
-                            <NavigationMenu >
+                            <NavigationMenu className={cn("focus:outline-none focus:ring-0 border-none")}>
                                 <NavigationMenuList className=''>
 
                                     <NavigationMenuItem>
@@ -105,6 +87,9 @@ const Navbar = async () => {
                 </div>
 
                 <div className="flex items-center gap-2">
+                    <div className="hidden md:flex">
+                        <ButtonPlus icon={LayoutDashboardIcon} title='Dashboard' link='/dashboard/recruiter' />
+                    </div>
                     <div className=" sm:block hidden">
                         <ModeToggle />
                     </div>
