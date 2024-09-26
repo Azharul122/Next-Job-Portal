@@ -16,6 +16,9 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import axios from "axios"
+import { toast } from "sonner"
+import { redirect } from "next/navigation"
+import { useRouter } from "next/navigation"
 
 const formSchema = z.object({
     title: z.string().min(5, {
@@ -32,12 +35,16 @@ const CreateJob = () => {
         },
     })
     const {isSubmitting,isValid}=form.formState
+    const router=useRouter()
     
     const onSubmit = async (value: z.infer<typeof formSchema>) => {
-        console.log(value)
+       
         try {
             const jobdata = await axios.post("/api/jobs", value);
-            console.log(jobdata);
+           
+            toast("Job created successfully")
+
+            router.push(`./create-job/${jobdata.data.id}`)
          
         } catch (error) {
             console.error("Error creating job:", error);

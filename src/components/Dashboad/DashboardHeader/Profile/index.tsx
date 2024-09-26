@@ -10,7 +10,7 @@ import { FaUser } from 'react-icons/fa'
 const Profile = async () => {
     const session = await auth()
     const user =  session?.user
-    console.log(user)
+    
    
     return (
         <>
