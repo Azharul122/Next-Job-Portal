@@ -8,6 +8,7 @@ import React from 'react'
 import JobPublishAction from './_components/JobPublishAction'
 import { Button } from '@/components/ui/button'
 import TileForm from './_components/TileForm'
+import CatrgoryForm from './_components/CatrgoryForm'
 
 const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
   const id = await params.jobId
@@ -26,11 +27,18 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
     }
   })
 
+  const categorories = await db.category.findMany({
+    orderBy: {
+      categoryTitle: "asc"
+    }
+  })
+
+
   if (!job) {
     return redirect("../")
   }
 
-  const requiredFields = [job.sort_description, job.Description, job.sort_description, job.deadline]
+  const requiredFields = [job.sort_description, job.Description, job.sort_description, job.deadline, job.categoryId]
   const requiredFieldsLength = requiredFields.length
 
   const completedFields = requiredFields.filter(Boolean).length
@@ -73,6 +81,14 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
           </div>
           {/* Title edit */}
           <TileForm intialJob={job} jobId={id} />
+
+          {/* Choose category */}
+          <CatrgoryForm intialJob={job} jobId={id} options={categorories.map(category => ({
+            label: category.categoryTitle,
+            value: category.id
+          }))} />
+
+
         </div>
       </div>
 

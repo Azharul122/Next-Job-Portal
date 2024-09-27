@@ -22,28 +22,33 @@ import axios from "axios"
 import { toast } from "sonner"
 import { redirect } from "next/navigation"
 import { useRouter } from "next/navigation"
+import { Job } from '@prisma/client'
+import ComboBox from '@/components/ui/combo-box'
 
 interface propsTypes {
     jobId: string,
-    intialJob: {
-        title: string
-    }
+    intialJob: Job,
+    options: { label: string, value: string }[]
 }
 
 const formSchema = z.object({
-    title: z.string().min(5, {
-        message: "Title must be at least 5 characters.",
+    categoryId: z.string().min(1, {
+        message: "Category must be at least 5 characters.",
     }),
 })
 
-const TileForm = ({ jobId, intialJob }: propsTypes) => {
+const CatrgoryForm = ({ jobId, intialJob, options }: propsTypes) => {
     const [editing, setEditing] = useState(false)
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
-        defaultValues: intialJob
+        defaultValues: {
+            categoryId: intialJob.categoryId || ""
+        }
     })
     const { isSubmitting, isValid } = form.formState
     const router = useRouter()
+
+    console.log(options)
 
     const onSubmit = async (value: z.infer<typeof formSchema>) => {
 
@@ -60,10 +65,14 @@ const TileForm = ({ jobId, intialJob }: propsTypes) => {
             // Optionally display an error message to the user
         }
     };
+
+    const selectedOption = options.find((option) => option.value === intialJob.categoryId)
+
+
     return (
         <div className='border px-2 pb-4 mt-3'>
             <div className="flex justify-between items-center py-4">
-                <p>Title</p>
+                <p>Job category</p>
                 <div onClick={() => setEditing(!editing)} className='cursor-pointer'>
                     {
                         editing ? "Cancel" : <div className="flex items-center gap-2">
@@ -81,12 +90,14 @@ const TileForm = ({ jobId, intialJob }: propsTypes) => {
                         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                             <FormField
                                 control={form.control}
-                                name="title"
+                                name="categoryId"
                                 render={({ field }) => (
                                     <FormItem>
 
                                         <FormControl>
-                                            <Input disabled={isSubmitting} placeholder="Update Title" {...field} />
+                                            <ComboBox heading={"category"} options={options}  {...field} />
+
+
                                         </FormControl>
 
                                         <FormMessage />
@@ -105,16 +116,15 @@ const TileForm = ({ jobId, intialJob }: propsTypes) => {
                                     </Button>
                                 )
                             }
-
                         </form>
                     </Form>
                 </div>
             }
             {
-                !editing && <p>{intialJob.title}</p>
+                !editing && <p>{selectedOption?.label || "No category"}</p>
             }
         </div>
     )
 }
 
-export default TileForm
+export default CatrgoryForm

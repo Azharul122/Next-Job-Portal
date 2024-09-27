@@ -19,6 +19,7 @@ import axios from "axios"
 import { toast } from "sonner"
 import { redirect } from "next/navigation"
 import { useRouter } from "next/navigation"
+import { LoaderCircle } from "lucide-react"
 
 const formSchema = z.object({
     title: z.string().min(5, {
@@ -34,24 +35,24 @@ const CreateJob = () => {
             title: "",
         },
     })
-    const {isSubmitting,isValid}=form.formState
-    const router=useRouter()
-    
+    const { isSubmitting, isValid } = form.formState
+    const router = useRouter()
+
     const onSubmit = async (value: z.infer<typeof formSchema>) => {
-       
+
         try {
             const jobdata = await axios.post("/api/jobs", value);
-           
+
             toast("Job created successfully")
 
             router.push(`./create-job/${jobdata.data.id}`)
-         
+
         } catch (error) {
             console.error("Error creating job:", error);
             // Optionally display an error message to the user
         }
     };
-    
+
 
     return (
         <div>
@@ -74,12 +75,23 @@ const CreateJob = () => {
                                     <FormControl>
                                         <Input disabled={isSubmitting} placeholder="shadcn" {...field} />
                                     </FormControl>
-                                    
+
                                     <FormMessage />
                                 </FormItem>
                             )}
                         />
-                        <Button disabled={isSubmitting || !isValid} variant={"outline"} type="submit">Submit</Button>
+                        {
+                            isSubmitting ? (
+                                <Button disabled>
+                                    <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
+                                    Please wait
+                                </Button>
+                            ) : (
+                                <Button disabled={isSubmitting || !isValid} variant="outline" type="submit">
+                                    Submit
+                                </Button>
+                            )
+                        }
                     </form>
                 </Form>
 

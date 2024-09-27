@@ -9,19 +9,19 @@ generator client {
 }
 
 datasource db {
-  provider = "mongodb"
-  url      = env("MONGO_URI")
+  provider     = "mongodb"
+  url          = env("MONGO_URI")
   relationMode = "prisma"
 }
 
 model Job {
-  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  id                String    @id @default(auto()) @map("_id") @db.ObjectId
   userId            String
   title             String
   Description       String?
   sort_description  String?
   img               String?
-  isPublished       Boolean  @default(false)
+  isPublished       Boolean   @default(false)
   tags              String[]
   savedUser         String[]
   shiftTimimg       String?
@@ -29,6 +29,17 @@ model Job {
   yearsOfExperience String?
   workMode          String?
   deadline          String?
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @default(now())
+  categoryId        String?   @db.ObjectId
+  category          Category? @relation(fields: [categoryId], references: [id])
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @default(now())
+  @@index([categoryId])
+}
+
+model Category {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  categoryTitle String   @unique
+  jobs          Job[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @default(now())
 }
