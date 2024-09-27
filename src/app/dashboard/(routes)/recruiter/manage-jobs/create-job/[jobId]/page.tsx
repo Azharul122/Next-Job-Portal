@@ -9,6 +9,7 @@ import JobPublishAction from './_components/JobPublishAction'
 import { Button } from '@/components/ui/button'
 import TileForm from './_components/TileForm'
 import CatrgoryForm from './_components/CatrgoryForm'
+import ImageForm from './_components/ImageForm'
 
 const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
   const id = await params.jobId
@@ -87,6 +88,9 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
             label: category.categoryTitle,
             value: category.id
           }))} />
+
+          {/* Job image  */}
+          <ImageForm intialJob={job} jobId={id}/>
 
 
         </div>

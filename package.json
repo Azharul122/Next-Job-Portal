@@ -29,6 +29,7 @@
     "cloudinary": "^2.5.0",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
+    "firebase": "^10.13.2",
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.436.0",
     "mailtrap": "^3.4.0",
