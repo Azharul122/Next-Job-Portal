@@ -33,9 +33,7 @@ interface propsTypes {
 }
 
 const formSchema = z.object({
-    img: z.string().min(1, {
-        message: "Image URL needed",
-    }),
+    img: z.string().min(1,"Required"),
 })
 
 const ImageForm = ({ jobId, intialJob }: propsTypes) => {
@@ -106,7 +104,7 @@ const ImageForm = ({ jobId, intialJob }: propsTypes) => {
                                         Please wait
                                     </Button>
                                 ) : (
-                                    <Button disabled={isSubmitting || !isValid} variant="outline" type="submit">
+                                    <Button disabled={isSubmitting || !isValid}  variant="outline" type="submit">
                                         Submit
                                     </Button>
                                 )

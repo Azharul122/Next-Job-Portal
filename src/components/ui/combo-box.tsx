@@ -36,7 +36,7 @@ const ComboBox = ({ options, heading, onChange, value }: propsTypes) => {
     console.log(options)
     const [open, setOpen] = React.useState(false)
     // const [value, setValue] = React.useState("")
-    console.log(value)
+    // console.log(value)
     return (
         <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild>

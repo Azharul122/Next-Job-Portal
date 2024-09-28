@@ -67,7 +67,7 @@ const ImageUploadToFirebase = ({ disabled, value, onChange, onRemove }: imagePro
         );
     }
 
-    const ondelete = () => {
+    const onDelete = () => {
         onRemove(value)
         deleteObject(ref(storge, value)).then(() => {
             toast("Image deleted")
@@ -79,8 +79,8 @@ const ImageUploadToFirebase = ({ disabled, value, onChange, onRemove }: imagePro
             {
                 value ? (<div className="relative aspect-video mt-2 w-full h-60 overflow-hidden">
                     <Image src={value} className='size-full object-cover' fill alt='Image' />
-                    <div onClick={ondelete} className="absolute right-2 top-2 p-2 bg-red-100 rounded">
-                        <Trash2 />
+                    <div onClick={onDelete} className="absolute cursor-pointer right-2 top-1 p-2  bg-transparentBGprimary rounded">
+                        <Trash2 className="text-red-500"/>
                     </div>
                 </div>) : (<div className="flex justify-center items-center relative aspect-video mt-2 w-full h-60 overflow-hidden">
                     {

@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button'
 import TileForm from './_components/TileForm'
 import CatrgoryForm from './_components/CatrgoryForm'
 import ImageForm from './_components/ImageForm'
+import SortDescription from './_components/SortDescription'
 
 const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
   const id = await params.jobId
@@ -20,7 +21,7 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
 
   const session = await auth()
   const userId = session?.user.id
-  console.log(userId, id)
+  // console.log(userId, id)
   const job = await db.job.findUnique({
     where: {
       id,
@@ -91,6 +92,10 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
 
           {/* Job image  */}
           <ImageForm intialJob={job} jobId={id}/>
+
+
+          {/* Sort description */}
+          <SortDescription intialJob={job} jobId={id} isRequired={true}/>
 
 
         </div>
