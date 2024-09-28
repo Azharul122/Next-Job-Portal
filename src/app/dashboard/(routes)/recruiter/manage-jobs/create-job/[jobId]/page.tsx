@@ -11,6 +11,8 @@ import TileForm from './_components/TileForm'
 import CatrgoryForm from './_components/CatrgoryForm'
 import ImageForm from './_components/ImageForm'
 import SortDescription from './_components/SortDescription'
+import FullDescription from './_components/Description'
+import ShiftTiming from './_components/ShiftTiming'
 
 const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
   const id = await params.jobId
@@ -34,6 +36,29 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
       categoryTitle: "asc"
     }
   })
+
+  const option=[
+    {
+      label:"Full-time",
+      value:"24pro"
+    },
+    {
+      label:"Part-time",
+      value:"24pro1"
+    },
+    {
+      label:"Contractual",
+      value:"24pro2"
+    },
+    {
+      label:"Intership",
+      value:"24pro3"
+    },
+    {
+      label:"Project-based",
+      value:"24pro4"
+    }
+  ]
 
 
   if (!job) {
@@ -96,6 +121,17 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
 
           {/* Sort description */}
           <SortDescription intialJob={job} jobId={id} isRequired={true}/>
+         
+         
+          {/* Full description */}
+          <FullDescription intialJob={job} jobId={id} isRequired={true}/>
+          
+          
+          {/* Shift timing */}
+          {/* <ShiftTiming intialJob={job} jobId={id} isRequired={true}/> */}
+
+        
+          <ShiftTiming intialJob={job} jobId={id} options={option} />
 
 
         </div>

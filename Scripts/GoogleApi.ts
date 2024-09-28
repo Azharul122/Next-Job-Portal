@@ -53,7 +53,7 @@ const {
   
     const result = await chatSession.sendMessage(prompt);
     console.log(result.response.text());
-    return result.response.text().trim().replace(/```/g, "");
+    return result.response.text().trim().replace(/[*,#]/g, '', "");
   }
 
 
