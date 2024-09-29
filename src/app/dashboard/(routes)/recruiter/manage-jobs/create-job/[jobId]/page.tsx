@@ -42,26 +42,26 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
     }
   })
 
-  const option=[
+  const option = [
     {
-      label:"Full-time",
-      value:"24pro"
+      label: "Full-time",
+      value: "24pro"
     },
     {
-      label:"Part-time",
-      value:"24pro1"
+      label: "Part-time",
+      value: "24pro1"
     },
     {
-      label:"Contractual",
-      value:"24pro2"
+      label: "Contractual",
+      value: "24pro2"
     },
     {
-      label:"Intership",
-      value:"24pro3"
+      label: "Intership",
+      value: "24pro3"
     },
     {
-      label:"Project-based",
-      value:"24pro4"
+      label: "Project-based",
+      value: "24pro4"
     }
   ]
 
@@ -70,7 +70,7 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
     return redirect("../")
   }
 
-  const requiredFields = [job.sort_description, job.Description, job.sort_description, job.deadline, job.categoryId]
+  const requiredFields = [job.sort_description, job.Description,job.title]
   const requiredFieldsLength = requiredFields.length
 
   const completedFields = requiredFields.filter(Boolean).length
@@ -122,57 +122,59 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
           }))} />
 
           {/* Job image  */}
-          <ImageForm intialJob={job} jobId={id}/>
+          <ImageForm intialJob={job} jobId={id} />
 
 
           {/* Sort description */}
-          <SortDescription intialJob={job} jobId={id} isRequired={true}/>
-         
-         
-          
-          
-          
+          <SortDescription intialJob={job} jobId={id} isRequired={true} />
+
+
+
+
+
           {/* Shift timing */}
           {/* <ShiftTiming intialJob={job} jobId={id} isRequired={true}/> */}
 
-        
+
           <ShiftTiming intialJob={job} jobId={id} options={option} />
 
 
-           {/* Hourly rate edit */}
-           <HourlyRateForm intialJob={job} jobId={id} />
+          {/* Hourly rate edit */}
+          <HourlyRateForm intialJob={job} jobId={id} />
 
-            {/* Job mode */}
-           <JobModeForm intialJob={job} jobId={id} options={option} />
-           
-           
-            {/* Job Experience */}
-           <WorkExperienceForm intialJob={job} jobId={id} options={option} />
+          {/* Job mode */}
+          <JobModeForm intialJob={job} jobId={id} options={option} />
 
 
-           
+          {/* Job Experience */}
+          <WorkExperienceForm intialJob={job} jobId={id} options={option} />
+
+
+
 
 
         </div>
         {/* Right */}
         <div className="">
-        <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2">
             <FaRegQuestionCircle />
             Required fields
           </div>
 
           {/* tags form */}
-          <TagsForm intialJob={job} jobId={id} isRequired={true}/>
+          <TagsForm intialJob={job} jobId={id} isRequired={true} />
 
         </div>
 
+
+        {/* Description */}
         <div className="col-span-2">
           {/* Full description */}
-          <FullDescription intialJob={job} jobId={id} isRequired={true}/>
+          <FullDescription intialJob={job} jobId={id} isRequired={true} />
         </div>
       </div>
 
-      
+
 
 
     </div>

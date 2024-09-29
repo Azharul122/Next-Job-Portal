@@ -21,9 +21,51 @@ import {
     TableRow,
 } from "@/components/ui/table"
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu"
+import { DataTable } from "@/components/ui/data-table"
+import { columns, JobsColumns } from "./_components/columns"
+import { auth } from "@/auth"
+import { redirect } from "next/navigation"
+import { db } from "@/lib/db"
 
 
-const page = () => {
+const ManageJobs = async () => {
+
+    const session = await auth()
+    const id = session?.user.id
+
+    if (!id) {
+        return redirect("./")
+    }
+
+    const jobs = await db.job.findMany({
+        where: {
+            userId: id
+        },
+        include: {
+            category: true
+        },
+        orderBy: {
+            createdAt: "desc"
+        }
+
+    })
+
+    const formatDate = (dateStr: Date) => {
+        const date = new Date(dateStr);
+        const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'short', year: 'numeric' };
+        return date.toLocaleDateString('en-GB', options);
+    };
+
+    const formatedJobs: JobsColumns[] = jobs.map((job) => ({
+        id: job.id,
+        category: job?.category ? job.category.categoryTitle : "N/A",
+        createdAt: formatDate(job.createdAt),
+        isPublished: job.isPublished,
+        title: job.title,
+        company: "N/A"
+    }))
+
+
     return (
         <div>
             <span>
@@ -48,25 +90,9 @@ const page = () => {
                         </Select>
 
                     </div>
-                    <Table>
-                        <TableCaption>A list of your recent invoices.</TableCaption>
-                        <TableHeader>
-                            <TableRow>
-                                <TableHead className="w-[100px]">Invoice</TableHead>
-                                <TableHead>Status</TableHead>
-                                <TableHead>Method</TableHead>
-                                <TableHead className="text-right">Amount</TableHead>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            <TableRow>
-                                <TableCell className="font-medium">INV001</TableCell>
-                                <TableCell>Paid</TableCell>
-                                <TableCell>Credit Card</TableCell>
-                                <TableCell className="text-right">$250.00</TableCell>
-                            </TableRow>
-                        </TableBody>
-                    </Table>
+
+                    {/* Data table */}
+                    <DataTable columns={columns} data={formatedJobs} searchKey="title"/>
 
                 </div>
             </div>
@@ -74,4 +100,4 @@ const page = () => {
     )
 }
 
-export default page
+export default ManageJobs

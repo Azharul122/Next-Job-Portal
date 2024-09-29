@@ -157,43 +157,8 @@ const TagsForm = ({ jobId, intialJob, isRequired }: propsTypes) => {
 
                     }
 
-                    {
-                        jobTags.length < 0 && <p>No job tags found</p>
-                    }
 
-                    {/* form */}
-                    {/* <Form {...form}>
-                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                            <FormField
-                                control={form.control}
-                                name="tags"
-                                render={({ field }) => (
-                                    <FormItem>
 
-                                        <FormControl>
-
-                                            <Textarea disabled={isSubmitting} placeholder=" Sort description " {...field} />
-                                        </FormControl>
-
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                            {
-                                isSubmitting ? (
-                                    <Button disabled>
-                                        <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
-                                        Please wait
-                                    </Button>
-                                ) : (
-                                    <Button disabled={isSubmitting || !isValid} variant="outline"
-                                        type="submit" className='disabled:bg-opacity-15 disabled:cursor-not-allowed'>
-                                        Save
-                                    </Button>
-                                )
-                            }
-                        </form>
-                    </Form> */}
 
                     {
                         isSubmitting ? (
@@ -202,25 +167,45 @@ const TagsForm = ({ jobId, intialJob, isRequired }: propsTypes) => {
                                 Please wait
                             </Button>
                         ) : (
-                            <Button disabled={isSubmitting} variant="outline"
-                                type="submit" onClick={() => onSubmit({ tags: jobTags })} className='disabled:bg-opacity-15 disabled:cursor-not-allowed'>
-                                Save
-                            </Button>
+                            <div className="flex items-center gap-2 mt-3">
+                                <Button disabled={isSubmitting} variant="outline"
+                                    type="submit" onClick={() => onSubmit({ tags: jobTags })} className='disabled:bg-opacity-15 disabled:cursor-not-allowed'>
+                                    Save
+                                </Button>
+                                {
+                                    jobTags.length > 0 && (
+                                        <Button disabled={isSubmitting} onClick={()=>setJobTags([])} variant="outline"
+                                              className='disabled:bg-opacity-15 disabled:cursor-not-allowed'>
+                                            Clear All
+                                        </Button>
+                                    )
+                                }
+                            </div>
                         )
                     }
 
                 </div>
             }
             {
-                !editing && jobTags.length > 0 ? <div className="flex gap-2 items-center flex-wrap">
+                editing ? "" : (<div className="">
                     {
-
-                        jobTags.map((jobTag, index) => (<div key={jobTag} className='border py-2 px-3 flex gap-2 items-center rounded'>
-                            {jobTag}
-                        </div>))
+                        jobTags?.length > 0 ? (
+                            <div className="flex gap-2 items-center flex-wrap">
+                                {
+                                    jobTags.map((jobTag, index) => (
+                                        <div key={`${jobTag}-${index}`} className='border py-2 px-3 flex gap-2 items-center rounded'>
+                                            {jobTag}
+                                        </div>
+                                    ))
+                                }
+                            </div>
+                        ) : (
+                            <p>No tags</p>
+                        )
                     }
-                </div> : <p>No tags</p>
+                </div>)
             }
+
         </div>
     )
 }
