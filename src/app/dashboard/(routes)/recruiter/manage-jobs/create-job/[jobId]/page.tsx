@@ -13,6 +13,11 @@ import ImageForm from './_components/ImageForm'
 import SortDescription from './_components/SortDescription'
 import FullDescription from './_components/Description'
 import ShiftTiming from './_components/ShiftTiming'
+import HourlyRateForm from './_components/HourlyRateForm'
+import JobModeForm from './_components/JobModeForm'
+import WorkExperienceForm from './_components/WorkExperienceForm'
+import { FaRegQuestionCircle } from 'react-icons/fa'
+import TagsForm from './_components/TagsForm'
 
 const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
   const id = await params.jobId
@@ -101,6 +106,7 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
 
       {/* Edit content section */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2 pt-5">
+        {/* Left */}
         <div className="customize-panel ">
           <div className="flex items-center gap-2">
             <Edit2Icon />
@@ -123,8 +129,7 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
           <SortDescription intialJob={job} jobId={id} isRequired={true}/>
          
          
-          {/* Full description */}
-          <FullDescription intialJob={job} jobId={id} isRequired={true}/>
+          
           
           
           {/* Shift timing */}
@@ -134,8 +139,41 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
           <ShiftTiming intialJob={job} jobId={id} options={option} />
 
 
+           {/* Hourly rate edit */}
+           <HourlyRateForm intialJob={job} jobId={id} />
+
+            {/* Job mode */}
+           <JobModeForm intialJob={job} jobId={id} options={option} />
+           
+           
+            {/* Job Experience */}
+           <WorkExperienceForm intialJob={job} jobId={id} options={option} />
+
+
+           
+
+
+        </div>
+        {/* Right */}
+        <div className="">
+        <div className="flex items-center gap-2">
+            <FaRegQuestionCircle />
+            Required fields
+          </div>
+
+          {/* tags form */}
+          <TagsForm intialJob={job} jobId={id} isRequired={true}/>
+
+        </div>
+
+        <div className="col-span-2">
+          {/* Full description */}
+          <FullDescription intialJob={job} jobId={id} isRequired={true}/>
         </div>
       </div>
+
+      
+
 
     </div>
   )

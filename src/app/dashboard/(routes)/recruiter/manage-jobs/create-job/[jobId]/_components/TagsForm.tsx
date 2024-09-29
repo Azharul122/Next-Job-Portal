@@ -1,5 +1,5 @@
 "use client"
-import { Copy, Edit, Lightbulb, Loader2, LoaderCircle, Repeat2 } from 'lucide-react'
+import { Edit, Lightbulb, Loader2, LoaderCircle, Repeat2 } from 'lucide-react'
 import React, { useState } from 'react'
 
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -26,8 +26,6 @@ import { Job } from '@prisma/client'
 import ComboBox from '@/components/ui/combo-box'
 import { Textarea } from '@/components/ui/textarea'
 import getGenerativeAIResponse from '../../../../../../../../../Scripts/GoogleApi'
-import Editor from '@/components/ui/editor'
-import Preview from '@/components/ui/Preview'
 
 interface propsTypes {
     jobId: string,
@@ -36,24 +34,25 @@ interface propsTypes {
 }
 
 const formSchema = z.object({
-    Description: z.string().min(100, {
-        message: "Description must be at least 100 characters.",
+    tags: z.array(z.string()).min(1, {
+        message: "At leaset one tage",
     }),
 })
 
-const FullDescription = ({ jobId, intialJob, isRequired }: propsTypes) => {
+const TagsForm = ({ jobId, intialJob, isRequired }: propsTypes) => {
     const [editing, setEditing] = useState(false)
-    // const [aiData, setAiData] = useState("")
+    const [aiData, setAiData] = useState("")
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            Description: intialJob.Description || ""
+            tags: intialJob.tags || ""
         }
     })
     const { isSubmitting, isValid } = form.formState
     const [prompt, setPrompt] = useState("")
     const [isPrompting, setIsPrompting] = useState(false)
-    const [geminiData, setGeminiData] = useState("")
+    let [jobTags, setJobTags] = useState<string[]>(intialJob.tags)
+
     const router = useRouter()
 
     // console.log(options)
@@ -79,27 +78,39 @@ const FullDescription = ({ jobId, intialJob, isRequired }: propsTypes) => {
 
         try {
             setIsPrompting(true)
-            const customPrompts = `could you suggest job sort descrition for ${prompt ? prompt : intialJob.title} within 250 words including benifits,reservasion with a poin where each point will be bold font`
+
+            const customPrompts = `Generate an array of top 5 keywords related to the job profession "${prompt}". These keywords should encompass various aspects of the profession, including skills, responsibilities, tools, and technologies commonly associated with it. Aim for a diverse set of keywords that accurately represent the breadth of the profession. Your output should be a array of keywords. Just return me the array alone with parse data.`;
 
             await getGenerativeAIResponse(customPrompts).then((data) => {
-                setGeminiData(data)
-                // console.log(data)
-                // form.setValue("Description", data)
+                setJobTags(JSON.parse(data))
+                // setJobTags(JSON.parse(data))
+                // if (Array.isArray( data)) {
+                //     // console.log(data)
+                //     // setJobTags((prevTags) => [...prevTags, ...data])
+                // }
+
+                // form.setValue("tags", data)
                 setIsPrompting(false)
             })
         } catch (error) {
-
+            console.log(error)
         }
     }
 
-    const onCopy = () => {
-        navigator.clipboard.writeText(geminiData)
+
+    const handleTagRemove = (idx: number) => {
+
+        // const updatedDate=[...jobTags]
+        // updatedDate.slice(idx,1)
+        // setJobTags(updatedDate)
+
+        setJobTags(prevTags => prevTags.filter((_, i) => i !== idx));
     }
 
     return (
         <div className='border px-2 pb-4 mt-3'>
             <div className="flex justify-between items-center py-4">
-                <p>Description <sup className={`${isRequired ? "text-red-500" : "hidden"}`}>*</sup></p>
+                <p>Tags <sup className={`${isRequired ? "text-red-500" : "hidden"}`}>*</sup></p>
                 <div onClick={() => setEditing(!editing)} className='cursor-pointer'>
                     {
                         editing ? "Cancel" : <div className="flex items-center gap-2">
@@ -113,7 +124,7 @@ const FullDescription = ({ jobId, intialJob, isRequired }: propsTypes) => {
             {
                 editing && <div className="">
                     <div className="flex gap-2 items-center">
-                        <Input value={prompt} onChange={(e) => setPrompt(e.target.value)} placeholder="Make with AI" className='w-full' />
+                        <Input value={prompt} onChange={(e) => setPrompt(e.target.value)} placeholder="Make tags with AI" className='w-full' />
                         {
                             isPrompting ? <>
                                 <Button><Loader2 className='animate-spin' />Thinking ....</Button>
@@ -127,36 +138,41 @@ const FullDescription = ({ jobId, intialJob, isRequired }: propsTypes) => {
                     <div className="flex items-center justify-between">
                         <p className='py-2 text-sm'>Note: SD must be professional</p>
                         {
-                            intialJob.Description && <Repeat2 onClick={() => handlePromptGenerate()} />
+                            intialJob.tags && <Repeat2 onClick={() => handlePromptGenerate()} />
                         }
                     </div>
+
+                    {/* Tags container*/}
                     {
-                        geminiData && (
-                            <div className="relative w-full">
-                                {
-                                    geminiData
-                                }
-                                <div className="absolute right-1 top-1">
-                                    <Button onClick={onCopy}><Copy size={20} /></Button>
-                                </div>
-                            </div>
-                        )
+                        jobTags.length > 0 && <div className="flex gap-2 items-center flex-wrap">
+                            {
+
+                                jobTags.map((jobTag, index) => (<div key={jobTag} className='border py-2 px-3 flex gap-2 items-center rounded'>
+                                    {jobTag}
+                                    <button className='text-bold text-gradient-start cursor-pointer' onClick={() => handleTagRemove(index)}>X</button>
+                                </div>))
+                            }
+                        </div>
+
+
                     }
+
+                    {
+                        jobTags.length < 0 && <p>No job tags found</p>
+                    }
+
                     {/* form */}
-                    <Form {...form}>
+                    {/* <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                             <FormField
                                 control={form.control}
-                                name="Description"
+                                name="tags"
                                 render={({ field }) => (
                                     <FormItem>
 
                                         <FormControl>
 
-
-                                            {/* <Textarea disabled={isSubmitting} placeholder=" Sort description " {...field} /> */}
-                                            <Editor {...field} />
-
+                                            <Textarea disabled={isSubmitting} placeholder=" Sort description " {...field} />
                                         </FormControl>
 
                                         <FormMessage />
@@ -177,17 +193,36 @@ const FullDescription = ({ jobId, intialJob, isRequired }: propsTypes) => {
                                 )
                             }
                         </form>
-                    </Form>
+                    </Form> */}
+
+                    {
+                        isSubmitting ? (
+                            <Button disabled>
+                                <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
+                                Please wait
+                            </Button>
+                        ) : (
+                            <Button disabled={isSubmitting} variant="outline"
+                                type="submit" onClick={() => onSubmit({ tags: jobTags })} className='disabled:bg-opacity-15 disabled:cursor-not-allowed'>
+                                Save
+                            </Button>
+                        )
+                    }
 
                 </div>
             }
             {
-                !editing && (<div>
-                    <Preview value={intialJob.Description} />
-                </div>)
+                !editing && jobTags.length > 0 ? <div className="flex gap-2 items-center flex-wrap">
+                    {
+
+                        jobTags.map((jobTag, index) => (<div key={jobTag} className='border py-2 px-3 flex gap-2 items-center rounded'>
+                            {jobTag}
+                        </div>))
+                    }
+                </div> : <p>No tags</p>
             }
         </div>
     )
 }
 
-export default FullDescription
+export default TagsForm
