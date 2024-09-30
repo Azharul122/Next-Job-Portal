@@ -1,6 +1,6 @@
 "use client"
 
-import { BriefcaseBusinessIcon, Home, List, LucideHome, Settings, Users } from "lucide-react"
+import { BriefcaseBusinessIcon, Home, List, LucideHome, Settings, Users,HomeIcon } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 // import { useRouter } from "next/router"
@@ -42,7 +42,12 @@ const recruiterRoutes = [
     {
         icon: Settings,
         route_name: "Settings",
-        link: "/dashboard/settings"
+        link: "/dashboard/recruiter/settings"
+    },
+    {
+        icon: HomeIcon,
+        route_name: "Companies",
+        link: "/dashboard/recruiter/companies"
     },
     {
         icon: List,
@@ -66,7 +71,7 @@ const DashBoardRoutes = () => {
                    
                     return (
 
-                        <Link href={routes.link} key={routes.link} className={`w-full flex items-center gap-2  pl-3  py-2 ${isActive ? "border-gradient-end border-r-2 text-gradient-start bg-transparentBGprimary overflow-hidden" : "border-0"}`}>
+                        <Link href={routes.link} key={routes.link} className={`w-full flex items-center gap-2  pl-3  py-2 ${isActive ? "border-gradient-end border-r-4 text-gradient-start dark:bg-[#000B1F] bg-[#F8F8F8] overflow-hidden" : "border-0"}`}>
                             {routes.icon && <routes.icon size={20} />}
                             {routes.route_name}
                         </Link>

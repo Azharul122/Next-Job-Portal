@@ -31,15 +31,41 @@ model Job {
   deadline          String?
   categoryId        String?   @db.ObjectId
   category          Category? @relation(fields: [categoryId], references: [id])
+  companyId         String?   @db.ObjectId
+  company           Company?  @relation(fields: [companyId], references: [id])
   createdAt         DateTime  @default(now())
   updatedAt         DateTime  @default(now())
+
   @@index([categoryId])
+  @@index([companyId])
 }
 
 model Category {
   id            String   @id @default(auto()) @map("_id") @db.ObjectId
   categoryTitle String   @unique
   jobs          Job[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @default(now())
+}
+
+model Company {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId        String
+  companyTitle  String   @unique
+  jobs          Job[]
+  description   String?
+  logo          String?
+  coverImage    String?
+  mail          String?
+  socialLink    String?
+  website       String?
+  address_line1 String?
+  address_line2 String?
+  city          String?
+  zip_code      String?
+  followers     String[]
+  overView      String?
+  whyJoinUs     String?
   createdAt     DateTime @default(now())
   updatedAt     DateTime @default(now())
 }

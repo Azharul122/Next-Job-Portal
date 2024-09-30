@@ -32,6 +32,8 @@ const config = {
         'transparentBGDarkprimary': 'rgba(255, 126, 95,0.9)',
         'gradient-start': '#ff7e5f', // Starting color
         'gradient-end': '#feb47b',
+        "darkbg":"#000b1f",
+        "lightbg":"#f8f8f8",
         // primaryText:"",
         // seconderyText:"",
         // gradientTextDark:"",
