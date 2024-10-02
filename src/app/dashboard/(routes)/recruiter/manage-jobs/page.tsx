@@ -42,7 +42,8 @@ const ManageJobs = async () => {
             userId: id
         },
         include: {
-            category: true
+            category: true,
+            company: true
         },
         orderBy: {
             createdAt: "desc"
@@ -62,7 +63,7 @@ const ManageJobs = async () => {
         createdAt: formatDate(job.createdAt),
         isPublished: job.isPublished,
         title: job.title,
-        company: "N/A"
+        company: job.company?job.company.companyTitle:"N/A"
     }))
 
 

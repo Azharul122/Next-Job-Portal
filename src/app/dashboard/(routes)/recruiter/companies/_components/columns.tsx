@@ -18,6 +18,7 @@ export type CompnayColumnsType = {
 }
 
 export const CompanyColumns: ColumnDef<CompnayColumnsType>[] = [
+   
     {
         accessorKey: "companyTitle",
         header: ({ column }) => {
@@ -26,7 +27,7 @@ export const CompanyColumns: ColumnDef<CompnayColumnsType>[] = [
                     variant="ghost"
                     onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                 >
-                    ComPanyTitle
+                    Company Title
                     <ArrowUpDown className="ml-2 h-4 w-4" />
                 </Button>
             )
@@ -42,8 +43,9 @@ export const CompanyColumns: ColumnDef<CompnayColumnsType>[] = [
         header: "Logo",
         cell: ({ row }) => {
             const { logo } = row.original
+           
 
-            return <div className={logo ? "text-green-600" : "text-red-500 "}>{logo ? (<Image src={logo} height={40} width={40} alt="Insert" />) : (<Image src={defaltCompanyLogo} className="rounded-full" height={40} width={40} alt="Insert" />)}</div>
+            return <div>{logo ? (<Image className="rounded-full" src={logo} height={40} width={40} alt="Insert" />) : (<Image src={defaltCompanyLogo} className="rounded-full" height={40} width={40} alt="Insert" />)}</div>
         },
     },
 

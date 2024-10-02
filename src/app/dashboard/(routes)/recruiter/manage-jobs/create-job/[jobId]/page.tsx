@@ -18,6 +18,10 @@ import JobModeForm from './_components/JobModeForm'
 import WorkExperienceForm from './_components/WorkExperienceForm'
 import { FaRegQuestionCircle } from 'react-icons/fa'
 import TagsForm from './_components/TagsForm'
+import CompanyForm from './_components/CompanyForm'
+import { AttachmentsForm } from './_components/AttachmentForm'
+// import AttachmentForm from './_components/AttachmentForm'
+
 
 const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
   const id = await params.jobId
@@ -33,6 +37,13 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
     where: {
       id,
       userId
+    },
+    include:{
+      attachments:{
+        orderBy:{
+          createdAt:"asc"
+        }
+      }
     }
   })
 
@@ -41,7 +52,17 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
       categoryTitle: "asc"
     }
   })
+  const companies = await db.company.findMany({
+    where:{
+      userId
+    },
+    orderBy: {
+      createdAt: "asc"
+    }
+  })
 
+ 
+ 
   const option = [
     {
       label: "Full-time",
@@ -79,7 +100,7 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
 
   return (
     <div className=''>
-      <Link href={"./"} className='flex items-center gap-2 text-red-300'>
+      <Link href={"../"} className='flex items-center gap-2 text-red-300'>
         <SkipBack className='' />
         Back
       </Link>
@@ -163,6 +184,15 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
 
           {/* tags form */}
           <TagsForm intialJob={job} jobId={id} isRequired={true} />
+
+          {/*  */}
+          <CompanyForm intialJob={job} jobId={id} options={companies.map(company => ({
+            label: company.companyTitle,
+            value: company.id
+          }))} />
+
+          {/* Atachment Form */}
+          <AttachmentsForm initialData={job} jobId={id}  />
 
         </div>
 

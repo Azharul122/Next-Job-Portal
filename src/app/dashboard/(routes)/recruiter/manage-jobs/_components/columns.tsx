@@ -70,6 +70,7 @@ export const columns: ColumnDef<JobsColumns>[] = [
     },
     {
         id: "Action",
+        header:"Action",
         cell: ({ row }) => {
             const { id } = row.original
 

@@ -295,8 +295,8 @@ const CompanySocialLinks = ({ companyId, intialComapny, isRequired }: propsTypes
                                     {intialComapny.mail}
                                 </div>
 
-                                <div className="flex items-center gap-2">
-                                    <LinkedinIcon />
+                                <div className="flex items-center gap-2 ">
+                                    <LinkedinIcon className='' style={{ fill: 'none' }}/>
                                     <Link href={intialComapny.socialLink}>Linkedin link</Link>
                                 </div>
 

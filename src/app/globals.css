@@ -4,6 +4,7 @@
 
 @layer base {
   :root {
+    /* background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQX5Lwm5DedmJEoeLTB8MjytE6RRikCalQ4vw&s"); */
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;

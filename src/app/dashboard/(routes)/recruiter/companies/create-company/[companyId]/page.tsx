@@ -14,6 +14,9 @@ import CompanyTitleForm from './_components/CompanyTittleForm'
 import CompanyDescription from './_components/CompanyDescription'
 import CompanyLogo from './_components/CompanyLogo'
 import CompanySocialLinks from './_components/CompanySocialLinks'
+import CompanyCoverImage from './_components/CompanyCoverImage'
+import CompanyOverView from './_components/CompanyOverView'
+import WhyJoinUs from './_components/WhyJoinUs'
 
 
 const JobDetailsPage = async ({ params }: { params: { companyId: string } }) => {
@@ -78,7 +81,7 @@ const JobDetailsPage = async ({ params }: { params: { companyId: string } }) => 
 
   return (
     <div className=''>
-      <Link href={"./"} className='flex items-center gap-2 text-red-300'>
+      <Link href={"../"} className='flex items-center gap-2 text-red-300'>
         <SkipBack className='' />
         Back
       </Link>
@@ -162,12 +165,21 @@ const JobDetailsPage = async ({ params }: { params: { companyId: string } }) => 
           {/* Company social info */}
           <CompanySocialLinks companyId={id} intialComapny={companies} isRequired={true}/>
 
+
+          {/* Company Logo  */}
+          <CompanyCoverImage companyId={id} initialCompany={companies}/>
+
+
+
         </div>
 
 
         {/* **************** Description ********** */}
         <div className="col-span-2">
           {/* Full description */}
+          <CompanyOverView initialCompany={companies} companyId={id} isRequired={true}/>
+          {/* Full description */}
+          <WhyJoinUs initialCompany={companies} companyId={id} isRequired={true}/>
         </div>
       </div>
 

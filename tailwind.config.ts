@@ -98,12 +98,23 @@ const config = {
   },
   plugins: [
     require("tailwindcss-animate"),
+    
     function ({ addUtilities }) {
       addUtilities({
         '.gradient-text': {
           background: 'linear-gradient(to right, #ff7e5f, #feb47b)',
           '-webkit-background-clip': 'text',
           '-webkit-text-fill-color': 'transparent',
+        },
+        '.gradient-icon': {
+          fontSize: '15px',
+          background: 'linear-gradient(to bottom, #ff7e5f 0%, #feb47b 100%)',
+          '-webkit-background-clip': 'text',
+          '-moz-background-clip': 'text',
+          'background-clip': 'text',
+          '-webkit-text-fill-color': 'transparent',
+          display: 'inline-block', 
+          'color': 'transparent', // Fallback for non-WebKit browsers
         },
       });
     },
