@@ -1,9 +1,9 @@
-import React from 'react'
 
-const UserHome = () => {
+
+const HomePage = () => {
   return (
-    <div>Home Page</div>
+    <div style={{ minHeight: 'calc(100vh - 10rem)' }} className="min-h-[100vh-25rem]">home page 36 </div>
   )
 }
 
-export default UserHome
+export default HomePage

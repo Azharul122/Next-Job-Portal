@@ -20,7 +20,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             >
                 <ResizablePanel className="" defaultSize={25}>
                     {/* Dashboard routes */}
-                    <DashBoardRoutes/>
+                    <DashBoardRoutes />
                 </ResizablePanel>
                 <ResizableHandle withHandle />
                 <ResizablePanel defaultSize={75}>

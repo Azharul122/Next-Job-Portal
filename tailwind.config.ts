@@ -1,13 +1,13 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const config = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -19,21 +19,35 @@ const config = {
     },
     extend: {
       screens: {
-        'xs': '480px',
-        'sm': '640px',
-        'md': '768px',
-        'lg': '1024px',
-        'xl': '1280px',
-        '2xl': '1536px',
-        '3xl': '1600px',
+        xs: "480px",
+        sm: "640px",
+        md: "768px",
+        lg: "1024px",
+        xl: "1280px",
+        "2xl": "1536px",
+        "3xl": "1600px",
       },
       colors: {
-        'transparentBGprimary': 'rgba(2, 8, 23,0.9)',
-        'transparentBGDarkprimary': 'rgba(255, 126, 95,0.9)',
-        'gradient-start': '#ff7e5f', // Starting color
-        'gradient-end': '#feb47b',
-        "darkbg":"#000b1f",
-        "lightbg":"#f8f8f8",
+        transparentBGprimary: "rgba(2, 8, 23,0.9)",
+        transparentBGDarkprimary: "rgba(255, 126, 95,0.9)",
+        "gradient-start": "#e77c3d", // Starting color
+        "gradient-end": "#ad3e74",
+        darkbg: "#000b1f",
+        lightbg: "#f8f8f8",
+        dark: {
+          border: "#3E3E3E",
+        },
+        light: {
+          border: "#CCCCCC",
+        },
+        // Alternative Dark Theme Colors
+        darkAlt: {
+          border: "#BB86FC",
+        },
+        // Alternative Light Theme Colors
+        lightAlt: {
+          border: "#007BFF",
+        },
         // primaryText:"",
         // seconderyText:"",
         // gradientTextDark:"",
@@ -92,33 +106,46 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       backgroundImage: {
-        'gradient-custom': 'linear-gradient(to right, #ff7e5f, #feb47b)',
+        "gradient-custom": "linear-gradient(to right, #e77c3d, #ad3e74)",
       },
     },
   },
   plugins: [
     require("tailwindcss-animate"),
-    
+
     function ({ addUtilities }) {
       addUtilities({
-        '.gradient-text': {
-          background: 'linear-gradient(to right, #ff7e5f, #feb47b)',
-          '-webkit-background-clip': 'text',
-          '-webkit-text-fill-color': 'transparent',
+        ".gradient-text": {
+          background: "linear-gradient(to right, #e77c3d, #ad3e74)",
+          "-webkit-background-clip": "text",
+          "-webkit-text-fill-color": "transparent",
         },
-        '.gradient-icon': {
-          fontSize: '15px',
-          background: 'linear-gradient(to bottom, #ff7e5f 0%, #feb47b 100%)',
-          '-webkit-background-clip': 'text',
-          '-moz-background-clip': 'text',
-          'background-clip': 'text',
-          '-webkit-text-fill-color': 'transparent',
-          display: 'inline-block', 
-          'color': 'transparent', // Fallback for non-WebKit browsers
+        ".gradient-icon": {
+          fontSize: "15px",
+          background: "linear-gradient(to bottom, #e77c3d 0%, #ad3e74 100%)",
+          "-webkit-background-clip": "text",
+          "-moz-background-clip": "text",
+          "background-clip": "text",
+          "-webkit-text-fill-color": "transparent",
+          display: "inline-block",
+          color: "transparent", // Fallback for non-WebKit browsers
+        },
+        '.border-gradient': {
+          borderImage: 'linear-gradient(to right, #e77c3d, #ad3e74) 1',
+          borderWidth: '2px', // Adjust as needed
+          borderStyle: 'solid',
+        },
+        '.hide-scrollbar': {
+          'overflow': 'hidden',
+          '&::-webkit-scrollbar': {
+            display: 'none',
+          },
+          '-ms-overflow-style': 'none', /* IE and Edge */
+          'scrollbar-width': 'none', /* Firefox */
         },
       });
     },
   ],
-} satisfies Config
+} satisfies Config;
 
-export default config
+export default config;
