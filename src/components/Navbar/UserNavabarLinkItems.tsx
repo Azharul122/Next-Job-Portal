@@ -24,7 +24,6 @@ const UserNavabarLinkItems = ({ setShow }) => {
                 <Link
                     className={` w-full h-full  text-sm dark:hover:bg-black ${isActive('/') ? 'font-extrabold gradient-text' : ''} rounded`}
                     href="/"
-                // 
                 >
                     Home
                 </Link>

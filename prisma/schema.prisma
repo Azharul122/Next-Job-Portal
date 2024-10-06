@@ -46,7 +46,7 @@ model Attachment {
   url       String
   name      String
   jobId     String?  @db.ObjectId
-  job       Job?     @relation(fields: [jobId], references: [id])
+  job       Job?     @relation(fields: [jobId], references: [id],onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
 }
@@ -58,6 +58,7 @@ model Category {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @default(now())
 }
+
 
 model Company {
   id            String   @id @default(auto()) @map("_id") @db.ObjectId
@@ -80,3 +81,10 @@ model Company {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @default(now())
 }
+
+
+
+
+
+
+
