@@ -1,4 +1,4 @@
-import { toast } from "sonner";
+// import { toast } from "sonner";
 
 const { PrismaClient } = require("@prisma/client");
 
@@ -40,7 +40,8 @@ const Main = async () => {
         { categoryTitle: "Retail Management" },
       ],
     });
-    toast("ctegories created sucessfully")
+    // toast("ctegories created sucessfully")
+    console.log("created sucessfully")
 
   } catch (error) {
     console.log(error);

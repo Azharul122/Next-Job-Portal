@@ -7,6 +7,7 @@ import SearchContainer from '@/components/ui/search-container';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { db } from '@/lib/db';
 import React from 'react';
+import FilterJob from './_components/FilterJob';
 
 interface SearchParams {
   title?: string;
@@ -34,6 +35,7 @@ const SearchPage = async ({ searchParams, children }: Props) => {
 
   // Ensure to await getJobs if it's an async function
   const jobs = await getJobs({ ...searchParams });
+ 
 
   return (
     <div>
@@ -66,7 +68,10 @@ const SearchPage = async ({ searchParams, children }: Props) => {
             </div>
             {/* Categories */}
             <CategoriesList categories={categories}/>
-            <span className="font-semibold">{children}</span>
+
+            {/* Display job  */}
+            <FilterJob userId={userId} jobs={jobs}/>
+            {/* <span className="font-semibold">{children}</span> */}
           </div>
         </ResizablePanel>
       </ResizablePanelGroup>

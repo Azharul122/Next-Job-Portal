@@ -11,30 +11,30 @@ interface catItemsProps {
 }
 
 const CategoryItems = ({ lable, value }: catItemsProps) => {
-    const pathname=usePathname()
-    const router=useRouter()
+    const pathname = usePathname()
+    const router = useRouter()
 
-    const searchParams=useSearchParams()
-    const currentCategoryId=searchParams.get("categoryId")
-    const currentCategoryTitle=searchParams.get("categoryTitle")
-    const isElected=currentCategoryId===value
+    const searchParams = useSearchParams()
+    const currentCategoryId = searchParams.get("categoryId")
+    const currentCategoryTitle = searchParams.get("categoryTitle")
+    const isElected = currentCategoryId === value
 
-    const handleClick = () => { 
-        const url=qs.stringifyUrl({
-            url:pathname,
-            query:{
-                categoryTitle:currentCategoryTitle,
-                categoryId: isElected?null:value
+    const handleClick = () => {
+        const url = qs.stringifyUrl({
+            url: pathname,
+            query: {
+                categoryTitle: currentCategoryTitle,
+                categoryId: isElected ? null : value
             }
-           
+
         }, {
-            skipNull:true,
-            skipEmptyString:true
+            skipNull: true,
+            skipEmptyString: true
         })
         router.push(url)
     }
     return (
-        <Button onClick={handleClick} variant={"outline"} className={cn("whitespace-nowrap rounded-full text-sm tracking-wider text-muted-foreground border dark:border-dark-border border-light-border px-3 py-1",isElected && "gradient-text")}>
+        <Button onClick={handleClick} variant={"outline"} className={cn("whitespace-nowrap rounded-full text-sm tracking-wider text-muted-foreground border dark:border-dark-border border-light-border px-3 py-1", isElected && "gradient-text")}>
             {
                 lable
             }
