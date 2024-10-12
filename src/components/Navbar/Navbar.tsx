@@ -113,7 +113,7 @@ const Navbar = async () => {
                             </div>
                         </DropdownMenuTrigger>
                         {
-                            user && <ProfileMenuItems />
+                            user && <ProfileMenuItems/>
                         }
                     </DropdownMenu>
 

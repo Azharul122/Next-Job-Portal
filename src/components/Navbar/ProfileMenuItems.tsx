@@ -1,38 +1,45 @@
-import React from 'react'
+"use client"
+import React, { useState } from 'react'
 import { DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuSubContent } from '../ui/dropdown-menu'
 import { CreditCard, LogOut, Mail, MessageSquare, Plus, PlusCircle, Settings, User, UserPlus, Users } from 'lucide-react'
 import { DropdownMenuSub, DropdownMenuSubTrigger } from '@radix-ui/react-dropdown-menu'
+import Link from 'next/link'
+
 
 const ProfileMenuItems = () => {
+    const [show, setShow] = useState(true)
+    
     return (
-        <DropdownMenuContent className="w-56">
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-                <DropdownMenuItem>
-                    <User className="mr-2 h-4 w-4" />
-                    <span>Profile</span>
+        <div className="">
+            {
+                show && <DropdownMenuContent className="w-56">
+                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuGroup>
+                        <DropdownMenuItem onClick={() => setShow(false)}>
+                            <User className="mr-2 h-4 w-4" />
+                            <Link href={"/user-profile"}>Profile</Link>
+                        </DropdownMenuItem>
 
-                </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => setShow(false)}>
+                            <Settings className="mr-2 h-4 w-4" />
+                            <Link href={"/settings"}>Settings</Link>
+                        </DropdownMenuItem>
 
-                <DropdownMenuItem>
-                    <Settings className="mr-2 h-4 w-4" />
-                    <span>Settings</span>
-
-                </DropdownMenuItem>
-
-            </DropdownMenuGroup>
-
-
+                    </DropdownMenuGroup>
 
 
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>
-                <LogOut className="mr-2 h-4 w-4" />
-                <span>Log out</span>
 
-            </DropdownMenuItem>
-        </DropdownMenuContent>
+
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>
+                        <LogOut className="mr-2 h-4 w-4" />
+                        <span>Log out</span>
+
+                    </DropdownMenuItem>
+                </DropdownMenuContent>
+            }
+        </div>
     )
 }
 

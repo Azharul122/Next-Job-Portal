@@ -6,6 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["fullTextIndex","fullTextSearch"]
 }
 
 datasource db {
@@ -29,7 +30,7 @@ model Job {
   yearsOfExperience String?
   workMode          String?
   deadline          String?
-  attachments        Attachment[]
+  attachments       Attachment[]
   categoryId        String?      @db.ObjectId
   category          Category?    @relation(fields: [categoryId], references: [id])
   companyId         String?      @db.ObjectId
@@ -39,6 +40,7 @@ model Job {
 
   @@index([categoryId])
   @@index([companyId])
+  @@fulltext([title])
 }
 
 model Attachment {
@@ -46,7 +48,7 @@ model Attachment {
   url       String
   name      String
   jobId     String?  @db.ObjectId
-  job       Job?     @relation(fields: [jobId], references: [id],onDelete: Cascade)
+  job       Job?     @relation(fields: [jobId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
 }
@@ -58,7 +60,6 @@ model Category {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @default(now())
 }
-
 
 model Company {
   id            String   @id @default(auto()) @map("_id") @db.ObjectId
@@ -82,9 +83,28 @@ model Company {
   updatedAt     DateTime @default(now())
 }
 
+model UserProfile {
+  userId         String        @id @map("_id")
+  fullName       String?
+  email          String?
+  contact        String?
+  appliedJobs    AppliedJobs[]
+  Resumes        Resumes[]
+  ActiveResumeId String?
+}
 
+type AppliedJobs {
+  jobId     String
+  appliedAt DateTime @default(now())
+}
 
-
-
-
-
+model Resumes {
+  id         String      @id @default(auto()) @map("_id") @db.ObjectId
+  name       String?
+  url        String
+  profileId  String
+  uerProfile UserProfile @relation(fields: [profileId], references: [userId], onDelete: Cascade)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @default(now())
+  @@index([profileId], name: "idx_profileId")
+}
