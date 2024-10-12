@@ -33,7 +33,7 @@ interface propsTypes {
 
 const formSchema = z.object({
     shiftTimimg: z.string().min(1, {
-        message: "Category must be at least 5 characters.",
+        message: "Shift timing is required.",
     }),
 })
 
@@ -48,7 +48,7 @@ const ShiftTiming = ({ jobId, intialJob, options }: propsTypes) => {
     const { isSubmitting, isValid } = form.formState
     const router = useRouter()
 
-    // console.log(options)
+    
 
     const onSubmit = async (value: z.infer<typeof formSchema>) => {
 
@@ -72,7 +72,7 @@ const ShiftTiming = ({ jobId, intialJob, options }: propsTypes) => {
     return (
         <div className='border px-2 pb-4 mt-3'>
             <div className="flex justify-between items-center py-4">
-                <p>Job category</p>
+                <p>Shift timing</p>
                 <div onClick={() => setEditing(!editing)} className='cursor-pointer'>
                     {
                         editing ? "Cancel" : <div className="flex items-center gap-2">
@@ -121,7 +121,7 @@ const ShiftTiming = ({ jobId, intialJob, options }: propsTypes) => {
                 </div>
             }
             {
-                !editing && <p>{selectedOption?.label || "No category"}</p>
+                !editing && <p>{selectedOption?.label || "No Shift Timing"}</p>
             }
         </div>
     )

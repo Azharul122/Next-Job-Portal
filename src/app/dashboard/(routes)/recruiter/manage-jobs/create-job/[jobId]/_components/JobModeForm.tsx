@@ -33,16 +33,16 @@ interface propsTypes {
 
 const options=[
     {
-        label:"onsite",
-        value:"s24ultra"
+        label:"Onsite",
+        value:"Onsite"
     },
     {
         label:"Remote",
-        value:"s24ultra1"
+        value:"Remote"
     },
     {
         label:"Hybrid",
-        value:"s24ultra2"
+        value:"Hybrid"
     },
    
 ]
@@ -84,7 +84,7 @@ const JobModeForm = ({ jobId, intialJob }: propsTypes) => {
 
     const selectedOption = options.find((option) => option.value === intialJob.workMode)
 
-    console.log(selectedOption)
+    
     return (
         <div className='border px-2 pb-4 mt-3'>
             <div className="flex justify-between items-center py-4">

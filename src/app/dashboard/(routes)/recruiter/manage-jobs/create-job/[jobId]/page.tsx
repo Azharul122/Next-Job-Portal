@@ -65,24 +65,24 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
  
   const option = [
     {
-      label: "Full-time",
-      value: "24pro"
+      label: "Full time",
+      value: "Full-time"
     },
     {
-      label: "Part-time",
-      value: "24pro1"
+      label: "Part time",
+      value: "Part-time"
     },
     {
       label: "Contractual",
-      value: "24pro2"
+      value: "Contractual"
     },
     {
-      label: "Intership",
-      value: "24pro3"
+      label: "Internship",
+      value: "Internship"
     },
     {
-      label: "Project-based",
-      value: "24pro4"
+      label: "Project based",
+      value: "Project-based"
     }
   ]
 

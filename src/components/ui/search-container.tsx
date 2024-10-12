@@ -1,10 +1,46 @@
 "use client"
 
 import {  Search, X } from "lucide-react"
-import { useState } from "react"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import { useEffect, useState } from "react"
+import { useDebounce } from "../../../hooks/use-debounce"
+import queryString from "query-string"
+// import { url } from "inspector"
 
 const SearchContainer = () => {
-    const [query, setQuery] = useState("")
+    const router=useRouter()
+    const searchParams=useSearchParams()
+    const pathname=usePathname()
+
+    const title=searchParams.get("title")
+    const categoryId=searchParams.get("categoryId")
+    const workMode=searchParams.get("workMode")
+    const shiftTimimg=searchParams.get("shiftTimimg")
+    const createdAtFilter=searchParams.get("createdAtFilter")
+    
+    const [query, setQuery] = useState(title || "")
+    const debounceValue=useDebounce(query)
+
+    useEffect(()=>{
+        const url = queryString.stringifyUrl({
+            url: pathname,
+            query: {
+                title: debounceValue,
+                categoryId,
+                workMode,
+                shiftTimimg,
+                createdAtFilter, 
+            },
+        }, {
+            skipNull: true,
+            skipEmptyString: true,
+        });
+        
+    router.push(url)
+    },[
+        query,router,pathname,createdAtFilter,workMode,title,shiftTimimg,categoryId
+    ])
+    
     const handleQuery = () => {
 
     }
