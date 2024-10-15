@@ -7,7 +7,7 @@ import Image from 'next/image'
 import React, { useState } from 'react'
 import { formatDistanceToNow } from "date-fns"
 import Link from 'next/link'
-import {truncate} from 'lodash'
+import { truncate } from 'lodash'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
@@ -22,58 +22,58 @@ const JobCard = ({ userId, job }: JobCardProps) => {
         company: Company | null;
     };
 
-    const company = tyJob?.company; 
+    const company = tyJob?.company;
     const [bookmarkLoading, setBookmarkLoading] = useState(false);
-    const rouetr=useRouter()
-    const isSavedJob=userId && job.savedUser.includes(userId)
+    const rouetr = useRouter()
+    const isSavedJob = userId && job.savedUser.includes(userId)
 
     const addToBookmark = async (e: React.MouseEvent) => {
 
         try {
-            e.stopPropagation(); 
+            e.stopPropagation();
             setBookmarkLoading(true);
 
             if (isSavedJob) {
                 await axios.patch(`/api/jobs/${job.id}/remove-bookmark`)
                 toast.success("Job removed")
             } else {
-                await axios.patch(`/api/jobs/${job.id}/save-bookmark`) 
+                await axios.patch(`/api/jobs/${job.id}/save-bookmark`)
                 toast.success("Job saved")
             }
 
-            
+
             rouetr.refresh()
-            
+
         } catch (error) {
             console.log(error)
         }
-        finally{
+        finally {
             setBookmarkLoading(false)
         }
-   
+
     };
 
     return (
-        <Link href={`/job-details/${job.id}`} passHref>
+        <Link href={`jobs/job-details/${job.id}`} passHref>
             <div className='relative dark:border-dark-border z-10 border-light-border border px-3 py-4 space-y-3 cursor-pointer transition duration-200 hover:bg-gray-100 dark:hover:bg-darkbg'>
                 <div className="w-full relative">
                     <p>{formatDistanceToNow(new Date(job.createdAt), { addSuffix: true })}</p>
                     <Link href={`#${job.id}`}>
-                    <Button  variant={"link"} className="absolute top-1/2 right-5 -translate-y-1/2 z-30" onClick={addToBookmark}>
-                        {bookmarkLoading ? <Loader className='animate-spin' /> : <Bookmark className={` text-lg z-20 ${isSavedJob?"dark:text-gradient-start text-gradient-end":""}`} />}
-                    </Button></Link>
+                        <Button variant={"link"} className="absolute top-1/2 right-5 -translate-y-1/2 z-30" onClick={addToBookmark}>
+                            {bookmarkLoading ? <Loader className='animate-spin' /> : <Bookmark className={` text-lg z-20 ${isSavedJob ? "dark:text-gradient-start text-gradient-end" : ""}`} />}
+                        </Button></Link>
                 </div>
 
                 {/* Company */}
                 <div className="company flex gap-5 items-center">
                     {company?.logo && (
-                        <Link className='group-hover:animate-bounce' href={`/company/company-details/${company?.id}`} onClick={(e) => e.stopPropagation()}>
+                        <Link className='group-hover:animate-bounce' href={`/companies/${company?.id}`} onClick={(e) => e.stopPropagation()}>
                             <Image src={company.logo} className='shrink-0 rounded' alt='Company Logo' height={50} width={50} />
                         </Link>
                     )}
                     <div>
                         <h3 className='text-xl'>{job.title}</h3>
-                        <Link href={`/company/company-details/${company?.id}`} className='text-sm dark:text-neutral-200/25 hover:underline text-neutral-400' onClick={(e) => e.stopPropagation()}>
+                        <Link href={`/companies/${company?.id}`} className='text-sm dark:text-neutral-200/25 hover:underline text-neutral-400' onClick={(e) => e.stopPropagation()}>
                             {company?.companyTitle}
                         </Link>
                     </div>
@@ -82,9 +82,9 @@ const JobCard = ({ userId, job }: JobCardProps) => {
                 {/* Sort description */}
                 <div>
                     {
-                        job.sort_description && <p className='text-opacity-10 text-justify'>{truncate(job.sort_description,{
-                            length:180,
-                            omission:"..."
+                        job.sort_description && <p className='text-opacity-10 text-justify'>{truncate(job.sort_description, {
+                            length: 180,
+                            omission: "..."
                         })}</p>
                     }
                 </div>

@@ -1,8 +1,7 @@
 "use client"
 import React, { useState } from 'react'
 import { DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuSubContent } from '../ui/dropdown-menu'
-import { CreditCard, LogOut, Mail, MessageSquare, Plus, PlusCircle, Settings, User, UserPlus, Users } from 'lucide-react'
-import { DropdownMenuSub, DropdownMenuSubTrigger } from '@radix-ui/react-dropdown-menu'
+import { BookIcon, BookMarkedIcon, LogOut, Settings, User } from 'lucide-react'
 import Link from 'next/link'
 
 
@@ -19,6 +18,21 @@ const ProfileMenuItems = () => {
                         <DropdownMenuItem onClick={() => setShow(false)}>
                             <User className="mr-2 h-4 w-4" />
                             <Link href={"/user-profile"}>Profile</Link>
+                        </DropdownMenuItem>
+                        
+                        <DropdownMenuItem onClick={() => setShow(false)}>
+                            <BookIcon className="mr-2 h-4 w-4" />
+                            <Link href={"/jobs/applied-jobs"}>Applied jobs</Link>
+                        </DropdownMenuItem>
+
+                        <DropdownMenuItem onClick={() => setShow(false)}>
+                            <BookIcon className="mr-2 h-4 w-4" />
+                            <Link href={"/user-profile/followed-companies"}>Followed companies</Link>
+                        </DropdownMenuItem>
+
+                        <DropdownMenuItem onClick={() => setShow(false)}>
+                            <BookMarkedIcon className="mr-2 h-4 w-4" />
+                            <Link href={"/jobs/saved-jobs"}>Saved jobs</Link>
                         </DropdownMenuItem>
 
                         <DropdownMenuItem onClick={() => setShow(false)}>

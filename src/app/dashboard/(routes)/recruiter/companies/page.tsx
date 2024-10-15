@@ -1,6 +1,5 @@
 import ButtonPlus from "@/components/Navbar/ButtonPlus"
 import { Plus } from "lucide-react"
-import Link from "next/link"
 
 import {
     Select,
@@ -10,17 +9,6 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 
-
-import {
-    Table,
-    TableBody,
-    TableCaption,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from "@/components/ui/table"
-import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu"
 import { DataTable } from "@/components/ui/data-table"
 import { auth } from "@/auth"
 import { redirect } from "next/navigation"

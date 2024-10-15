@@ -10,22 +10,17 @@ import { Button } from "@/components/ui/button"
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
-    FormLabel,
     FormMessage,
 } from "@/components/ui/form"
 
-import { Input } from "@/components/ui/input"
 import axios from "axios"
 import { toast } from "sonner"
-import { redirect } from "next/navigation"
 import { useRouter } from "next/navigation"
 import { Job } from '@prisma/client'
 import Image from 'next/image'
 import ImageUploadToFirebase from '@/components/ui/image-upload'
-import { url } from 'inspector'
 
 interface propsTypes {
     jobId: string,

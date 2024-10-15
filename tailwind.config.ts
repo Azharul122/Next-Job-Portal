@@ -1,4 +1,8 @@
 import type { Config } from "tailwindcss";
+type AddUtilities = (
+  utilities: { [key: string]: any },
+  options?: { variants?: string[] }
+) => void;
 
 const config = {
   darkMode: ["class"],
@@ -113,7 +117,7 @@ const config = {
   plugins: [
     require("tailwindcss-animate"),
 
-    function ({ addUtilities }) {
+    function ({ addUtilities }: { addUtilities: AddUtilities }) {
       addUtilities({
         ".gradient-text": {
           background: "linear-gradient(to right, #e77c3d, #ad3e74)",
@@ -130,18 +134,18 @@ const config = {
           display: "inline-block",
           color: "transparent", // Fallback for non-WebKit browsers
         },
-        '.border-gradient': {
-          borderImage: 'linear-gradient(to right, #e77c3d, #ad3e74) 1',
-          borderWidth: '2px', // Adjust as needed
-          borderStyle: 'solid',
+        ".border-gradient": {
+          borderImage: "linear-gradient(to right, #e77c3d, #ad3e74) 1",
+          borderWidth: "2px", // Adjust as needed
+          borderStyle: "solid",
         },
-        '.hide-scrollbar': {
-          'overflow': 'hidden',
-          '&::-webkit-scrollbar': {
-            display: 'none',
+        ".hide-scrollbar": {
+          overflow: "hidden",
+          "&::-webkit-scrollbar": {
+            display: "none",
           },
-          '-ms-overflow-style': 'none', /* IE and Edge */
-          'scrollbar-width': 'none', /* Firefox */
+          "-ms-overflow-style": "none" /* IE and Edge */,
+          "scrollbar-width": "none" /* Firefox */,
         },
       });
     },

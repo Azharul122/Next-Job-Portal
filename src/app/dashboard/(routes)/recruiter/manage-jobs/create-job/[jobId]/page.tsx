@@ -1,12 +1,10 @@
 import { auth } from '@/auth'
-// import { button } from '@/components/ui/button'
 import { db } from '@/lib/db'
 import { AlertTriangleIcon, Check, Edit2Icon, SkipBack, Trash } from 'lucide-react'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import React from 'react'
 import JobPublishAction from './_components/JobPublishAction'
-import { Button } from '@/components/ui/button'
 import TileForm from './_components/TileForm'
 import CatrgoryForm from './_components/CatrgoryForm'
 import ImageForm from './_components/ImageForm'
@@ -20,7 +18,6 @@ import { FaRegQuestionCircle } from 'react-icons/fa'
 import TagsForm from './_components/TagsForm'
 import CompanyForm from './_components/CompanyForm'
 import { AttachmentsForm } from './_components/AttachmentForm'
-// import AttachmentForm from './_components/AttachmentForm'
 
 
 const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
@@ -32,7 +29,6 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
 
   const session = await auth()
   const userId = session?.user.id
-  // console.log(userId, id)
   const job = await db.job.findUnique({
     where: {
       id,

@@ -12,8 +12,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import GradientIcon from "../GradientIcon"
-
 export function ModeToggle() {
   const { setTheme } = useTheme()
 

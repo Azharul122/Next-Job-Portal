@@ -45,7 +45,6 @@ const handleVerificationToken = async (user: {
 const signUpSchema = z.object({
   name: z.string().trim().min(3, "Invalid name!"),
   email: z.string().email("Invalid email!"),
-
   password: z.string().min(8, "Password is too short!"),
 });
 
@@ -78,7 +77,6 @@ export const signUp = async (
   const user = await createNewUser({
     name,
     email,
-
     password,
     provider: "credentials",
     verified: false,

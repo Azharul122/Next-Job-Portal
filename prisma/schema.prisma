@@ -5,8 +5,8 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
-  previewFeatures = ["fullTextIndex","fullTextSearch"]
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextIndex", "fullTextSearch"]
 }
 
 datasource db {
@@ -88,8 +88,9 @@ model UserProfile {
   fullName       String?
   email          String?
   contact        String?
+  images         String?
   appliedJobs    AppliedJobs[]
-  Resumes        Resumes[]
+  resumes        Resumes[]
   ActiveResumeId String?
 }
 
@@ -104,7 +105,8 @@ model Resumes {
   url        String
   profileId  String
   uerProfile UserProfile @relation(fields: [profileId], references: [userId], onDelete: Cascade)
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @default(now())
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @default(now())
+
   @@index([profileId], name: "idx_profileId")
 }

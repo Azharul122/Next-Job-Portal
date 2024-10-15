@@ -5,7 +5,7 @@ import { useMemo } from "react"
 import 'react-quill/dist/quill.bubble.css';
 
 interface previewProps {
-    value: string,
+    value: string | null,
 
 }
 
@@ -14,7 +14,7 @@ const Preview = ({ value }: previewProps) => {
 
     return (
         <div className="">
-            <RectQuill value={value} readOnly theme="bubble" />
+            <RectQuill value={value??""} readOnly theme="bubble" />
         </div>
     )
 }

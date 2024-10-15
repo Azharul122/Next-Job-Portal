@@ -10,7 +10,7 @@ import Link from "next/link"
 import defaltCompanyLogo from "@/images/company_logo.png"
 
 export type CompnayColumnsType = {
-
+    id:string,
     companyTitle: string
     logo: string
     createdAt: string

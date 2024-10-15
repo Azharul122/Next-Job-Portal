@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button"
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -17,7 +16,6 @@ import {
 import { Input } from "@/components/ui/input"
 import axios from "axios"
 import { toast } from "sonner"
-import { redirect } from "next/navigation"
 import { useRouter } from "next/navigation"
 import { LoaderCircle } from "lucide-react"
 

@@ -8,31 +8,22 @@ import Link from 'next/link'
 import {
     NavigationMenu,
     NavigationMenuContent,
-    NavigationMenuIndicator,
     NavigationMenuItem,
     NavigationMenuLink,
     NavigationMenuList,
     NavigationMenuTrigger,
-    NavigationMenuViewport,
 } from "@/components/ui/navigation-menu"
-import { FaBeer, FaCross, FaHome, FaReact, FaTimes, FaUser, FaUserCircle } from 'react-icons/fa';
-// import { Button } from '../ui/button'
-// import { useTheme } from 'next-themes'
+import { FaUser } from 'react-icons/fa';
 import { ModeToggle } from './DarkMode'
-// import { getSession } from '@/lib/getSession'
-// import { useSession } from 'next-auth/react'
-// import { useRouter } from 'next/navigation'
 import { auth } from '@/auth'
 import UserNavabarLinkItems from './UserNavabarLinkItems'
-// import { MenuIcon, UserCircle } from 'lucide-react'
 import { DropdownMenu, DropdownMenuTrigger } from '../ui/dropdown-menu'
 import ProfileMenuItems from './ProfileMenuItems'
 import BottomNavbar from './BottomNavbar'
 import ButtonPlus from './ButtonPlus'
 import { LayoutDashboardIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
-// import { useRouter } from 'next/router'
-// import { LoaderCircle } from 'lucide-react'
+
 
 
 const Navbar = async () => {
@@ -75,11 +66,7 @@ const Navbar = async () => {
                         </div>
                     </div>
                     <div className="w-[0.5px] h-[25px] bg-gradient-to-t from-[#A64374] to-[#E87834] hidden sm:block"></div>
-                    {/* <div className="menuItems">
-                        <Link className={`px-4 py-2 text-sm dark:hover:bg-black rounded `} href={"/"}>Home</Link>
-                        <Link className='px-4 py-2 text-sm  rounded' href={"/slider"}>Slider</Link>
-                        <Link className='px-4 py-2 text-sm  rounded' href={"/jobs"}>Jobs</Link>
-                    </div> */}
+                   
                     <div className="hidden sm:block">
                         <UserNavabarLinkItems setShow={""}/>
                     </div>

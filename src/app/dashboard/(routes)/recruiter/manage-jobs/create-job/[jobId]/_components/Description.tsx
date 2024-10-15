@@ -20,11 +20,9 @@ import {
 import { Input } from "@/components/ui/input"
 import axios from "axios"
 import { toast } from "sonner"
-import { redirect } from "next/navigation"
 import { useRouter } from "next/navigation"
 import { Job } from '@prisma/client'
 import ComboBox from '@/components/ui/combo-box'
-import { Textarea } from '@/components/ui/textarea'
 import getGenerativeAIResponse from '../../../../../../../../../Scripts/GoogleApi'
 import Editor from '@/components/ui/editor'
 import Preview from '@/components/ui/Preview'

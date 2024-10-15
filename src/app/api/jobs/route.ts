@@ -1,5 +1,6 @@
 import { auth } from "@/auth";
 import { db } from "@/lib/db";
+import UserModel from "@/model/user.model";
 import { NextResponse } from "next/server";
 
 export const POST = async (req: Request) => {
@@ -15,6 +16,8 @@ export const POST = async (req: Request) => {
       if (!value.title) {
           return new NextResponse("Title required", { status: 400 });
       }
+
+      
 
       const job = await db.job.create({
           data: {

@@ -1,21 +1,19 @@
+"use client";
 
-"use client"
-
-
-import React, { useEffect, useRef, useState } from 'react'
-import { ModeToggle } from './DarkMode'
-import { FaHome, FaTimes } from 'react-icons/fa'
-import { MenuIcon } from 'lucide-react'
-import UserNavabarLinkItems from './UserNavabarLinkItems'
-import Link from 'next/link'
+import React, { useEffect, useRef, useState } from 'react';
+import { ModeToggle } from './DarkMode';
+import { FaHome, FaTimes } from 'react-icons/fa';
+import { MenuIcon } from 'lucide-react';
+import UserNavabarLinkItems from './UserNavabarLinkItems';
+import Link from 'next/link';
 
 const BottomNavbar = () => {
     const [show, setShow] = useState(false);
-    const menuRef = useRef(null);
+    const menuRef = useRef<HTMLDivElement | null>(null); 
 
     useEffect(() => {
-        const handleHideMenu = (event) => {
-            if (menuRef.current && !menuRef.current.contains(event.target)) {
+        const handleHideMenu = (event: MouseEvent) => { 
+            if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
                 setShow(false);
             }
         };
@@ -39,16 +37,15 @@ const BottomNavbar = () => {
                 <div className="fixed inset-0 backdrop-blur-sm z-10"></div>
             )}
             {/* Bottom Navbar */}
-            <div className={`dark:border-t-gradient-start border-t-[1px]  ${show ? "blur-sm" : ""} dark:bg-transparentBGprimary bg-transparentBGDarkprimary px-5 fixed bottom-0 left-0 z-30 w-full block sm:hidden overflow-x-hidden shadow-xl`}>
-                <div className="flex justify-between  items-center w-full">
+            <div className={`dark:border-t-gradient-start border-t-[1px] ${show ? "blur-sm" : ""} dark:bg-transparentBGprimary bg-transparentBGDarkprimary px-5 fixed bottom-0 left-0 z-30 w-full block sm:hidden overflow-x-hidden shadow-xl`}>
+                <div className="flex justify-between items-center w-full">
                     {/* Dark mode toggle */}
                     <ModeToggle />
                     {/* Home */}
                     <Link href={"/"} className='border bg-gradient-custom h-full rounded-tl-full rounded-tr-full'>
-                        <button className="borer  px-4 py-3 ">
+                        <button className="border px-4 py-3 ">
                             <FaHome className='text-xl' />
                         </button>
-
                     </Link>
                     {/* Menu Icon */}
                     <MenuIcon className={`${show ? "hidden" : "block"}`} onClick={() => setShow(true)} />
@@ -61,4 +58,3 @@ const BottomNavbar = () => {
 }
 
 export default BottomNavbar;
-

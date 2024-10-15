@@ -1,30 +1,15 @@
 "use client"
 import { Edit, Lightbulb, Loader2, LoaderCircle, Repeat2 } from 'lucide-react'
 import React, { useState } from 'react'
-
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-
 import { Button } from "@/components/ui/button"
-import {
-    Form,
-    FormControl,
-    FormDescription,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from "@/components/ui/form"
-
 import { Input } from "@/components/ui/input"
 import axios from "axios"
 import { toast } from "sonner"
-import { redirect } from "next/navigation"
 import { useRouter } from "next/navigation"
 import { Job } from '@prisma/client'
-import ComboBox from '@/components/ui/combo-box'
-import { Textarea } from '@/components/ui/textarea'
 import getGenerativeAIResponse from '../../../../../../../../../Scripts/GoogleApi'
 
 interface propsTypes {

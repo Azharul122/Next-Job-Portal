@@ -1,55 +1,51 @@
-"use client"
+"use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
 
-const UserNavabarLinkItems = ({ setShow }) => {
+interface PropsTypes {
+    setShow: (show: boolean) => void; 
+}
+
+const UserNavabarLinkItems = ({ setShow }: PropsTypes) => {
     const pathname = usePathname();
-    const handleSow = () => {
-        // e.preventDefault()
-        if (typeof setShow === 'function') {
-            setShow(false)
-        }
 
-    }
-    // const [show,setShow]=useState(false)
+    const handleShow = () => {
+        setShow(false);
+    };
 
-    const isActive = (path) => {
+    const isActive = (path: string) => { 
         return pathname === path && pathname.startsWith(path);
     };
+
     return (
         <div className="menuItems divide-y divide-gradient-start sm:divide-y-0 flex flex-col md:flex-row">
-            <button className="!px-4 !py-2 " onClick={handleSow}>
+            <button className="!px-4 !py-2" onClick={handleShow}>
                 <Link
-                    className={` w-full h-full  text-sm dark:hover:bg-black ${isActive('/') ? 'font-extrabold gradient-text' : ''} rounded`}
+                    className={`w-full h-full text-sm dark:hover:bg-black ${isActive('/') ? 'font-extrabold gradient-text' : ''} rounded`}
                     href="/"
                 >
                     Home
                 </Link>
             </button>
-            <button onClick={handleSow} className="px-4 py-2">
+            <button onClick={handleShow} className="px-4 py-2">
                 <Link
                     className={`px-4 py-2 text-sm rounded ${isActive('/slider') ? 'font-extrabold gradient-text' : ''}`}
-                    href="slider"
-                // onClick={() => setShow(false)}
+                    href="/slider"
                 >
                     Slider
                 </Link>
             </button>
-            <button onClick={handleSow} className="px-4 py-2">
+            <button onClick={handleShow} className="px-4 py-2">
                 <Link
                     className={`px-4 py-2 text-sm rounded ${isActive('/jobs') ? 'font-extrabold gradient-text' : ''}`}
-                    href="jobs"
-                // onClick={() => setShow(false)}
+                    href="/jobs"
                 >
                     Jobs
                 </Link>
             </button>
-
-
         </div>
-    )
+    );
 }
 
-export default UserNavabarLinkItems
+export default UserNavabarLinkItems;

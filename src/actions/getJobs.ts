@@ -95,7 +95,6 @@ export const getJobs = async ({
             equals: categoryId,
           },
         }),
-        
       },
       include: {
         company: true,
@@ -135,13 +134,13 @@ export const getJobs = async ({
             currentdate.getFullYear(),
             currentdate.getMonth(),
             1
-          ); 
+          );
           break;
         case "thisYear":
-          startDate = new Date(currentdate.getFullYear(), 0, 1); 
+          startDate = new Date(currentdate.getFullYear(), 0, 1);
           break;
         default:
-          startDate = new Date(0); 
+          startDate = new Date(0);
       }
 
       query.where.createdAt = {
@@ -163,7 +162,6 @@ export const getJobs = async ({
 
     // Assume shiftTimimg can be string, string array, or undefined/null
 
-
     // Ensure shiftTimimg is a string or an array before calling split or map
     let formatedSiftTiming: string[] = [];
 
@@ -181,24 +179,29 @@ export const getJobs = async ({
       };
     }
 
+    // Saved jobs
 
-     // Handle workMode
-     let formatedWorkMode: string[] = [];
+    if (savedJobs) {
+      query.where.savedUser = {
+        has: userId,
+      };
+    }
 
-     if (typeof workMode === "string") {
-      formatedWorkMode = workMode
-         .split(",")
-         .map((item: string) => item.trim());
-     } else if (Array.isArray(workMode)) {
+    // Handle workMode
+    let formatedWorkMode: string[] = [];
+
+    if (typeof workMode === "string") {
+      formatedWorkMode = workMode.split(",").map((item: string) => item.trim());
+    } else if (Array.isArray(workMode)) {
       formatedWorkMode = workMode.map((item: string) => item.trim());
-     }
- 
-     if (formatedWorkMode.length > 0) {
-       query.where.workMode = {
-         in: formatedWorkMode,
-       };
-     }
- 
+    }
+
+    if (formatedWorkMode.length > 0) {
+      query.where.workMode = {
+        in: formatedWorkMode,
+      };
+    }
+
     const jobs = await db.job.findMany(query);
     return jobs;
   } catch (error) {

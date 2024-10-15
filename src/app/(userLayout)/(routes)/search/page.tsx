@@ -10,7 +10,7 @@ import React from 'react';
 import FilterJob from './_components/FilterJob';
 import DateFilter from './_components/DateFilter';
 import { Separator } from '@/components/ui/separator';
-import WorkingModeFilter from './_components/WorkingModeFilter';
+// import WorkingModeFilter from './_components/WorkingModeFilter';
 import SIdeBarFilterItems from './_components/SIdeBarFilterItems';
 
 interface SearchParams {
@@ -40,8 +40,8 @@ const SearchPage = async ({ searchParams, children }: Props) => {
   // Ensure to await getJobs if it's an async function
   const jobs = await getJobs({ ...searchParams });
 
- 
- 
+
+
 
   return (
     <div>
@@ -52,10 +52,10 @@ const SearchPage = async ({ searchParams, children }: Props) => {
         <ResizablePanel defaultSize={25} className='p-5'>
           {/* Dashboard routes */}
           <p className='py-5 px-3'>Filter</p>
-          
-          <SIdeBarFilterItems/>
 
-        
+          <SIdeBarFilterItems />
+
+
         </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize={75}>
@@ -78,10 +78,10 @@ const SearchPage = async ({ searchParams, children }: Props) => {
               </div>
             </div>
             {/* Categories */}
-            <CategoriesList categories={categories}/>
+            <CategoriesList categories={categories} />
 
             {/* Display job  */}
-            <FilterJob userId={userId} jobs={jobs}/>
+            <FilterJob userId={userId?userId:""} jobs={jobs} />
             {/* <span className="font-semibold">{children}</span> */}
           </div>
         </ResizablePanel>

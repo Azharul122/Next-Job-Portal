@@ -1,14 +1,12 @@
 "use client"
-
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-// import { DropdownMenu } from "@radix-ui/react-dropdown-menu"
 import { ColumnDef } from "@tanstack/react-table"
-import { ActivityIcon, ArrowUpDown, DotIcon, Edit, MoreHorizontal, ScanEye, TargetIcon, Trash } from "lucide-react"
+import {  ArrowUpDown, Edit, MoreHorizontal, TargetIcon } from "lucide-react"
 import Link from "next/link"
 
 export type JobsColumns = {
-
+    id:string,
     title: string
     isPublished: boolean
     category: string
@@ -82,14 +80,9 @@ export const columns: ColumnDef<JobsColumns>[] = [
                     <Link href={`manage-jobs/create-job/${id}`} >
                         <DropdownMenuItem className="flex items-center gap-2"><Edit size={15} />Edit</DropdownMenuItem>
                     </Link>
-                    <Link href={""} >
-                        <DropdownMenuItem className="flex items-center gap-2"><ScanEye size={15} />View</DropdownMenuItem>
-                    </Link>
-                    <Link href={""} >
-                        <DropdownMenuItem className="flex items-center gap-2"><Trash size={15} />Delete</DropdownMenuItem>
-                    </Link>
-                    <Link href={""} >
-                        <DropdownMenuItem className="flex items-center gap-2"><TargetIcon size={15} />Application</DropdownMenuItem>
+                   
+                    <Link href={`manage-jobs/create-job/${id}/applicants`} >
+                        <DropdownMenuItem className="flex items-center gap-2"><TargetIcon size={15} />Applicants</DropdownMenuItem>
                     </Link>
 
 
