@@ -1,5 +1,4 @@
 
-import React from 'react'
 import logo from "@/images/logo.png"
 
 import Image from 'next/image'
@@ -23,7 +22,7 @@ import BottomNavbar from './BottomNavbar'
 import ButtonPlus from './ButtonPlus'
 import { LayoutDashboardIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
-
+import UserItemsProps from "./UserItemsProps";
 
 
 const Navbar = async () => {
@@ -68,7 +67,7 @@ const Navbar = async () => {
                     <div className="w-[0.5px] h-[25px] bg-gradient-to-t from-[#A64374] to-[#E87834] hidden sm:block"></div>
                    
                     <div className="hidden sm:block">
-                        <UserNavabarLinkItems setShow={""}/>
+                    <UserItemsProps/>
                     </div>
 
                 </div>

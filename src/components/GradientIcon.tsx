@@ -1,14 +1,13 @@
-// components/GradientIcon.tsx
 import React from 'react';
 
 interface GradientIconProps {
     style:string
 id:string;
-  icon: React.ReactNode; // The icon to render
-  gradientStart: string; // Start color of the gradient
-  gradientEnd: string; // End color of the gradient
-  size?: string; // Tailwind size class (e.g., "text-4xl")
-  className?: string; // Additional classes for customization
+  icon: React.ReactNode; 
+  gradientStart: string; 
+  gradientEnd: string; 
+  size?: string; 
+  className?: string; 
 }
 
 const GradientIcon: React.FC<GradientIconProps> = ({

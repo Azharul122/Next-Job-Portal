@@ -35,7 +35,7 @@ export const JobApplicantsColumn: ColumnDef<CompnayColumnsType>[] = [
         cell: ({ row }) => {
             const { fullName } = row.original
 
-            return <div className="w-[17.5%] truncate">{fullName} <sup><abbr className={`${fullName ? "text-green-500" : "text-red-500"}`} title="Number of applicant">0</abbr></sup></div>
+            return <div className=" truncate">{fullName} <sup><abbr className={`${fullName ? "text-green-500" : "text-red-500"}`} title="Number of applicant">0</abbr></sup></div>
         },
     },
     {
@@ -53,7 +53,7 @@ export const JobApplicantsColumn: ColumnDef<CompnayColumnsType>[] = [
             const { email } = row.original
 
 
-            return <div className="w-[17.5%] truncate">{email ? (<Link href={`#`} className="rounded-full">{email}</Link>) : "No email"}</div>
+            return <div className=" truncate">{email ? (<Link href={`#`} className="rounded-full">{email}</Link>) : "No email"}</div>
         },
     },
     {
@@ -71,7 +71,7 @@ export const JobApplicantsColumn: ColumnDef<CompnayColumnsType>[] = [
             const { contact } = row.original
 
 
-            return <div className="w-[17.5%] truncate">{contact ? (<Link href={`#`} className="rounded-full">{contact}</Link>) : "No contact"}</div>
+            return <div className=" truncate">{contact ? (<Link href={`#`} className="rounded-full">{contact}</Link>) : "No contact"}</div>
         },
     },
 
@@ -90,7 +90,7 @@ export const JobApplicantsColumn: ColumnDef<CompnayColumnsType>[] = [
             const { resume, name } = row.original
 
 
-            return <div className="w-[22%] truncate">{resume ? (<Link href={`${resume}`} target="_blank" className="flex items-center gap-2 truncate"><File className="text-sm shrink-0" />{name}</Link>) : "No contact"}</div>
+            return <div className=" truncate">{resume ? (<Link href={`${resume}`} target="_blank" className="flex items-center gap-2 truncate"><File className="text-sm shrink-0" />{name}</Link>) : "No contact"}</div>
         },
     },
 
@@ -99,7 +99,7 @@ export const JobApplicantsColumn: ColumnDef<CompnayColumnsType>[] = [
         header: ({ column }) => {
             return (
                 <Button
-                className="!pl-0"
+                
                     variant="ghost"
                     onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                 >

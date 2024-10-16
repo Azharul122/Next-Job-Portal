@@ -10,7 +10,7 @@ interface propsType {
 const Jobs = ({ jobsData, userId }: propsType) => {
     return (
         <div className='py-5'>
-            <p className='text-lg mb-3'>Related Jobs</p>
+            <p className='text-xl mb-3'>Recommended jobs</p>
             {
                 jobsData && jobsData.length > 0 && (
 

@@ -27,7 +27,7 @@ const BottomNavbar = () => {
     return (
         <>
             {/* UserNavabarLinkItems Menu */}
-            {show && (
+            {show  && (
                 <div ref={menuRef} className={`fixed bottom-16 right-4 z-50 border-2 md:border-0`}>
                     <UserNavabarLinkItems setShow={setShow} />
                 </div>
