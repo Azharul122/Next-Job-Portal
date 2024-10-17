@@ -5,9 +5,7 @@ import crypto from "crypto";
 import { auth, signIn, unstable_update } from "@/auth";
 import { AuthError } from "next-auth";
 import { redirect } from "next/navigation";
-// import mail from "@/app/utils/mail";
-import streamifier from "streamifier";
-import cloud from "../lib/cloud";
+
 import { uploadFileToCloud } from "../utils/fileHandler";
 import startDb from "@/lib/connectToDB";
 import VerificationTokenModel from "@/model/verificationToken";
@@ -18,9 +16,7 @@ import {
   signInSchema,
 } from "@/utils/verificationSchema";
 import PassResetTokenModel from "@/model/passwordResetToken";
-import { getSession } from "next-auth/react";
-import { revalidatePath } from "next/cache";
-// import PassResetTokenModel from "../models/passwordResetToken";
+
 
 export const continueWithGoogle = async () => {
   await signIn("google", { redirectTo: "/" });
@@ -33,7 +29,6 @@ const handleVerificationToken = async (user: {
 }) => {
   const userId = user.id;
   const token = crypto.randomBytes(36).toString("hex");
-  //   randomToken = 1234hgh = db (hash)
 
   await startDb();
   await VerificationTokenModel.findOneAndDelete({ userId });
@@ -87,22 +82,8 @@ export const signUp = async (
     password,
     redirectTo: "/",
   });
-  // revalidatePath("/");
-
-  // send verification email
-  // await handleVerificationToken({ email, id: user._id, name });
-  // await auth()
-
-  // if(useOk && useOk.ok){
-
-  // }
-
-  // // redirect("/")
-  // if (usersignIn && usersignIn.ok) {
-  //   // Redirect to home
-  //   redirect("/");
-  // }
-  // redirect("/")
+  
+ 
   return { success: true };
 };
 
@@ -177,16 +158,6 @@ export const updateProfileInfo = async (data: FormData) => {
       userInfo.avatar = { id: result.public_id, url: result.secure_url };
     }
 
-    // const arrayBuffer = await avatar.arrayBuffer()
-    // const buffer: Buffer = Buffer.from(arrayBuffer)
-
-    // const stream = cloud.uploader.upload_stream({}, (err, result) => {
-    //   if(err) throw err
-    //   else
-
-    // })
-
-    // streamifier.createReadStream(buffer).pipe(stream)
   }
 
   await startDb();

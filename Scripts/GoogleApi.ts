@@ -60,17 +60,4 @@ const {
   export default getGenerativeAIResponse
 
 
-  //   async function run() {
-//     const chatSession = model.startChat({
-//       generationConfig,
-//    // safetySettings: Adjust safety settings
-//    // See https://ai.google.dev/gemini-api/docs/safety-settings
-//       history: [
-//       ],
-//     });
-  
-//     const result = await chatSession.sendMessage("INSERT_INPUT_HERE");
-//     console.log(result.response.text());
-//   }
-  
-//   run();
+ 

@@ -16,9 +16,7 @@ import { Job, Attachment, UserProfile, Resumes } from "@prisma/client";
 import axios from "axios";
 import {
   File,
-  ImageIcon,
   Loader2,
-  Pencil,
   PlusCircle,
   ShieldCheck,
   ShieldX,
@@ -45,7 +43,6 @@ export const UserResumesForm = ({ initialData, userId }: ResumeFormProps) => {
   const [isActiveResumeId, setIsActiveResumeId] = useState<string | null>(null);
   const router = useRouter();
 
-  // Assuming initialData is available and has type of any
   const initialResumes = Array.isArray(initialData?.resumes)
     ? initialData.resumes.map((resume: any) => {
         if (
@@ -56,7 +53,7 @@ export const UserResumesForm = ({ initialData, userId }: ResumeFormProps) => {
         ) {
           return { url: resume.url, name: resume.name };
         }
-        return { url: "", name: "" }; // Provide default values if the shape is incorrect
+        return { url: "", name: "" };
       })
     : [];
 

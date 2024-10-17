@@ -5,6 +5,7 @@ import Jobs from "./_components/Jobs"
 import Categories from "./_components/Categories"
 import { db } from "@/lib/db"
 import FeaturedCompanies from "./_components/FeaturedCompanies"
+import RecentlyHired from "./_components/RecentlyHired"
 
 
 const HomePage = async () => {
@@ -17,6 +18,9 @@ const HomePage = async () => {
     },
     orderBy: {
       createdAt: "asc"
+    },
+    include: {
+      company: true
     },
     take: 8
   });
@@ -32,12 +36,14 @@ const HomePage = async () => {
 
 
   return (
-    <div style={{ minHeight: 'calc(100vh - 10rem)' }} className="min-h-[100vh-25rem]">
+    <div  className="min-h-[100vh-25rem]">
       <Banner />
       <Hero />
+      <RecentlyHired/>
       <Jobs jobsData={jobs} userId={userId ? userId : ""} />
       <Categories categoriesData={categoriesData} />
-      <FeaturedCompanies />
+      {/* <FeaturedCompanies /> */}
+     
 
     </div>
   )

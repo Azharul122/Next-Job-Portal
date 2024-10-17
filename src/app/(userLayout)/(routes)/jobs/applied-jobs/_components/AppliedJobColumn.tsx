@@ -80,7 +80,7 @@ export const AppliedJobColumn: ColumnDef<CompnayColumnsType>[] = [
         cell: ({ row }) => {
             const { id } = row.original
 
-            return <Link href={`/jobs/job-details/${id}`}>
+            return <Link passHref href={`/jobs/job-details/${id}`}>
                 <EyeIcon/>
             </Link>
 

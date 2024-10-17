@@ -20,7 +20,7 @@ const FollowedCompanyPage = async () => {
     })
     return (
         <div>
-            <h3 className="text-xl">Your are following</h3>
+            <h3 className="text-xl pb-5">Your are following</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-2">
                 {
                     followyedCompanies && followyedCompanies.length > 0 ? followyedCompanies.map(fc => (

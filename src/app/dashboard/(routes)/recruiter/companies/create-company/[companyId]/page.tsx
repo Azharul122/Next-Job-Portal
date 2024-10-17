@@ -99,16 +99,7 @@ const JobDetailsPage = async ({ params }: { params: { companyId: string } }) => 
         </div>
       </div>
 
-      {/* Alert saection */}
-      {/* <div className={`${job.isPublished ? "bg-green-500" : "bg-gradient-end "} w-full flex flex-initial items-center gap-2 !text-left p-2 rounded`}>
-        {
-          job.isPublished ? <Check className='text-green-200' /> : <AlertTriangleIcon className='text-red-500' />
-        }
-        {
-          job.isPublished ? "Job visible" : "Job not visible"
-        }
-
-      </div> */}
+     
 
       {/* Edit content section */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2 pt-5">
@@ -124,34 +115,8 @@ const JobDetailsPage = async ({ params }: { params: { companyId: string } }) => 
           {/* Company Descrition*/}
           <CompanyDescription companyId={id} intialComapny={companies} isRequired={true}/>
 
-
-
           {/* Company Logo  */}
           <CompanyLogo companyId={id} initialCompany={companies}/>
-
-
-          {/* Sort description */}
-
-
-
-
-
-          {/* Shift timing */}
-          {/* <ShiftTiming intialJob={job} jobId={id} isRequired={true}/> */}
-
-
-
-
-          {/* Hourly rate edit */}
-
-          {/* Job mode */}
-
-
-          {/* Job Experience */}
-
-
-
-
 
         </div>
         {/*  **************** Right ***************** */}

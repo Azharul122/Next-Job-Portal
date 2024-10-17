@@ -10,17 +10,14 @@ import { Button } from "@/components/ui/button"
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
-    FormLabel,
     FormMessage,
 } from "@/components/ui/form"
 
 import { Input } from "@/components/ui/input"
 import axios from "axios"
 import { toast } from "sonner"
-import { redirect } from "next/navigation"
 import { useRouter } from "next/navigation"
 
 interface propsTypes {
@@ -58,7 +55,6 @@ const CompanyTitleForm = ({ companyId, intialCompany }: propsTypes) => {
 
         } catch (error) {
             console.error("Error creating job:", error);
-            // Optionally display an error message to the user
         }
     };
     return (

@@ -1,6 +1,5 @@
 import { auth } from "@/auth";
 import { db } from "@/lib/db";
-// import { auth } from "@clerk/nextjs/server";
 import { Attachment } from "@prisma/client";
 import { NextResponse } from "next/server";
 
@@ -36,7 +35,6 @@ export const POST = async (
     for (const attachment of attachments) {
       const { url, name } = attachment;
 
-      //   check the attachment with the same url is already exists for this jobid
 
       const existingAttachment = await db.attachment.findFirst({
         where: {
@@ -46,7 +44,6 @@ export const POST = async (
       });
 
       if (existingAttachment) {
-        // skip the insertion
         console.log(
           `Attachment with URL ${url} already exists for jobId ${jobId}`
         );

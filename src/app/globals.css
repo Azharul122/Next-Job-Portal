@@ -73,17 +73,6 @@
   .text-balance-mode {
     text-wrap: balance;
   }
-  /* .gradient-text {
-    background: linear-gradient(
-      to right,
-      theme("colors.gradient-start"),
-      theme("colors.gradient-end")
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-
-   
-  } */
 }
 
 .gradient-icon {

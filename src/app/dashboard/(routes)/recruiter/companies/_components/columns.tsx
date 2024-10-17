@@ -2,9 +2,8 @@
 
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-// import { DropdownMenu } from "@radix-ui/react-dropdown-menu"
 import { ColumnDef } from "@tanstack/react-table"
-import { ActivityIcon, ArrowUpDown, DotIcon, Edit, MoreHorizontal, ScanEye, TargetIcon, Trash } from "lucide-react"
+import {  ArrowUpDown, Edit, MoreHorizontal, ScanEye, TargetIcon, Trash } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import defaltCompanyLogo from "@/images/company_logo.png"

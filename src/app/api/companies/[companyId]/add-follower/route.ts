@@ -11,7 +11,6 @@ export const PATCH = async (
     const userId = session?.user?.id;
     const { companyId } = params;
 
-    // const value = await req.json();
 
     if (!userId) {
       return new NextResponse("Not authenticated", { status: 401 });

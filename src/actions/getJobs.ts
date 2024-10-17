@@ -1,7 +1,6 @@
 import { auth } from "@/auth";
 import { db } from "@/lib/db";
 import { Job } from "@prisma/client";
-// import { toast } from "sonner";
 
 type GetJobs = {
   title?: string;
@@ -13,66 +12,11 @@ type GetJobs = {
   savedJobs?: boolean;
 };
 
-//   title,
-//   workMode,
-//   shiftTimimg,
-//   yearsOfExperience,
-//   categoryId,
-//   createdAtFilter,
-//   savedJobs,
-// }: GetJobs): Promise<Job[]> => {
-//   const session = await auth();
-//   const userId = session?.user.id;
-
-//   try {
-//     const query: any = {
-//       where: {
-//         isPublished: true,
-//         // You can add filtering based on the provided parameters here
-//       },
-//       include: {
-//         company: true,
-//         category: true,
-//         attachments: true,
-//       },
-//       orderBy: {
-//         createdAt: "desc",
-//       },
-//     };
-
-//     if (typeof title !== "undefined" && typeof categoryId !== "undefined") {
-//       query.where = {
-//         AND: [
-//           typeof title !== "undefined" && {
-//             title: {
-//               contains: title,
-//               mode: "insensitive",
-//             },
-//           },
-//           typeof categoryId !== "undefined" && {
-//             categoryId: {
-//               equals: categoryId,
-//             },
-//           },
-//         ].filter(Boolean),
-//       };
-//     }
-
-//     const jobs = await db.job.findMany(query);
-//     // console.log(jobs)
-//     return jobs;
-//   } catch (error) {
-//     toast.error("Problem with getting jobs");
-//     console.log(error);
-//     return []; // return an empty array on error
-//   }
-// };
 
 export const getJobs = async ({
   title,
   workMode,
   shiftTimimg,
-  yearsOfExperience,
   categoryId,
   createdAtFilter,
   savedJobs,
@@ -113,20 +57,20 @@ export const getJobs = async ({
 
       switch (createdAtFilter) {
         case "today":
-          startDate = new Date(currentdate.setHours(0, 0, 0, 0)); // Start of today
+          startDate = new Date(currentdate.setHours(0, 0, 0, 0)); 
           break;
         case "yesterday":
           startDate = new Date(currentdate.setDate(currentdate.getDate() - 1));
-          startDate.setHours(0, 0, 0, 0); // Start of yesterday
+          startDate.setHours(0, 0, 0, 0); 
           break;
         case "thisWeek":
           startDate = new Date(currentdate);
-          startDate.setDate(currentdate.getDate() - currentdate.getDay()); // Start of the week (Sunday)
-          startDate.setHours(0, 0, 0, 0); // Reset time to start of the day
+          startDate.setDate(currentdate.getDate() - currentdate.getDay()); 
+          startDate.setHours(0, 0, 0, 0); 
           break;
         case "lastWeek":
           startDate = new Date(currentdate);
-          startDate.setDate(currentdate.getDate() - currentdate.getDay() - 7); // Start of last week
+          startDate.setDate(currentdate.getDate() - currentdate.getDay() - 7); 
           startDate.setHours(0, 0, 0, 0);
           break;
         case "thisMonth":
@@ -148,21 +92,8 @@ export const getJobs = async ({
       };
     }
 
-    // console.log("shift",shiftTimimg)
 
-    // const formatedSiftTiming = shiftTimimg?.split(",");
 
-    // console.log("format",formatedSiftTiming)
-
-    // if (formatedSiftTiming && formatedSiftTiming.length > 0) {
-    //   query.where.shiftTimimg = {
-    //     in: formatedSiftTiming,
-    //   };
-    // }
-
-    // Assume shiftTimimg can be string, string array, or undefined/null
-
-    // Ensure shiftTimimg is a string or an array before calling split or map
     let formatedSiftTiming: string[] = [];
 
     if (typeof shiftTimimg === "string") {
@@ -205,8 +136,7 @@ export const getJobs = async ({
     const jobs = await db.job.findMany(query);
     return jobs;
   } catch (error) {
-    // toast.error("Problem with getting jobs");
     console.log(error);
-    return []; // return an empty array on error
+    return []; 
   }
 };

@@ -9,7 +9,7 @@ interface btnProps{
 }
 const ButtonPlus = ({link,title,icon:Icon}:btnProps) => {
   return (
-    <Link href={link} className="relative inline-flex items-center justify-start py-[6px] pl-4 pr-12 overflow-hidden font-semibold bg-gradient-custom transition-all duration-150 ease-in-out rounded hover:pl-10 hover:pr-6 bg-gray-50 group text-sm">
+    <Link href={link} passHref className="relative inline-flex items-center justify-start py-[6px] pl-4 pr-12 overflow-hidden font-semibold bg-gradient-custom transition-all duration-150 ease-in-out rounded hover:pl-10 hover:pr-6 bg-gray-50 group text-sm">
     <span className="absolute bottom-0 left-0 w-full h-1 transition-all duration-150 ease-in-out bg-gradient-custom group-hover:h-full"></span>
     <span className="absolute right-0 pr-4 duration-200 ease-out group-hover:translate-x-12">
        <Icon className=' animate-pulse transition-all delay-200' size={20}/>

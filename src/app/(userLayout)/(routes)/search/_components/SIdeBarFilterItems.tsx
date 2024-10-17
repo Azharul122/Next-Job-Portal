@@ -5,7 +5,6 @@ import { Separator } from '@/components/ui/separator';
 import queryString from 'query-string';
 import { usePathname, useRouter } from 'next/navigation';
 import ShiftTimingFilter from './ShiftTimingFilter';
-// import WorkModeFilter from './WorkModeFilter'; // Import WorkModeFilter
 
 const SideBarFilterItems = () => {
     const pathname = usePathname();
@@ -37,8 +36,8 @@ const SideBarFilterItems = () => {
             ? workMode.filter((mode): mode is string => mode !== null && mode !== undefined)
             : workMode ? [workMode] : [];
 
-        setSelectedShiftTimings(validShiftTimings); // Set valid shift timings
-        setSelectedWorkModes(validWorkModes); // Set valid work modes // Set work modes
+        setSelectedShiftTimings(validShiftTimings); 
+        setSelectedWorkModes(validWorkModes);
     }, [pathname]);
 
     const handleShiftTimingChange = (shiftTimings: string[]) => {
@@ -48,7 +47,7 @@ const SideBarFilterItems = () => {
 
     const handleWorkModeChange = (workModes: string[]) => {
         setSelectedWorkModes(workModes);
-        updateUrl({ workMode: workModes }); // Update URL with work modes
+        updateUrl({ workMode: workModes }); 
     };
 
     const updateUrl = (newParams: Record<string, string | string[]>) => {
@@ -65,7 +64,7 @@ const SideBarFilterItems = () => {
             <Separator className='my-3 text-gradient-start' />
             <ShiftTimingFilter data={shiftTimingData} selected={selectedShiftTimings} onChange={handleShiftTimingChange} />
             <Separator className='my-3 text-gradient-start' />
-            <ShiftTimingFilter data={workModeData} selected={selectedWorkModes} onChange={handleWorkModeChange} /> {/* Use WorkModeFilter */}
+            <ShiftTimingFilter data={workModeData} selected={selectedWorkModes} onChange={handleWorkModeChange} /> 
         </div>
     );
 };

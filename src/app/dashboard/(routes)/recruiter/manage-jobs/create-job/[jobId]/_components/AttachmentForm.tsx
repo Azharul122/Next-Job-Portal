@@ -1,7 +1,5 @@
 
 "use client"
-// import { AttachmentsUploads } from "@/components/attachments-uploads";
-// import { ImageUpload } from "@/components/image-upload";
 import { AttachmentsUploads } from "@/components/ui/attachment-upload";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,17 +9,14 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Job, Attachment } from "@prisma/client";
 import axios from "axios";
-import { File, ImageIcon, Loader2, Pencil, X } from "lucide-react";
-import Image from "next/image";
+import { File, Loader2, Pencil, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-// import toast from "react-hot-toast";
 import { z } from "zod";
 
 interface AttachmentsFormProps {
@@ -41,7 +36,6 @@ export const AttachmentsForm = ({
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const router = useRouter();
 
-  // Assuming initialData is available and has type of any
   const initialAttachments = Array.isArray(initialData?.attachments)
     ? initialData.attachments.map((attachment: any) => {
         if (
@@ -52,7 +46,7 @@ export const AttachmentsForm = ({
         ) {
           return { url: attachment.url, name: attachment.name };
         }
-        return { url: "", name: "" }; // Provide default values if the shape is incorrect
+        return { url: "", name: "" }; 
       })
     : [];
 

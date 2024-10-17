@@ -5,7 +5,6 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
 import { useDebounce } from "../../../hooks/use-debounce"
 import queryString from "query-string"
-// import { url } from "inspector"
 
 const SearchContainer = () => {
     const router=useRouter()
@@ -38,14 +37,14 @@ const SearchContainer = () => {
         
     router.push(url)
     },[
-        query,router,pathname,createdAtFilter,workMode,title,shiftTimimg,categoryId
+        query,router,pathname,createdAtFilter,workMode,title,shiftTimimg,categoryId,debounceValue
     ])
     
     const handleQuery = () => {
 
     }
     return (
-        <div className="relative w-[25rem]">
+        <div className="relative xs:w-[16rem] md:w-[25rem] w-[12rem]">
             <input value={query} onChange={(e) => setQuery(e.target.value)} type="text" className="px-5 py-2 bg-transparent border rounded-full w-full border-light-border dark:border-dark-border" />
 
             {/* Search Button */}

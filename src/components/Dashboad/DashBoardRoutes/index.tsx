@@ -3,8 +3,7 @@
 import { BriefcaseBusinessIcon, Home, List, LucideHome, Settings, Users,HomeIcon } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-// import { useRouter } from "next/router"
-// import { FaCaretSquareUp } from "react-icons/fa"
+
 
 
 
@@ -60,7 +59,6 @@ const recruiterRoutes = [
 const DashBoardRoutes = () => {
     const pathname = usePathname()// const route=useRouter()
     const isAdmin = pathname.startsWith("/dashboard/admin")
-    // const isRecruiter = pathname.startsWith("/dashboard/recruiter")
     const route = isAdmin ? adminRoutes : recruiterRoutes
     return (
         <div className=" h-full  w-full pt-3">

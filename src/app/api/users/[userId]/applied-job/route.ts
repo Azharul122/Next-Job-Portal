@@ -1,9 +1,6 @@
 import { auth } from "@/auth";
 import { db } from "@/lib/db";
-import { deleteObject, ref } from "firebase/storage";
 import { NextResponse } from "next/server";
-// import { storge } from "../../../../../config/firebase.config";
-import { Attachment } from "@prisma/client";
 
 export const PATCH = async (req: Request) => {
   try {

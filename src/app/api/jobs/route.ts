@@ -1,6 +1,5 @@
 import { auth } from "@/auth";
 import { db } from "@/lib/db";
-import UserModel from "@/model/user.model";
 import { NextResponse } from "next/server";
 
 export const POST = async (req: Request) => {

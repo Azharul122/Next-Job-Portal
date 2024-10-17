@@ -1,6 +1,4 @@
-// import { storage } from "@/config/firebase.config";
 import { db } from "@/lib/db";
-// import { auth } from "@clerk/nextjs/server";
 import { deleteObject, ref } from "firebase/storage";
 import { NextResponse } from "next/server";
 import { storge } from "../../../../../../../config/firebase.config";

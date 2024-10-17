@@ -30,16 +30,15 @@ export const PATCH = async (
     }
 
     const publishJob = await db.job.update({
-        where: {
-          id: jobId
-        },
-        data:{
-            isPublished:false
-        }
-      });
+      where: {
+        id: jobId,
+      },
+      data: {
+        isPublished: false,
+      },
+    });
 
-      return NextResponse.json(publishJob)
-
+    return NextResponse.json(publishJob);
   } catch (error) {
     console.log(`job publish patch , ${error}`);
     return new NextResponse("Internal error");

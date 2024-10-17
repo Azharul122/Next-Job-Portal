@@ -43,9 +43,7 @@ export const PATCH = async (
         },
       });
     }
-    // const updatedData = {
-    //   followers: company?.followers ? { push: userId } : [userId],
-    // };
+   
 
     return NextResponse.json(JSON.stringify(updatedCompany), { status: 201 });
   } catch (error) {

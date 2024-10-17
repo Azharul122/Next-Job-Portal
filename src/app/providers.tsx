@@ -1,12 +1,9 @@
 "use client";
 
 import { ReactNode } from "react";
-
-
 import { FC } from "react";
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "@/components/theme-provider";
-import { auth } from "@/auth";
 
 interface Props {
     children: ReactNode;

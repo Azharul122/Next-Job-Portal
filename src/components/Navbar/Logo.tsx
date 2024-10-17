@@ -11,7 +11,7 @@ const Logo = () => {
     // const isRecruiter = pathname.startsWith("/dashboard/recruiter")
     return (
         <>
-            <Link href={isAdmin ? "/dashboard/admin" : "/dashboard/recruiter"}>
+            <Link passHref href={isAdmin ? "/dashboard/admin" : "/dashboard/recruiter"}>
                 <Image height={60} width={60} src={logo} alt='Add logo' />
             </Link>
         </>

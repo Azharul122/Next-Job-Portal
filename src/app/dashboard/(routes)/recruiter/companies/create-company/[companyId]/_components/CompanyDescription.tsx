@@ -1,5 +1,5 @@
 "use client"
-import { Copy, Edit, Lightbulb, Loader2, LoaderCircle, Repeat2 } from 'lucide-react'
+import { Edit, LoaderCircle } from 'lucide-react'
 import React, { useState } from 'react'
 
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -10,24 +10,17 @@ import { Button } from "@/components/ui/button"
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
-    FormLabel,
     FormMessage,
 } from "@/components/ui/form"
 
-import { Input } from "@/components/ui/input"
 import axios from "axios"
 import { toast } from "sonner"
-import { redirect } from "next/navigation"
 import { useRouter } from "next/navigation"
-import { Company, Job } from '@prisma/client'
-import ComboBox from '@/components/ui/combo-box'
+import { Company } from '@prisma/client'
 import { Textarea } from '@/components/ui/textarea'
-import getGenerativeAIResponse from '../../../../../../../../../Scripts/GoogleApi'
-import Editor from '@/components/ui/editor'
-import Preview from '@/components/ui/Preview'
+
 
 interface propsTypes {
     companyId: string,
@@ -43,7 +36,6 @@ const formSchema = z.object({
 
 const CompanyDescription = ({ companyId, intialComapny, isRequired }: propsTypes) => {
     const [editing, setEditing] = useState(false)
-    // const [aiData, setAiData] = useState("")
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -51,12 +43,8 @@ const CompanyDescription = ({ companyId, intialComapny, isRequired }: propsTypes
         }
     })
     const { isSubmitting, isValid } = form.formState
-    const [prompt, setPrompt] = useState("")
-    const [isPrompting, setIsPrompting] = useState(false)
-    const [geminiData, setGeminiData] = useState("")
     const router = useRouter()
 
-    // console.log(options)
 
     const onSubmit = async (value: z.infer<typeof formSchema>) => {
 
@@ -70,7 +58,6 @@ const CompanyDescription = ({ companyId, intialComapny, isRequired }: propsTypes
 
         } catch (error) {
             console.error("Error creating job:", error);
-            // Optionally display an error message to the user
         }
     };
 

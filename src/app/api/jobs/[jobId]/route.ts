@@ -68,33 +68,29 @@ export const DELETE = async (
       },
     });
 
-    if(!job){
-      return new NextResponse("Job not found",{status:404})
+    if (!job) {
+      return new NextResponse("Job not found", { status: 404 });
     }
-    if(job.img){
-      const storageRef=ref(storge,job.img)
-      await deleteObject(storageRef)
+    if (job.img) {
+      const storageRef = ref(storge, job.img);
+      await deleteObject(storageRef);
     }
-    // if(job.attachments){
-    //   const storageRef=ref(storge,job.attachments)
-    //   await deleteObject(storageRef)
-    // }
 
-    if(Array.isArray(job.attachments) && job.attachments.length>0){
+    if (Array.isArray(job.attachments) && job.attachments.length > 0) {
       await Promise.all(
-        job.attachments.map(async(attacment:Attachment)=>{
-          const attachmentStorageRef=ref(storge,attacment.url)
-          await deleteObject(attachmentStorageRef)
+        job.attachments.map(async (attacment: Attachment) => {
+          const attachmentStorageRef = ref(storge, attacment.url);
+          await deleteObject(attachmentStorageRef);
         })
-      )
+      );
     }
 
-    const deleteJOb=await db.job.delete({
-      where:{
-        id:jobId,
-        userId
-      }
-    })
+    const deleteJOb = await db.job.delete({
+      where: {
+        id: jobId,
+        userId,
+      },
+    });
 
     return NextResponse.json(deleteJOb, { status: 201 });
   } catch (error) {

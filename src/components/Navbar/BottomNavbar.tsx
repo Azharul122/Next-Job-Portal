@@ -42,7 +42,7 @@ const BottomNavbar = () => {
                     {/* Dark mode toggle */}
                     <ModeToggle />
                     {/* Home */}
-                    <Link href={"/"} className='border bg-gradient-custom h-full rounded-tl-full rounded-tr-full'>
+                    <Link passHref href={"/"} className='border bg-gradient-custom h-full rounded-tl-full rounded-tr-full'>
                         <button className="border px-4 py-3 ">
                             <FaHome className='text-xl' />
                         </button>

@@ -30,15 +30,13 @@ export const PATCH = async (
       return new NextResponse("Job not found", { status: 404 });
     }
 
-    // Update the savedUser field to include the userId
     const updatedJob = await db.job.update({
       where: {
         id: job.id,
       },
       data: {
         savedUser: {
-          // Assuming savedUser is an array
-          push: userId, // Adjust this based on your ORM's method for updating arrays
+          push: userId,
         },
       },
     });

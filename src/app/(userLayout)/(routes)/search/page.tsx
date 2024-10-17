@@ -1,16 +1,12 @@
 import { getJobs } from '@/actions/getJobs';
 import { auth } from '@/auth';
 import CategoriesList from '@/components/ui/categories-list';
-// import DashBoardRoutes from '@/components/Dashboad/DashBoardRoutes';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
 import SearchContainer from '@/components/ui/search-container';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { db } from '@/lib/db';
 import React from 'react';
 import FilterJob from './_components/FilterJob';
-import DateFilter from './_components/DateFilter';
-import { Separator } from '@/components/ui/separator';
-// import WorkingModeFilter from './_components/WorkingModeFilter';
 import SIdeBarFilterItems from './_components/SIdeBarFilterItems';
 
 interface SearchParams {
@@ -37,7 +33,6 @@ const SearchPage = async ({ searchParams, children }: Props) => {
   const session = await auth();
   const userId = session?.user.id;
 
-  // Ensure to await getJobs if it's an async function
   const jobs = await getJobs({ ...searchParams });
 
 
@@ -82,7 +77,6 @@ const SearchPage = async ({ searchParams, children }: Props) => {
 
             {/* Display job  */}
             <FilterJob userId={userId?userId:""} jobs={jobs} />
-            {/* <span className="font-semibold">{children}</span> */}
           </div>
         </ResizablePanel>
       </ResizablePanelGroup>

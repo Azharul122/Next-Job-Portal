@@ -13,18 +13,14 @@ import {
     
     FormField,
     FormItem,
-    FormLabel,
     FormMessage,
 } from "@/components/ui/form"
 
 import { Input } from "@/components/ui/input"
 import axios from "axios"
 import { toast } from "sonner"
-import { redirect } from "next/navigation"
 import { useRouter } from "next/navigation"
-import { Company, Job } from '@prisma/client'
-import ComboBox from '@/components/ui/combo-box'
-import { Textarea } from '@/components/ui/textarea'
+import { Company } from '@prisma/client'
 import getGenerativeAIResponse from '@/../Scripts/GoogleApi'
 import Editor from '@/components/ui/editor'
 import Preview from '@/components/ui/Preview'
@@ -43,7 +39,6 @@ const formSchema = z.object({
 
 const WhyJoinUs = ({ companyId, initialCompany, isRequired }: propsTypes) => {
     const [editing, setEditing] = useState(false)
-    // const [aiData, setAiData] = useState("")
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -70,7 +65,6 @@ const WhyJoinUs = ({ companyId, initialCompany, isRequired }: propsTypes) => {
 
         } catch (error) {
             console.error("Error creating job:", error);
-            // Optionally display an error message to the user
         }
     };
 
@@ -83,8 +77,6 @@ const WhyJoinUs = ({ companyId, initialCompany, isRequired }: propsTypes) => {
 
             await getGenerativeAIResponse(customPrompts).then((data) => {
                 setGeminiData(data)
-                // console.log(data)
-                // form.setValue("whyJoinUs", data)
                 setIsPrompting(false)
             })
         } catch (error) {
@@ -154,7 +146,6 @@ const WhyJoinUs = ({ companyId, initialCompany, isRequired }: propsTypes) => {
                                         <FormControl>
 
 
-                                            {/* <Textarea disabled={isSubmitting} placeholder=" Sort whyJoinUs " {...field} /> */}
                                             <Editor {...field} />
 
                                         </FormControl>

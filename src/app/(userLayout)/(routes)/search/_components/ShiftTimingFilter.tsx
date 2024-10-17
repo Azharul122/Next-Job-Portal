@@ -18,11 +18,10 @@ interface ShiftTimingProps {
 const ShiftTimingFilter = ({ data, selected, onChange }: ShiftTimingProps) => {
     const [filter, setFilter] = useState<AppliedFilter[]>(data || []);
 
-    // Sync with initial data and selected values
     useEffect(() => {
         const updatedFilter = data.map(item => ({
             ...item,
-            checked: selected.includes(item.value), // Set checked based on selected
+            checked: selected.includes(item.value), 
         }));
         setFilter(updatedFilter);
     }, [data, selected]);
@@ -32,7 +31,7 @@ const ShiftTimingFilter = ({ data, selected, onChange }: ShiftTimingProps) => {
             if (item.value === applied.value) {
                 return {
                     ...item,
-                    checked: !item.checked // Toggle the checked state
+                    checked: !item.checked 
                 };
             }
             return item;
@@ -40,10 +39,8 @@ const ShiftTimingFilter = ({ data, selected, onChange }: ShiftTimingProps) => {
 
         setFilter(updatedFilter);
 
-        // Get the updated checked values
         const checkedValues = updatedFilter.filter(item => item.checked).map(item => item.value);
         
-        // Pass the updated checked values to the parent
         onChange(checkedValues);
     };
 
@@ -54,12 +51,12 @@ const ShiftTimingFilter = ({ data, selected, onChange }: ShiftTimingProps) => {
                 filter.map(sdata => (
                     <div key={sdata.value} className="flex items-center space-x-2">
                         <Checkbox
-                            id={sdata.value} // Ensure unique ID for each checkbox
-                            checked={sdata.checked} // Bind checked state
+                            id={sdata.value} 
+                            checked={sdata.checked} 
                             onCheckedChange={() => handleChange(sdata)}
                         />
                         <Label
-                            htmlFor={sdata.value} // Ensure the label matches the checkbox ID
+                            htmlFor={sdata.value} 
                             className="text-sm font-medium leading-none"
                         >
                             {sdata.label}

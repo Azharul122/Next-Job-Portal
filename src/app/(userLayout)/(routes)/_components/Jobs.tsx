@@ -4,13 +4,13 @@ import JobCard from '../search/_components/JobCard'
 
 interface propsType {
     jobsData: Job[]
-    userId: string
+    userId: string | null
 }
 
 const Jobs = ({ jobsData, userId }: propsType) => {
     return (
         <div className='py-5'>
-            <p className='text-xl mb-3'>Recommended jobs</p>
+            <p className='text-xl mb-3'>Recommended Jobs</p>
             {
                 jobsData && jobsData.length > 0 && (
 

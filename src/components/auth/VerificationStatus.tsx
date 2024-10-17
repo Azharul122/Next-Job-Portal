@@ -4,7 +4,6 @@ import { FC } from "react";
 import VerificationFormSubmit from "./VerificationFormSubmit";
 import { useFormState } from "react-dom";
 import { generateVerificationLink } from "@/actions/auth";
-// import { generateVerificationLink } from "../actions/auth";
 
 interface Props {
   visible?: boolean;
