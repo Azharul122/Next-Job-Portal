@@ -8,6 +8,7 @@ import { db } from '@/lib/db';
 import React from 'react';
 import FilterJob from './_components/FilterJob';
 import SIdeBarFilterItems from './_components/SIdeBarFilterItems';
+import { Category } from '@prisma/client';
 
 interface SearchParams {
   title?: string;
@@ -24,11 +25,18 @@ interface Props {
 }
 
 const SearchPage = async ({ searchParams, children }: Props) => {
-  const categories = await db.category.findMany({
-    orderBy: {
-      categoryTitle: "desc",
-    },
-  });
+
+  let categories: Category[] = []
+
+  try {
+    categories = await db.category.findMany({
+      orderBy: {
+        categoryTitle: "desc",
+      },
+    });
+  } catch (error) {
+    console.log(error)
+  }
 
   const session = await auth();
   const userId = session?.user.id;
@@ -76,7 +84,7 @@ const SearchPage = async ({ searchParams, children }: Props) => {
             <CategoriesList categories={categories} />
 
             {/* Display job  */}
-            <FilterJob userId={userId?userId:""} jobs={jobs} />
+            <FilterJob userId={userId ? userId : ""} jobs={jobs} />
           </div>
         </ResizablePanel>
       </ResizablePanelGroup>

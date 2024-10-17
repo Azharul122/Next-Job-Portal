@@ -19,7 +19,7 @@ interface propsTypes {
 const CompanyTabs = ({ job, userId, company }: propsTypes) => {
     return (
         <div>
-            <Tabs defaultValue="account" className="w-full">
+            <Tabs defaultValue="overview" className="w-full">
                 <TabsList>
                     <TabsTrigger value="overview">Overview</TabsTrigger>
                     <TabsTrigger value="joinus">Join us</TabsTrigger>

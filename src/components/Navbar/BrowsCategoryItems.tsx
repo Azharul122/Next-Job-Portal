@@ -53,18 +53,18 @@ interface propsTypes{
 export function BrowsCategoryItems({categories}:propsTypes) {
     // console.log(categories)
   return (
-    <NavigationMenu>
+    <NavigationMenu className="z-[999]">
       <NavigationMenuList>
       <NavigationMenuItem>
           <NavigationMenuTrigger >Beows Category</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid  w-[400px] gap-3 p-4 md:w-[600px] md:grid-cols-3 lg:w-[700px] ">
+            <ul className="grid  w-[400px]  scrollbar-thin scrollbar-thumb-gradient-start scrollbar-track-gradient-end h-[21rem] overflow-y-scroll  gap-3 p-4 md:w-[600px] md:grid-cols-3 lg:w-[700px] ">
               {categories && categories.length>0 &&categories.map((component) => (
                 <Link
                   key={component.id}
                   
                   href={`/search?categoryId=${component.id}`}
-                  className="truncate flex items-center text-sm gap-2 border dark:border-dark-border border-light-border px-3 py-2 bg-lightbg dark:bg-darkbg text-justify shadow-xl backdrop-blur-md "
+                  className="truncate flex items-center text-sm gap-2 border dark:border-dark-border border-light-border px-3 py-2 h-[3rem] bg-lightbg dark:bg-darkbg text-justify shadow-xl backdrop-blur-md shrink-0"
                 >
                   {component.categoryTitle}
                 </Link>

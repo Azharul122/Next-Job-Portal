@@ -14,6 +14,7 @@ import { auth } from "@/auth"
 import { redirect } from "next/navigation"
 import { db } from "@/lib/db"
 import { CompanyColumns, CompnayColumnsType } from "../companies/_components/columns"
+import { Company } from "@prisma/client"
 
 
 const CompanyPage = async () => {
@@ -25,15 +26,22 @@ const CompanyPage = async () => {
         return redirect("./")
     }
 
-    const companies = await db.company.findMany({
-        where: {
-            userId: id
-        },
-        orderBy: {
-            createdAt: "desc"
-        }
+    let companies: Company[] = []
 
-    })
+    try {
+        companies = await db.company.findMany({
+            where: {
+                userId: id
+            },
+            orderBy: {
+                createdAt: "desc"
+            }
+
+        })
+    } catch (error) {
+        console.log(error)
+    }
+
 
     const formatDate = (dateStr: Date) => {
         const date = new Date(dateStr);

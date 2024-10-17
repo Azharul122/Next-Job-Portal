@@ -110,7 +110,7 @@ const UserContactForm = ({ userId, initialData }: propsTypes) => {
                 </div>
             }
             {
-                !editing && <p className='text-sm text-neutral-200/40'>{initialData?.contact || "No contact information"}</p>
+                !editing && <p className='text-sm dark:text-muted-foreground text-neutral-500'>{initialData?.contact || "No contact information"}</p>
             }
         </div>
     )

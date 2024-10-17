@@ -61,7 +61,7 @@ const JobDetailsContnts = ({ job, jobId, userProfile }: propsTypes) => {
             {/* is applied  */}
             {
                 isApplied && (
-                    <div className="dark:bg-darkbg text-green-400 bg-lightbg px-3 py-4">
+                    <div className="dark:bg-darkbg text-green-400 bg-lightbg px-3 py-4 border-l-4 dark:border-dark-border border-light-border my-2">
                         You are applied this job
                     </div>
                 )
@@ -100,7 +100,7 @@ const JobDetailsContnts = ({ job, jobId, userProfile }: propsTypes) => {
                 <Preview value={job?.Description ? job.Description : ""} />
             </div>
             {/* Attachments */}
-            <div className="flex flex-col gap-3 mt-5">
+            <div className="flex flex-col gap-3 my-3">
 
                 {
                     job.attachments && job.attachments.length > 0 && (

@@ -116,6 +116,7 @@ const config = {
   },
   plugins: [
     require("tailwindcss-animate"),
+    require('tailwind-scrollbar'),
 
     function ({ addUtilities }: { addUtilities: AddUtilities }) {
       addUtilities({

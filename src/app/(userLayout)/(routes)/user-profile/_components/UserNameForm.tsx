@@ -110,7 +110,7 @@ const UserNameForm = ({ userId, initialData,name }: propsTypes) => {
                 </div>
             }
             {
-                !editing && <p className='text-sm text-neutral-200/40'>{initialData?.fullName || name}</p>
+                !editing && <p className='text-sm dark:text-muted-foreground text-neutral-500'>{initialData?.fullName || name}</p>
             }
         </div>
     )

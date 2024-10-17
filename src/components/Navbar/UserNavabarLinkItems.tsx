@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 interface PropsTypes {
-    setShow: (show: boolean) => void; 
+    setShow: (show: boolean) => void;
 }
 
 const UserNavabarLinkItems = ({ setShow }: PropsTypes) => {
@@ -14,7 +14,7 @@ const UserNavabarLinkItems = ({ setShow }: PropsTypes) => {
         setShow(false);
     };
 
-    const isActive = (path: string) => { 
+    const isActive = (path: string) => {
         return pathname === path && pathname.startsWith(path);
     };
 
@@ -30,18 +30,18 @@ const UserNavabarLinkItems = ({ setShow }: PropsTypes) => {
             </button>
             <button onClick={handleShow} className="px-4 py-2">
                 <Link
-                    className={`px-4 py-2 text-sm rounded ${isActive('/slider') ? 'font-extrabold gradient-text' : ''}`}
-                    href="/slider"
+                    className={`px-4 py-2 text-sm rounded ${isActive('/jobs/applied-jobs') ? 'font-extrabold gradient-text' : ''}`}
+                    href="/jobs/applied-jobs"
                 >
-                    Slider
+                    Applied Jobs
                 </Link>
             </button>
             <button onClick={handleShow} className="px-4 py-2">
                 <Link
-                    className={`px-4 py-2 text-sm rounded ${isActive('/jobs') ? 'font-extrabold gradient-text' : ''}`}
-                    href="/jobs"
+                    className={`px-4 py-2 text-sm rounded ${isActive('/jobs/saved-jobs') ? 'font-extrabold gradient-text' : ''}`}
+                    href="/jobs/saved-jobs"
                 >
-                    Jobs
+                    Saved Jobs
                 </Link>
             </button>
         </div>

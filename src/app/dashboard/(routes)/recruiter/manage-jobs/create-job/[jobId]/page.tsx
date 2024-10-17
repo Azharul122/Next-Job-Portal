@@ -18,6 +18,7 @@ import { FaRegQuestionCircle } from 'react-icons/fa'
 import TagsForm from './_components/TagsForm'
 import CompanyForm from './_components/CompanyForm'
 import { AttachmentsForm } from './_components/AttachmentForm'
+import { Category, Company } from '@prisma/client'
 
 
 const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
@@ -34,31 +35,41 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
       id,
       userId
     },
-    include:{
-      attachments:{
-        orderBy:{
-          createdAt:"asc"
+    include: {
+      attachments: {
+        orderBy: {
+          createdAt: "asc"
         }
       }
     }
   })
 
-  const categorories = await db.category.findMany({
-    orderBy: {
-      categoryTitle: "asc"
-    }
-  })
-  const companies = await db.company.findMany({
-    where:{
-      userId
-    },
-    orderBy: {
-      createdAt: "asc"
-    }
-  })
 
- 
- 
+  let categorories:Category[]=[], companies:Company[]=[]
+  try {
+    categorories = await db.category.findMany({
+      orderBy: {
+        categoryTitle: "asc"
+      }
+    })
+  } catch (error) {
+    console.log(error)
+  }
+
+  try {
+    companies = await db.company.findMany({
+      where: {
+        userId
+      },
+      orderBy: {
+        createdAt: "asc"
+      }
+    })
+  } catch (error) {
+    console.log(error)
+  }
+
+
   const option = [
     {
       label: "Full time",
@@ -87,7 +98,7 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
     return redirect("../")
   }
 
-  const requiredFields = [job.sort_description, job.Description,job.title]
+  const requiredFields = [job.sort_description, job.Description, job.title]
   const requiredFieldsLength = requiredFields.length
 
   const completedFields = requiredFields.filter(Boolean).length
@@ -188,7 +199,7 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
           }))} />
 
           {/* Atachment Form */}
-          <AttachmentsForm initialData={job} jobId={id}  />
+          <AttachmentsForm initialData={job} jobId={id} />
 
         </div>
 

@@ -55,7 +55,7 @@ const JobCard = ({ userId, job }: JobCardProps) => {
 
 
     const handleRedirect = (id: string) => {
-        rouetr.push(`jobs/job-details/${id}`)
+        rouetr.push(`/jobs/job-details/${id}`)
 
 
     }

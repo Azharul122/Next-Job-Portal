@@ -3,15 +3,7 @@ import logo from "@/images/logo.png"
 
 import Image from 'next/image'
 import Link from 'next/link'
-import {
-    NavigationMenu,
-    NavigationMenuContent,
-    NavigationMenuItem,
-    NavigationMenuLink,
-    NavigationMenuList,
-    NavigationMenuTrigger,
-    navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"
+
 import { FaUser } from 'react-icons/fa';
 import { ModeToggle } from './DarkMode'
 import { auth } from '@/auth'
@@ -20,10 +12,10 @@ import ProfileMenuItems from './ProfileMenuItems'
 import BottomNavbar from './BottomNavbar'
 import ButtonPlus from './ButtonPlus'
 import { LayoutDashboardIcon } from 'lucide-react'
-import { cn } from '@/lib/utils'
 import UserItemsProps from "./UserItemsProps";
 import { BrowsCategoryItems } from "./BrowsCategoryItems";
 import { db } from "@/lib/db";
+import { Category } from "@prisma/client";
 
 
 
@@ -32,7 +24,13 @@ const Navbar = async () => {
     const user = sesssion?.user
 
 
-    const categories = await db.category.findMany({})
+    let categories: Category[]=[]
+    try {
+        categories = await db.category.findMany({})
+    } catch (error) {
+        console.log(error)
+    }
+
 
     return (
         <div>
@@ -47,20 +45,7 @@ const Navbar = async () => {
                         </div>
                         <div className="menu">
 
-                            {/* <NavigationMenu className={cn("focus:outline-none focus:ring-0 border-none")}>
-                                <NavigationMenuList className=''>
 
-                                    <NavigationMenuItem>
-                                        <NavigationMenuTrigger>Job category</NavigationMenuTrigger>
-                                        <NavigationMenuContent className=''>
-                                          <NavigationMenuItem></NavigationMenuItem>
-                                        </NavigationMenuContent>
-                                    </NavigationMenuItem>
-
-
-
-                                </NavigationMenuList>
-                            </NavigationMenu> */}
 
 
                             <BrowsCategoryItems categories={categories} />

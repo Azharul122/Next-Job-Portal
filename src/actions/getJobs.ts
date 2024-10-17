@@ -133,6 +133,7 @@ export const getJobs = async ({
       };
     }
 
+    
     const jobs = await db.job.findMany(query);
     return jobs;
   } catch (error) {

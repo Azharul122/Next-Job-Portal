@@ -110,7 +110,7 @@ const UserEmailForm = ({ userId, initialData, email }: propsTypes) => {
                 </div>
             }
             {
-                !editing && <p className='text-sm text-neutral-200/40'>{initialData?.email || email}</p>
+                !editing && <p className='text-sm dark:text-muted-foreground text-neutral-500'>{initialData?.email || email}</p>
             }
         </div>
     )

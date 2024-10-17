@@ -5,35 +5,45 @@ import { db } from '@/lib/db'
 import { redirect } from 'next/navigation'
 import React from 'react'
 import CompanyDetailsContent from './_components/CompanyDetailsContent'
+import { Job } from '@prisma/client'
 
-const CompanyDetails = async({ params }: { params: { companyId: string } }) => {
-    const companyId=params.companyId
-    const session=await auth()
-    const userId=session?.user.id
+const CompanyDetails = async ({ params }: { params: { companyId: string } }) => {
+    const companyId = params.companyId
+    const session = await auth()
+    const userId = session?.user.id
 
 
-    const company=await db.company.findUnique({
-        where:{
-            id:companyId
+
+    const company = await db.company.findUnique({
+        where: {
+            id: companyId
         }
     })
 
-    if(!userId || !companyId){
+    if (!userId || !companyId) {
         redirect("/companies")
     }
 
+    let jobs: Job[] = []
 
-    const jobs=await db.job.findMany({
-        where:{
-            companyId:companyId
-        },
-        include:{
-            company:true
-        },
-        orderBy:{
-            createdAt:"asc"
-        }
-    })
+
+    try {
+
+        jobs = await db.job.findMany({
+            where: {
+                companyId: companyId
+            },
+            include: {
+                company: true
+            },
+            orderBy: {
+                createdAt: "asc"
+            }
+        })
+
+    } catch (error) {
+        console.log(error)
+    }
 
 
     return (
@@ -41,12 +51,12 @@ const CompanyDetails = async({ params }: { params: { companyId: string } }) => {
             <BreadCrumb breadcrumbItems={[{ link: "/companies", label: "All company" }]} breaderCrumbPage={`${company?.companyTitle !== undefined ? company.companyTitle : ""}`} />
 
             {/* Comapny image */}
-            
-             <div className="my-3 z-10 relative">
+
+            <div className="my-3 z-10 relative">
                 {company?.coverImage && (<img src={company.coverImage} className="w-full h-[250px] z-10" alt="" />)}
             </div>
 
-            <CompanyDetailsContent userId={userId} company={company} job={jobs}/>
+            <CompanyDetailsContent userId={userId} company={company} job={jobs} />
         </div>
     )
 }

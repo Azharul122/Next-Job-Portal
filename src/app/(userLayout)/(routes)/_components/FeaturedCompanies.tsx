@@ -4,9 +4,16 @@ import Image from 'next/image'
 import React from 'react'
 
 const FeaturedCompanies = async () => {
-    const companies: Company[] = await db.company.findMany({
 
-    })
+    let companies:Company[]=[]
+    try {
+        companies= await db.company.findMany({
+
+        })
+    } catch (error) {
+        console.log(error)
+    }
+     
     return (
 
         <div className='py-10 flex flex-col gap-5'>

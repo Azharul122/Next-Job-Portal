@@ -8,6 +8,8 @@ import Image from 'next/image';
 import UserEmailForm from './_components/UserEmailForm';
 import UserContactForm from './_components/UserContactForm';
 import { UserResumesForm } from './_components/UserResumesForm';
+import { Edit } from 'lucide-react';
+import UserProfileInfo from './_components/UserProfileInfo';
 
 const UserProfile = async () => {
   const session = await auth();
@@ -55,10 +57,7 @@ const UserProfile = async () => {
         </div>
         <div className="flex flex-col gap-3">
 
-          <p className='py-3'>Welcome back <span className='gradient-text'>{profile?.fullName || user.name}</span></p>
-          <div className="">
-            <Image src={user?.avatar ? user.avatar : ""} className='rounded-full' alt="" height={100} width={100} />
-          </div>
+          <UserProfileInfo user={user} profile={profile}/>
         </div>
       </div>
 

@@ -35,19 +35,19 @@ const NumberOfApplicants = async ({ params }: { params: { jobId: string } }) => 
         }
     })
 
-    const jobs = await db.job.findMany({
-        where: {
-            userId: userId as string,
-            id: jobId
-        },
-        include: {
-            company: true,
-            category: true
-        },
-        orderBy: {
-            createdAt: "asc"
-        }
-    })
+    // const jobs = await db.job.findMany({
+    //     where: {
+    //         userId: userId as string,
+    //         id: jobId
+    //     },
+    //     include: {
+    //         company: true,
+    //         category: true
+    //     },
+    //     orderBy: {
+    //         createdAt: "asc"
+    //     }
+    // })
 
 
 
