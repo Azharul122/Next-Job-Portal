@@ -7,10 +7,7 @@ interface propsTypes {
     userId: string | null;
 }
 
-
 const CompanyWiseJob = ({ job, userId }: propsTypes) => {
-
-
 
     return (
 
@@ -30,7 +27,6 @@ const CompanyWiseJob = ({ job, userId }: propsTypes) => {
                 )
             }
         </>
-        // <JobCard job={job} userId={userId ? userId : null}/>
     )
 }
 

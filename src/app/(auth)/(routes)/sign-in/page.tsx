@@ -5,10 +5,8 @@ import { Input } from "@/components/ui/input";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { FC } from "react";
-// import { Input } from "@nextui-org/react";
-// import AuthForm from "@/app/components/AuthForm";
+
 import { useFormState } from "react-dom";
-// import { continueWithCredentials } from "@/app/actions/auth";
 
 interface Props { }
 
@@ -34,8 +32,8 @@ const SignIn: FC<Props> = () => {
       title="Log In"
       action={signInAction}
     >
-      <Input placeholder="sonu@email.com" name="email" />
-      <Input placeholder="********" type="password" name="password" />
+      <Input className="bg-transparent border-slate-700 border backdrop-blur-xl shadow-xl" placeholder="exmple@gmail.com" name="email" />
+      <Input className="bg-transparent border-slate-700 border backdrop-blur-xl shadow-xl" placeholder="Password" type="password" name="password" />
     </AuthForm>
   );
 };

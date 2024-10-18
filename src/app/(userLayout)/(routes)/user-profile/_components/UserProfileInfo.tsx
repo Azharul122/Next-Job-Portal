@@ -13,6 +13,9 @@ interface propsTypes {
 
 const UserProfileInfo = ({ user, profile }: propsTypes) => {
     const [hover, setHover] = useState(false)
+    const handleProfileImageChange = async () => {
+
+    }
     return (
         <>
             <p className='py-3'>Welcome back <span className='gradient-text'>{profile?.fullName || user.name}</span></p>
@@ -21,7 +24,7 @@ const UserProfileInfo = ({ user, profile }: propsTypes) => {
                 {
                     hover && (
                         <div className="absolute rounded-full inset-0 bg-transparentBGprimary flex items-center justify-center">
-                            <Edit className='' />
+                            <Edit className='cursor-pointer' onClick={handleProfileImageChange} />
                         </div>
                     )
                 }

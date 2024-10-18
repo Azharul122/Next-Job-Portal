@@ -24,7 +24,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-const SearchPage = async ({ searchParams, children }: Props) => {
+const SearchPage = async ({ searchParams }: Props) => {
 
   let categories: Category[] = []
 

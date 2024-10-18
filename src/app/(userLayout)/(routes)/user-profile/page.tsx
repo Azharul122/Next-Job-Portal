@@ -4,11 +4,9 @@ import { redirect } from 'next/navigation';
 import React from 'react';
 import UserNameForm from './_components/UserNameForm';
 import { db } from '@/lib/db';
-import Image from 'next/image';
 import UserEmailForm from './_components/UserEmailForm';
 import UserContactForm from './_components/UserContactForm';
 import { UserResumesForm } from './_components/UserResumesForm';
-import { Edit } from 'lucide-react';
 import UserProfileInfo from './_components/UserProfileInfo';
 
 const UserProfile = async () => {
@@ -41,8 +39,6 @@ const UserProfile = async () => {
       {/* Breadcrumb */}
       <BreadCrumb breaderCrumbPage='user-profile' />
 
-
-      {/*  */}
       {/* User Profile */}
 
       <div className="grid grid-cols-3 gap-2 mt-4">

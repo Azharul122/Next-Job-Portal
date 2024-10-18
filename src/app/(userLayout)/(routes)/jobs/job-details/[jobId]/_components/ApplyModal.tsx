@@ -15,7 +15,7 @@ interface ModalProps {
     userProfile: (UserProfile & { resumes: Resumes[] }) | null
 }
 
-const ApplyModal = ({ isOpen, onClose, isConfirm, loading, userProfile }: ModalProps) => {
+const ApplyModal = ({ isOpen, onClose, isConfirm, userProfile }: ModalProps) => {
 
     const [isMounted, setIsMounted] = useState(false)
 

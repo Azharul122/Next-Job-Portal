@@ -56,7 +56,6 @@ const UserNameForm = ({ userId, initialData,name }: propsTypes) => {
 
         } catch (error) {
             console.error("Error creating job:", error);
-            // Optionally display an error message to the user
         }
     };
     return (

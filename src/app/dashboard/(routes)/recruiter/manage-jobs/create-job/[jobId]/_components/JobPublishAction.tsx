@@ -15,7 +15,6 @@ import {
     AlertDialogFooter,
     AlertDialogHeader,
     AlertDialogTitle,
-    AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 
 
@@ -59,12 +58,7 @@ const JobPublishAction = ({ isPublished, jobId, disabled }: jobActionProps) => {
 
     const handleDelte = async () => {
 
-
         setDialogOpen(true)
-
-
-
-
 
     }
 

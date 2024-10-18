@@ -26,21 +26,19 @@ const formSchema = z.object({
 
 const TagsForm = ({ jobId, intialJob, isRequired }: propsTypes) => {
     const [editing, setEditing] = useState(false)
-    const [aiData, setAiData] = useState("")
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             tags: intialJob.tags || ""
         }
     })
-    const { isSubmitting, isValid } = form.formState
+    const { isSubmitting } = form.formState
     const [prompt, setPrompt] = useState("")
     const [isPrompting, setIsPrompting] = useState(false)
     let [jobTags, setJobTags] = useState<string[]>(intialJob.tags)
 
     const router = useRouter()
 
-    // console.log(options)
 
     const onSubmit = async (value: z.infer<typeof formSchema>) => {
 
@@ -54,7 +52,6 @@ const TagsForm = ({ jobId, intialJob, isRequired }: propsTypes) => {
 
         } catch (error) {
             console.error("Error creating job:", error);
-            // Optionally display an error message to the user
         }
     };
 
@@ -68,13 +65,6 @@ const TagsForm = ({ jobId, intialJob, isRequired }: propsTypes) => {
 
             await getGenerativeAIResponse(customPrompts).then((data) => {
                 setJobTags(JSON.parse(data))
-                // setJobTags(JSON.parse(data))
-                // if (Array.isArray( data)) {
-                //     // console.log(data)
-                //     // setJobTags((prevTags) => [...prevTags, ...data])
-                // }
-
-                // form.setValue("tags", data)
                 setIsPrompting(false)
             })
         } catch (error) {
@@ -84,10 +74,6 @@ const TagsForm = ({ jobId, intialJob, isRequired }: propsTypes) => {
 
 
     const handleTagRemove = (idx: number) => {
-
-        // const updatedDate=[...jobTags]
-        // updatedDate.slice(idx,1)
-        // setJobTags(updatedDate)
 
         setJobTags(prevTags => prevTags.filter((_, i) => i !== idx));
     }

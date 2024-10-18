@@ -2,7 +2,7 @@
 
 
 import { motion, useTransform, useScroll } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import {  useRef } from "react";
 
 interface props {
   url: string,

@@ -1,10 +1,9 @@
 "use client"
 
 import { Button } from '@/components/ui/button';
-import { Company, Job, Resumes, UserProfile } from '@prisma/client';
+import { Company, Job } from '@prisma/client';
 import axios from 'axios';
 import { Loader2Icon, Minus, Plus } from 'lucide-react';
-import { Attachment } from 'mailtrap';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -18,9 +17,6 @@ interface propsTypes {
     userId: string | null;
     company: Company | null
 }
-
-
-
 
 
 const CompanyDetailsContent = ({ job, userId, company }: propsTypes) => {

@@ -61,7 +61,7 @@ const JobCard = ({ userId, job }: JobCardProps) => {
     }
     return (
         <div onClick={() => handleRedirect(job.id)} className='text-muted-foreground backdrop-blur-md'>
-            <div className='relative  z-10  px-3 py-4 space-y-3 cursor-pointer transition duration-200 hover:bg-gray-100 dark:hover:bg-darkbg border-2 border-slate-700 dark:bg-slate-800/20 bg-lightbg p-6 shadow-xl backdrop-blur-md'>
+            <div className='relative  z-10  px-3 py-4 space-y-3 cursor-pointer transition duration-200 hover:bg-gray-100 dark:hover:bg-darkbg border-2 dark:border-slate-700 border-light-border dark:bg-slate-800/20 bg-lightbg p-6 shadow-xl backdrop-blur-md'>
                 <div className="w-full relative">
                     <p className='dark:text-destructive-foreground'>{formatDistanceToNow(new Date(job.createdAt), { addSuffix: true })}</p>
                     <Link href={`#${job.id}`}>

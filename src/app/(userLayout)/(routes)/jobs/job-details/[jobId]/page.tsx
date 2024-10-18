@@ -1,5 +1,3 @@
-
-
 import { auth } from '@/auth'
 import { db } from '@/lib/db'
 import { redirect } from 'next/navigation'
@@ -10,12 +8,8 @@ import { Separator } from '@/components/ui/separator'
 import JobCard from '../../../search/_components/JobCard'
 
 const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
-
-
     const session = await auth()
     const userId = session?.user.id 
-
-
     const job = await db.job.findUnique({
         where: {
             id: params.jobId
@@ -45,10 +39,6 @@ const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
 
     const jobs = await getJobs({});
     let filterJobs = jobs.filter((j) => job?.id !== j.id && job?.categoryId === j.categoryId);
-
-
-
-
 
     return (
         <div>

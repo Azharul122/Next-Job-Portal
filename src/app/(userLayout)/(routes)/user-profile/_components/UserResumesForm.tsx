@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/form";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Job, Attachment, UserProfile, Resumes } from "@prisma/client";
+import {  UserProfile, Resumes } from "@prisma/client";
 import axios from "axios";
 import {
   File,

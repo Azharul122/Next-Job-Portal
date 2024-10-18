@@ -37,7 +37,6 @@ const formSchema = z.object({
 
 const SortDescription = ({ jobId, intialJob, isRequired }: propsTypes) => {
     const [editing, setEditing] = useState(false)
-    const [aiData, setAiData] = useState("")
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -49,7 +48,6 @@ const SortDescription = ({ jobId, intialJob, isRequired }: propsTypes) => {
     const [isPrompting, setIsPrompting] = useState(false)
     const router = useRouter()
 
-    // console.log(options)
 
     const onSubmit = async (value: z.infer<typeof formSchema>) => {
 
@@ -63,7 +61,6 @@ const SortDescription = ({ jobId, intialJob, isRequired }: propsTypes) => {
 
         } catch (error) {
             console.error("Error creating job:", error);
-            // Optionally display an error message to the user
         }
     };
 

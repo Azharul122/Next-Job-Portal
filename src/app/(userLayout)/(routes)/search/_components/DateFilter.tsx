@@ -12,28 +12,7 @@ const DateFilter = () => {
     const createAtParam=useSearchParams()
 
     const caValue=createAtParam.get("createdAtFilter")
-    // const data=[
-    //     {
-    //         label:"Toady",
-    //         value:"toady"
-    //     },
-    //     {
-    //         label:"Yeasterday",
-    //         value:"yeasterday"
-    //     },
-    //     {
-    //         label:"This week",
-    //         value:"thisWeek"
-    //     },
-    //     {
-    //         label:"This Month",
-    //         value:"ThisMonth"
-    //     },
-    //     {
-    //         label:"This Yeasr",
-    //         value:"thisYear"
-    //     }
-    // ]
+  
 
     const data = [
         { value: "today", label: "Today" },

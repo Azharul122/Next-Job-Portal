@@ -3,15 +3,10 @@ import { DataTable } from "@/components/ui/data-table"
 import { db } from "@/lib/db"
 import { AppliedJobColumn } from "./_components/AppliedJobColumn"
 
-
-
 const AppliedJobsPage = async () => {
-
 
     const session = await auth()
     const userId = session?.user.id
-
-
     const userProfile = await db.userProfile.findUnique({
         where: {
             userId

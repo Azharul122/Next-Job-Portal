@@ -2,9 +2,7 @@ import { FC, FormHTMLAttributes, ReactNode } from "react";
 import AuthSubmitButton from "./AuthSubmitButton";
 import Link from "next/link";
 import { continueWithGoogle } from "@/actions/auth";
-import { auth } from "@/auth";
-import { redirect } from "next/navigation";
-// import { continueWithGoogle } from "../actions/auth";
+
 
 interface Props {
   action?: FormHTMLAttributes<HTMLFormElement>["action"];
@@ -26,10 +24,9 @@ const AuthForm: FC<Props> = ({
   message,
 
 }) => {
-  // const sesssion=await auth()
-  // if(sesssion?.user) redirect("/")
+
   return (
-    <div className="space-y-6 max-w-96 mx-auto pt-20 sm:p-0 p-4">
+    <div className="space-y-6 max-w-96 mx-auto  transition duration-200 text-white  border-2 border-slate-700 bg-slate-800/20  p-6 shadow-xl backdrop-blur-md my-5">
       <form action={action} className="space-y-4">
         <h1 className="text-2xl">{title}</h1>
         <div>

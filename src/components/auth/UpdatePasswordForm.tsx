@@ -1,9 +1,7 @@
 "use client";
 
-// import { Input } from "@nextui-org/react";
 import { FC } from "react";
 import { useFormState } from "react-dom";
-// import { updatePassword } from "../actions/auth";
 import AuthSubmitButton from "./AuthSubmitButton";
 import { updatePassword } from "@/actions/auth";
 import { Input } from "../ui/input";

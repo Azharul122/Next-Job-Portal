@@ -31,7 +31,6 @@ const HomePage = async () => {
     });
   } catch (error) {
     console.error("Error fetching jobs:", error);
-    // Optionally, you can set a fallback value or handle the error appropriately
   }
 
   try {

@@ -1,14 +1,10 @@
 
 import logo from "@/images/logo.png"
-
 import Image from 'next/image'
 import Link from 'next/link'
-
-import { FaUser } from 'react-icons/fa';
 import { ModeToggle } from './DarkMode'
 import { auth } from '@/auth'
-import { DropdownMenu, DropdownMenuTrigger } from '../ui/dropdown-menu'
-import ProfileMenuItems from './ProfileMenuItems'
+import { DropdownMenu } from '../ui/dropdown-menu'
 import BottomNavbar from './BottomNavbar'
 import ButtonPlus from './ButtonPlus'
 import { LayoutDashboardIcon } from 'lucide-react'
@@ -16,7 +12,7 @@ import UserItemsProps from "./UserItemsProps";
 import { BrowsCategoryItems } from "./BrowsCategoryItems";
 import { db } from "@/lib/db";
 import { Category } from "@prisma/client";
-
+import ProfileTrigger from "./ProfileTrigger";
 
 
 const Navbar = async () => {
@@ -72,26 +68,7 @@ const Navbar = async () => {
                     </div>
 
                     <DropdownMenu>
-                        <DropdownMenuTrigger>
-                            <div className="profile">
-                                {
-                                    user ? <div className="">
-                                        {
-                                            user.avatar ? <Image src={user.avatar} className='rounded-full' height={30} width={30} alt='insert' /> : <div className="bg-gradient-custom rounded-full p-[6px]">
-                                                <FaUser className=' text-xl text-[#f76845] z-30' />
-                                            </div>
-                                        }
-                                    </div> : <div className="flex items-center divide-x border  py-2  shadow-sm rounded">
-                                        <Link className='px-2 text-sm md:text-lg' href={"/sign-in"}>SignIn</Link>
-                                        <Link className='px-2 hidden sm:block' href={"/sign-up"}>Sign Up</Link>
-                                    </div>
-                                }
-
-                            </div>
-                        </DropdownMenuTrigger>
-                        {
-                            user && <ProfileMenuItems />
-                        }
+                        <ProfileTrigger user={user!}/>
                     </DropdownMenu>
 
                 </div>

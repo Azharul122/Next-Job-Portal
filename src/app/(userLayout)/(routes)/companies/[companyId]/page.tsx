@@ -1,4 +1,3 @@
-import { getJobs } from '@/actions/getJobs'
 import { auth } from '@/auth'
 import BreadCrumb from '@/components/ui/custom-breadceumb'
 import { db } from '@/lib/db'

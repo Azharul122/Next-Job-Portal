@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { BoxSelectIcon, Edit2, Loader2, MoreHorizontal, ScanEye, TargetIcon, Trash, X } from "lucide-react"
+import { BoxSelectIcon, Loader2, MoreHorizontal, X } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
 

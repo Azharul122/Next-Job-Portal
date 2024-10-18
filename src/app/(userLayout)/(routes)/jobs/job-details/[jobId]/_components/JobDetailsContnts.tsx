@@ -21,11 +21,6 @@ interface propsTypes {
 
 const JobDetailsContnts = ({ job, jobId, userProfile }: propsTypes) => {
     const isApplied = userProfile?.appliedJobs.some((aj) => aj.jobId === jobId);
-
-    // Sanitize the job description
-
-    // const sanitizedDescription = DOMPurify.sanitize( job.Description || "");
-
     const [loading, setLoading] = useState(false)
 
     const [open, setOpen] = useState(false)

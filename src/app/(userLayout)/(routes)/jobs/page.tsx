@@ -1,10 +1,6 @@
-import { getSession } from '@/lib/getSession'
 import React from 'react'
 
 const FindJobs = () => {
-
-
-
 
   return (
     <div>

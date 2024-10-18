@@ -55,7 +55,6 @@ const ShiftTiming = ({ jobId, intialJob, options }: propsTypes) => {
 
         } catch (error) {
             console.error("Error creating job:", error);
-            // Optionally display an error message to the user
         }
     };
 

@@ -1,5 +1,5 @@
 "use client"
-import { Edit, Edit2, LoaderCircle, X } from 'lucide-react'
+import { Edit, LoaderCircle, X } from 'lucide-react'
 import React, { useState } from 'react'
 
 import { zodResolver } from "@hookform/resolvers/zod"

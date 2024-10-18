@@ -4,9 +4,6 @@ import { generatePassResetLink } from "@/actions/auth";
 import AuthForm from "@/components/auth/AuthForm";
 import { Input } from "@/components/ui/input";
 import { FC } from "react";
-// import AuthForm from "../components/AuthForm";
-// import { Input } from "@nextui-org/react";
-// import { generatePassResetLink } from "../actions/auth";
 import { useFormState } from "react-dom";
 
 interface Props {}

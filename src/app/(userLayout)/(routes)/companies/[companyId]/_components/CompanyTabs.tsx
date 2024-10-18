@@ -3,18 +3,13 @@
 import { Company, Job } from "@prisma/client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Preview from "@/components/ui/Preview";
-import CompanyDetails from "../page";
-import JobDetailsPage from "@/app/dashboard/(routes)/recruiter/manage-jobs/create-job/[jobId]/page";
 import CompanyWiseJob from "./CompanyWiseJob";
-
-
 
 interface propsTypes {
     job: Job[];
     userId: string | null;
     company: Company | null
 }
-
 
 const CompanyTabs = ({ job, userId, company }: propsTypes) => {
     return (

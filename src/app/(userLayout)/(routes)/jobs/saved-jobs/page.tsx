@@ -19,8 +19,6 @@ interface propsTypes {
 const SavedJobsPage = async ({ searchParams }: propsTypes) => {
     const session = await auth()
     const userId = session?.user.id
-
-
     if (!userId) {
         redirect("/")
     }

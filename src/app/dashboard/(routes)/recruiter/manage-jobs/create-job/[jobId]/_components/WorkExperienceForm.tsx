@@ -78,7 +78,6 @@ const WorkExperienceForm = ({ jobId, intialJob }: propsTypes) => {
     const { isSubmitting, isValid } = form.formState
     const router = useRouter()
 
-    // console.log(options)
 
     const onSubmit = async (value: z.infer<typeof formSchema>) => {
 
@@ -92,7 +91,6 @@ const WorkExperienceForm = ({ jobId, intialJob }: propsTypes) => {
 
         } catch (error) {
             console.error("Error creating job:", error);
-            // Optionally display an error message to the user
         }
     };
 

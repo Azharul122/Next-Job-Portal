@@ -1,15 +1,8 @@
-
 "use client"
-
 import { Button } from "@/components/ui/button"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-// import { DropdownMenu } from "@radix-ui/react-dropdown-menu"
 import { ColumnDef } from "@tanstack/react-table"
-import { ActivityIcon, ArrowUpDown, DotIcon, Edit, EyeIcon, MoreHorizontal, ScanEye, TargetIcon, Trash } from "lucide-react"
-import Image from "next/image"
+import {  ArrowUpDown, EyeIcon,  } from "lucide-react"
 import Link from "next/link"
-import defaltCompanyLogo from "@/images/company_logo.png"
-import { Job } from "@prisma/client"
 
 export type CompnayColumnsType = {
 id:string,

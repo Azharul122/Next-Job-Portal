@@ -22,7 +22,6 @@ import axios from "axios"
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"
 import { Job } from '@prisma/client'
-import ComboBox from '@/components/ui/combo-box'
 import getGenerativeAIResponse from '../../../../../../../../../Scripts/GoogleApi'
 import Editor from '@/components/ui/editor'
 import Preview from '@/components/ui/Preview'
@@ -41,7 +40,6 @@ const formSchema = z.object({
 
 const FullDescription = ({ jobId, intialJob, isRequired }: propsTypes) => {
     const [editing, setEditing] = useState(false)
-    // const [aiData, setAiData] = useState("")
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -68,7 +66,6 @@ const FullDescription = ({ jobId, intialJob, isRequired }: propsTypes) => {
 
         } catch (error) {
             console.error("Error creating job:", error);
-            // Optionally display an error message to the user
         }
     };
 
@@ -81,8 +78,6 @@ const FullDescription = ({ jobId, intialJob, isRequired }: propsTypes) => {
 
             await getGenerativeAIResponse(customPrompts).then((data) => {
                 setGeminiData(data)
-                // console.log(data)
-                // form.setValue("Description", data)
                 setIsPrompting(false)
             })
         } catch (error) {

@@ -16,7 +16,6 @@ import CompanySocialLinks from './_components/CompanySocialLinks'
 import CompanyCoverImage from './_components/CompanyCoverImage'
 import CompanyOverView from './_components/CompanyOverView'
 import WhyJoinUs from './_components/WhyJoinUs'
-import { Company } from '@prisma/client'
 
 
 const JobDetailsPage = async ({ params }: { params: { companyId: string } }) => {
@@ -42,34 +41,7 @@ const JobDetailsPage = async ({ params }: { params: { companyId: string } }) => 
     console.log(error)
    }
 
-  // const categorories = await db.category.findMany({
-  //   orderBy: {
-  //     categoryTitle: "asc"
-  //   }
-  // })
-
-  // const option = [
-  //   {
-  //     label: "Full-time",
-  //     value: "24pro"
-  //   },
-  //   {
-  //     label: "Part-time",
-  //     value: "24pro1"
-  //   },
-  //   {
-  //     label: "Contractual",
-  //     value: "24pro2"
-  //   },
-  //   {
-  //     label: "Intership",
-  //     value: "24pro3"
-  //   },
-  //   {
-  //     label: "Project-based",
-  //     value: "24pro4"
-  //   }
-  // ]
+ 
 
 
   if (!companies) {

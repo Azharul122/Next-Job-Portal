@@ -1,7 +1,7 @@
 "use client";
 
 import { signUp } from "@/actions/auth";
-import { auth } from "@/auth";
+// import { auth } from "@/auth";
 import AuthForm from "@/components/auth/AuthForm";
 import { Input } from "@/components/ui/input";
 import { useSession } from "next-auth/react";
@@ -13,13 +13,13 @@ import { FC } from "react";
 // import { signUp } from "@/app/actions/auth";
 import { useFormState } from "react-dom";
 
-interface Props {}
+interface Props { }
 
 const SignIn: FC<Props> = () => {
   const [state, singUpAction] = useFormState(signUp, {});
-  const {data,status}=useSession();
-  const loading=status==="loading"
-  if(data || loading){
+  const { data, status } = useSession();
+  const loading = status === "loading"
+  if (data || loading) {
     redirect("/")
   }
 
@@ -44,21 +44,18 @@ const SignIn: FC<Props> = () => {
       message={state.success ? "Please check your email." : ""}
     >
       <Input
-        errorMessage={state.errors?.name?.join(", ")}
-        isInvalid={state.errors?.name ? true : false}
-        placeholder="Sonu Kumar"
+        placeholder="Your name"
         name="name"
+        className="bg-transparent border-slate-700 border backdrop-blur-xl shadow-xl"
       />
       <Input
-        errorMessage={state.errors?.email?.join(", ")}
-        isInvalid={state.errors?.email ? true : false}
-        placeholder="sonu@email.com"
+        placeholder="exmple@email.com"
         name="email"
+        className="bg-transparent border-slate-700 border backdrop-blur-xl shadow-xl"
       />
       <Input
-        errorMessage={state.errors?.password?.join(", ")}
-        isInvalid={state.errors?.password ? true : false}
-        placeholder="********"
+        className="bg-transparent border-slate-700 border backdrop-blur-xl shadow-xl"
+        placeholder="Password"
         type="password"
         name="password"
       />

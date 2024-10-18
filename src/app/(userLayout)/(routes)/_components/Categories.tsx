@@ -1,4 +1,3 @@
-
 import { Category } from "@prisma/client"
 import Link from "next/link"
 
@@ -8,8 +7,6 @@ interface propsTypes {
 }
 
 const Categories = ({ categoriesData }: propsTypes) => {
-
-
 
   return (
     <div className="">

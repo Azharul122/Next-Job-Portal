@@ -1,13 +1,15 @@
 "use client"
-import React, { useState } from 'react'
 import { DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuSubContent } from '../ui/dropdown-menu'
 import { BookIcon, BookMarkedIcon, LogOut, Settings, User } from 'lucide-react'
 import Link from 'next/link'
 
+interface propsTypes{
+    show?:boolean
+    setShow?:(value:boolean)=>void
+}
 
-const ProfileMenuItems = () => {
-    const [show, setShow] = useState(true)
-    
+const ProfileMenuItems = ({show,setShow}:propsTypes) => {
+   
     return (
         <div className="">
             {
@@ -15,35 +17,32 @@ const ProfileMenuItems = () => {
                     <DropdownMenuLabel>My Account</DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     <DropdownMenuGroup>
-                        <DropdownMenuItem onClick={() => setShow(false)}>
+                        <DropdownMenuItem onClick={() => setShow!(false)}>
                             <User className="mr-2 h-4 w-4" />
                             <Link href={"/user-profile"}>Profile</Link>
                         </DropdownMenuItem>
                         
-                        <DropdownMenuItem onClick={() => setShow(false)}>
+                        <DropdownMenuItem onClick={() => setShow!(false)}>
                             <BookIcon className="mr-2 h-4 w-4" />
                             <Link href={"/jobs/applied-jobs"}>Applied jobs</Link>
                         </DropdownMenuItem>
 
-                        <DropdownMenuItem onClick={() => setShow(false)}>
+                        <DropdownMenuItem onClick={() => setShow!(false)}>
                             <BookIcon className="mr-2 h-4 w-4" />
                             <Link href={"/user-profile/followed-companies"}>Followed companies</Link>
                         </DropdownMenuItem>
 
-                        <DropdownMenuItem onClick={() => setShow(false)}>
+                        <DropdownMenuItem onClick={() => setShow!(false)}>
                             <BookMarkedIcon className="mr-2 h-4 w-4" />
                             <Link href={"/jobs/saved-jobs"}>Saved jobs</Link>
                         </DropdownMenuItem>
 
-                        <DropdownMenuItem onClick={() => setShow(false)}>
+                        <DropdownMenuItem onClick={() => setShow!(false)}>
                             <Settings className="mr-2 h-4 w-4" />
                             <Link href={"/settings"}>Settings</Link>
                         </DropdownMenuItem>
 
                     </DropdownMenuGroup>
-
-
-
 
                     <DropdownMenuSeparator />
                     <DropdownMenuItem>
