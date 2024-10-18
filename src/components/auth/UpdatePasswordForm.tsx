@@ -30,13 +30,13 @@ const UpdatePasswordForm: FC<Props> = ({ userId, token }) => {
           name="one"
           type="password"
           placeholder="********"
-          label="Password"
+       
         />
         <Input
           name="two"
           type="password"
           placeholder="********"
-          label="Confirm Password"
+         
         />
         <AuthSubmitButton label="Update Password" />
       </form>

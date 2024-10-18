@@ -21,7 +21,7 @@ interface SearchParams {
 
 interface Props {
   searchParams: SearchParams;
-  children: React.ReactNode;
+  
 }
 
 const SearchPage = async ({ searchParams }: Props) => {

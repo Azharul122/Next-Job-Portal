@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 let connection: typeof mongoose;
 const url = process.env.MONGO_URI;
 
+console.log(url)
+
 if (!url) throw Error("Missing env variable 'MONGO_URI'");
 
 const startDb = async () => {

@@ -1,15 +1,16 @@
 "use client"
 import { DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuSubContent } from '../ui/dropdown-menu'
-import { BookIcon, BookMarkedIcon, LogOut, Settings, User } from 'lucide-react'
+import { BookIcon, BookMarkedIcon, Settings, User } from 'lucide-react'
 import Link from 'next/link'
+import SignOutForm from './SignOutForm'
 
-interface propsTypes{
-    show?:boolean
-    setShow?:(value:boolean)=>void
+interface propsTypes {
+    show?: boolean
+    setShow?: (value: boolean) => void
 }
 
-const ProfileMenuItems = ({show,setShow}:propsTypes) => {
-   
+const ProfileMenuItems = ({ show, setShow }: propsTypes) => {
+
     return (
         <div className="">
             {
@@ -21,7 +22,7 @@ const ProfileMenuItems = ({show,setShow}:propsTypes) => {
                             <User className="mr-2 h-4 w-4" />
                             <Link href={"/user-profile"}>Profile</Link>
                         </DropdownMenuItem>
-                        
+
                         <DropdownMenuItem onClick={() => setShow!(false)}>
                             <BookIcon className="mr-2 h-4 w-4" />
                             <Link href={"/jobs/applied-jobs"}>Applied jobs</Link>
@@ -45,9 +46,12 @@ const ProfileMenuItems = ({show,setShow}:propsTypes) => {
                     </DropdownMenuGroup>
 
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem>
-                        <LogOut className="mr-2 h-4 w-4" />
-                        <span>Log out</span>
+                    <DropdownMenuItem >
+
+                        <SignOutForm />
+
+
+
 
                     </DropdownMenuItem>
                 </DropdownMenuContent>

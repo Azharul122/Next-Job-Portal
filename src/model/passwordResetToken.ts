@@ -1,5 +1,5 @@
 import { Model, model, models, ObjectId, Schema } from "mongoose";
-import { hashSync, compareSync, genSaltSync } from "bcrypt";
+import { hashSync, compareSync, genSaltSync } from "bcryptjs";
 
 interface PassResetTokenDoc {
   token: string;

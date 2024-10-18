@@ -2,17 +2,25 @@ import { auth } from "@/auth"
 import { DataTable } from "@/components/ui/data-table"
 import { db } from "@/lib/db"
 import { AppliedJobColumn } from "./_components/AppliedJobColumn"
+import { redirect } from "next/navigation"
 
 const AppliedJobsPage = async () => {
 
     const session = await auth()
     const userId = session?.user.id
+    
+    
+    if(!userId){
+        return redirect("/sign-in")
+    }
     const userProfile = await db.userProfile.findUnique({
         where: {
             userId
         },
 
     })
+
+   
 
     const jobs = await db.job.findMany({
         where: {
