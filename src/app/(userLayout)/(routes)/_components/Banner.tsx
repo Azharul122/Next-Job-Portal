@@ -29,7 +29,7 @@ const Banner = () => {
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
         };
-    }, [query]);
+    }, [query,handleQuery]);
 
     return (
         <div className='flex flex-col gap-3 items-center justify-center py-5'>

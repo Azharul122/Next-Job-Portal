@@ -1,5 +1,4 @@
 import { Category } from "@prisma/client"
-import { Button } from "./button"
 import CategoryItems from "@/app/(userLayout)/(routes)/search/_components/CategoryItems"
 
 interface categoryListProps {

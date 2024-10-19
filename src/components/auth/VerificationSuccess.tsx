@@ -21,7 +21,7 @@ const VerificationSuccess: FC<Props> = () => {
       });
       loaded = true;
     }
-  }, [status]);
+  }, [status,router]);
 
   return (
     <div>

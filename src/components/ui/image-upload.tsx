@@ -14,7 +14,7 @@ interface imageProps {
     onRemove: (value: string) => void
 
 }
-const ImageUploadToFirebase = ({ disabled, value, onChange, onRemove }: imageProps) => {
+const ImageUploadToFirebase = ({  value, onChange, onRemove }: imageProps) => {
     const [isMounted, setIsMounted] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [isProgress, setIsProgress] = useState<number>(0)
@@ -49,19 +49,10 @@ const ImageUploadToFirebase = ({ disabled, value, onChange, onRemove }: imagePro
             },
             () => {
                 getDownloadURL(data1.snapshot.ref).then((downloadurl) => {
-                    // store this url
-                    // newUrls.push({ url: downloadurl, name: file.name });
-
-                    // // increase the count of the counter
-                    // completedFiles++;
-
-                    // // check the files are uploaded or not
-                    // if (completedFiles === files.length) {
+                    
                     setIsLoading(false);
                     onChange(downloadurl)
 
-                    //   onChange([...value, ...newUrls]);
-                    // }
                 });
             }
         );

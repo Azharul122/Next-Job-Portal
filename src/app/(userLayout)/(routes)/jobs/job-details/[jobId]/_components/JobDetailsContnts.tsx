@@ -63,8 +63,12 @@ const JobDetailsContnts = ({ job, jobId, userProfile }: propsTypes) => {
             }
 
             {/* job cover image */}
-            <div className="my-3">
-                {job.img && (<img src={job.img} className="w-full h-[200px]" alt="" />)}
+            <div className="my-3 w-full h-[200px] relative overflow-hidden">
+                {job.img && (<Image
+                    src={job.img}
+                    alt="Job Cover Image"
+                    layout="fill"
+                />)}
             </div>
 
             {/* Title */}

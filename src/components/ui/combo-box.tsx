@@ -32,7 +32,7 @@ interface propsTypes {
     onChange: (value: string) => void
 }
 
-const ComboBox = ({ options, heading, onChange, value }: propsTypes) => {
+const ComboBox = ({ options, onChange, value }: propsTypes) => {
     console.log(options)
     const [open, setOpen] = React.useState(false)
     // const [value, setValue] = React.useState("")

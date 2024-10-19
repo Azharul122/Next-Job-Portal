@@ -1,6 +1,5 @@
 import nodemailer from "nodemailer";
 import { MailtrapClient } from "mailtrap";
-import { toast } from "sonner";
 
 const TOKEN = process.env.MAILTRAP_TOKEN!;
 

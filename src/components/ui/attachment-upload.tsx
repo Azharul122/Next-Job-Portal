@@ -3,17 +3,16 @@
 import { storge } from "../../../config/firebase.config"
 import { toast } from "sonner"
 import {
-  deleteObject,
+
   getDownloadURL,
   ref,
   uploadBytesResumable,
 } from "firebase/storage";
-import { File, FilePlus, ImagePlus, Trash, X } from "lucide-react";
+import { FilePlus } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
 
-import { url } from "inspector";
 
 interface AttachmentsUploadsProps {
   disabled?: boolean;
@@ -22,7 +21,7 @@ interface AttachmentsUploadsProps {
 }
 
 export const AttachmentsUploads = ({
-  disabled,
+ 
   onChange,
   value,
 }: AttachmentsUploadsProps) => {
