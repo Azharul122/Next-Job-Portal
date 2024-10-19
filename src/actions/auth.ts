@@ -1,19 +1,23 @@
+
 "use server";
 import { z } from "zod";
 import crypto from "crypto";
+
 import { auth, signIn, unstable_update } from "@/auth";
 import { AuthError } from "next-auth";
 import { redirect } from "next/navigation";
+
 import { uploadFileToCloud } from "../utils/fileHandler";
 import startDb from "@/lib/connectToDB";
 import VerificationTokenModel from "@/model/verificationToken";
 import mail from "@/utils/mail";
-import UserModel from "@/model/user.model";
+import UserModel, { createNewUser } from "@/model/user.model";
 import {
   passwordValidationSchema,
   signInSchema,
 } from "@/utils/verificationSchema";
 import PassResetTokenModel from "@/model/passwordResetToken";
+
 
 export const continueWithGoogle = async () => {
   await signIn("google", { redirectTo: "/" });
@@ -26,6 +30,7 @@ const handleVerificationToken = async (user: {
 }) => {
   const userId = user.id;
   const token = crypto.randomBytes(36).toString("hex");
+ 
 
   await startDb();
   await VerificationTokenModel.findOneAndDelete({ userId });
@@ -66,15 +71,35 @@ export const signUp = async (
   const oldUser = await UserModel.findOne({ email });
   if (oldUser) return { success: false, error: "User already exists!" };
 
- 
+  const user = await createNewUser({
+    name,
+    email,
+    password,
+    provider: "credentials",
+    verified: false,
+  });
 
   await signIn("credentials", {
     email,
     password,
     redirectTo: "/",
   });
-  
- 
+  // revalidatePath("/");
+
+  // send verification email
+  // await handleVerificationToken({ email, id: user._id, name });
+  // await auth()
+
+  // if(useOk && useOk.ok){
+
+  // }
+
+  // // redirect("/")
+  // if (usersignIn && usersignIn.ok) {
+  //   // Redirect to home
+  //   redirect("/");
+  // }
+  // redirect("/")
   return { success: true };
 };
 
@@ -149,6 +174,7 @@ export const updateProfileInfo = async (data: FormData) => {
       userInfo.avatar = { id: result.public_id, url: result.secure_url };
     }
 
+ 
   }
 
   await startDb();
@@ -225,3 +251,4 @@ export const updatePassword = async (
   await PassResetTokenModel.findByIdAndDelete(resetToken._id);
   return { success: true };
 };
+

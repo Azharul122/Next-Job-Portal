@@ -5,13 +5,13 @@ import BreadCrumb from "@/components/ui/custom-breadceumb";
 import { Attachment, Company, Job, Resumes, UserProfile } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
-// import * as DOMPurify from 'dompurify';  // Ensure this import is correct
 import Preview from "@/components/ui/Preview";
 import ApplyModal from "./ApplyModal";
 import { useState } from "react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { useSession } from "next-auth/react";
 
 interface propsTypes {
     job: Job & { attachments: Attachment[], company: Company | null };
@@ -23,13 +23,16 @@ const JobDetailsContnts = ({ job, jobId, userProfile }: propsTypes) => {
     const isApplied = userProfile?.appliedJobs.some((aj) => aj.jobId === jobId);
     const [loading, setLoading] = useState(false)
 
+    const { data } = useSession()
+    const userId = data?.user.id
+
     const [open, setOpen] = useState(false)
     const router = useRouter()
 
     const onApplied = async () => {
         setLoading(true)
         try {
-            const response = await axios.patch(`/api/users/${userProfile?.userId}/applied-job`, jobId)
+            const response = await axios.patch(`/api/users/${userId}/applied-job`, jobId)
 
             toast.success("Applied")
         } catch (error) {

@@ -11,6 +11,8 @@ export const PATCH = async (
     const userId = session?.user.id;
 
     const { jobId } = params;
+
+    // console.log(jobId,userId)
     if (!jobId) {
       return new NextResponse("Job not found", { status: 404 });
     }
@@ -22,7 +24,7 @@ export const PATCH = async (
     const job = await db.job.findUnique({
       where: {
         id: jobId,
-        userId,
+       
       },
     });
 
@@ -43,7 +45,7 @@ export const PATCH = async (
 
     return NextResponse.json(updatedJob);
   } catch (error) {
-    console.error("Error occurred during PATCH:", error);
+    console.error("Error save bookmark PATCH:", error);
     return new NextResponse("Internal Server Error", { status: 500 });
   }
 };

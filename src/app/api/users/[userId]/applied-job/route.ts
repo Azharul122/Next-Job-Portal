@@ -14,6 +14,7 @@ export const PATCH = async (req: Request) => {
       },
     });
 
+    console.log(profile,jobId,userId)
     if (!userId) {
       return new NextResponse("Not authenticated", { status: 401 });
     }
