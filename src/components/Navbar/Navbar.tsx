@@ -11,8 +11,13 @@ import { LayoutDashboardIcon } from 'lucide-react'
 import UserItemsProps from "./UserItemsProps";
 import { BrowsCategoryItems } from "./BrowsCategoryItems";
 import { db } from "@/lib/db";
-import { Category } from "@prisma/client";
+import { Category, Job } from "@prisma/client";
 import ProfileTrigger from "./ProfileTrigger";
+
+type CategoryWithJobs = Category & {
+    jobs: Job[];
+};
+
 
 
 const Navbar = async () => {
@@ -20,12 +25,18 @@ const Navbar = async () => {
     const user = sesssion?.user
 
 
-    let categories: Category[]=[]
+    let categories: CategoryWithJobs[] = []
     try {
-        categories = await db.category.findMany({})
+        categories = await db.category.findMany({
+            include: {
+                jobs: true
+            }
+        })
     } catch (error) {
         console.log(error)
     }
+
+
 
 
     return (
@@ -68,7 +79,7 @@ const Navbar = async () => {
                     </div>
 
                     <DropdownMenu>
-                        <ProfileTrigger user={user!}/>
+                        <ProfileTrigger user={user!} />
                     </DropdownMenu>
 
                 </div>

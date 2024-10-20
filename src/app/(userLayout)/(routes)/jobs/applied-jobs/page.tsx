@@ -20,12 +20,12 @@ const AppliedJobsPage = async () => {
 
     })
 
+    // console.log(userProfile)
+
    
 
     const jobs = await db.job.findMany({
-        where: {
-            userId
-        },
+        
         include: {
             category: true,
             company: true
@@ -34,6 +34,8 @@ const AppliedJobsPage = async () => {
             createdAt: "asc"
         }
     })
+
+    console.log(jobs)
 
     const filterAppliedJobs = userProfile && userProfile.appliedJobs.length > 0 ? jobs.filter(job => userProfile.appliedJobs.some(aj => aj.jobId === job.id)).map(job => ({
         ...job,

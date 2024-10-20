@@ -3,44 +3,51 @@ import { DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuL
 import { BookIcon, BookMarkedIcon, Settings, User } from 'lucide-react'
 import Link from 'next/link'
 import SignOutForm from './SignOutForm'
+import { useRouter } from 'next/navigation'
+import { BsBagFill } from "react-icons/bs";
+// import { useRouter } from 'next/router'
 
-interface propsTypes {
-    show?: boolean
-    setShow?: (value: boolean) => void
-}
+// interface propsTypes {
+//     show?: boolean
+//     setShow?: (value: boolean) => void
+// }
+// { show, setShow }: propsTypes
 
-const ProfileMenuItems = ({ show, setShow }: propsTypes) => {
+const ProfileMenuItems = () => {
+    const router = useRouter()
+
 
     return (
         <div className="">
             {
-                show && <DropdownMenuContent className="w-56">
+                <DropdownMenuContent className="w-56">
                     <DropdownMenuLabel>My Account</DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     <DropdownMenuGroup>
-                        <DropdownMenuItem onClick={() => setShow!(false)}>
+                        <DropdownMenuItem onClick={() => router.push("/user-profile")}>
                             <User className="mr-2 h-4 w-4" />
-                            <Link href={"/user-profile"}>Profile</Link>
+                            <h2 >Profile</h2>
+                            
                         </DropdownMenuItem>
 
-                        <DropdownMenuItem onClick={() => setShow!(false)}>
+                        <DropdownMenuItem onClick={() => router.push("/jobs/applied-jobs")}>
+                            <BsBagFill className="mr-2 h-4 w-4" />
+                            <h2>Applied jobs</h2>
+                        </DropdownMenuItem>
+
+                        <DropdownMenuItem onClick={() => router.push("/user-profile/followed-companies")}>
                             <BookIcon className="mr-2 h-4 w-4" />
-                            <Link href={"/jobs/applied-jobs"}>Applied jobs</Link>
+                            <h2 >Followed companies</h2>
                         </DropdownMenuItem>
 
-                        <DropdownMenuItem onClick={() => setShow!(false)}>
-                            <BookIcon className="mr-2 h-4 w-4" />
-                            <Link href={"/user-profile/followed-companies"}>Followed companies</Link>
-                        </DropdownMenuItem>
-
-                        <DropdownMenuItem onClick={() => setShow!(false)}>
+                        <DropdownMenuItem onClick={() => router.push("/jobs/saved-jobs")}>
                             <BookMarkedIcon className="mr-2 h-4 w-4" />
-                            <Link href={"/jobs/saved-jobs"}>Saved jobs</Link>
+                            <h2 >Saved jobs</h2>
                         </DropdownMenuItem>
 
-                        <DropdownMenuItem onClick={() => setShow!(false)}>
+                        <DropdownMenuItem onClick={() => router.push("/settings")}>
                             <Settings className="mr-2 h-4 w-4" />
-                            <Link href={"/settings"}>Settings</Link>
+                            <h2 >Settings</h2>
                         </DropdownMenuItem>
 
                     </DropdownMenuGroup>
@@ -49,9 +56,6 @@ const ProfileMenuItems = ({ show, setShow }: propsTypes) => {
                     <DropdownMenuItem >
 
                         <SignOutForm />
-
-
-
 
                     </DropdownMenuItem>
                 </DropdownMenuContent>

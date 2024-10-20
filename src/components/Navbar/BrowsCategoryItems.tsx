@@ -1,39 +1,7 @@
-// import { db } from "@/lib/db"
-// import Link from "next/link"
-// import { NavigationMenuLink, navigationMenuTriggerStyle } from "../ui/navigation-menu"
-
-
-// const BrowsCategoryItems = async () => {
-
-//     const categories = await db.category.findMany({})
-
-//     return (
-//         <>
-//             {
-//                 categories.map(category => (
-//                     <Link key={category.id} href="/docs" legacyBehavior passHref className="">
-//                         <NavigationMenuLink className={`${navigationMenuTriggerStyle()} flex items-center text-sm gap-2 border dark:border-dark-border border-light-border px-3 py-2 bg-lightbg dark:bg-darkbg text-justify shadow-xl backdrop-blur-md truncate`}>
-//                             {category.categoryTitle}
-//                         </NavigationMenuLink>
-//                     </Link>
-//                 ))
-//             }
-//         </>
-//     )
-// }
-
-// export default BrowsCategoryItems
-
-
-
-
 "use client"
 
 import * as React from "react"
-// import Link from "next/link"
-
 import { cn } from "@/lib/utils"
-// import { Icons } from "@/components/icons"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -41,16 +9,22 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
+  
 } from "@/components/ui/navigation-menu"
-import { Category, Company } from "@prisma/client"
+import {  Company, Job } from "@prisma/client"
 import Link from "next/link"
 
-interface propsTypes{
-    categories:Category[] 
+interface Category {
+  id: string;
+  categoryTitle: string;
+  jobs: Job[]; 
 }
 
-export function BrowsCategoryItems({categories}:propsTypes) {
+interface PropsTypes {
+  categories: Category[] | null; 
+}
+
+export function BrowsCategoryItems({categories}:PropsTypes) {
     // console.log(categories)
   return (
     <NavigationMenu className="z-[999]">
@@ -58,7 +32,7 @@ export function BrowsCategoryItems({categories}:propsTypes) {
       <NavigationMenuItem>
           <NavigationMenuTrigger >Beows Category</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid  w-[400px]  scrollbar-thin scrollbar-thumb-gradient-start scrollbar-track-gradient-end h-[21rem] overflow-y-scroll  gap-3 p-4 md:w-[600px] md:grid-cols-3 lg:w-[700px] ">
+            <ul className="grid w-[200px] sm:w-[250px]  scrollbar-thin scrollbar-thumb-gradient-start scrollbar-track-gradient-end h-[21rem] overflow-y-scroll  gap-3 p-4 md:w-[600px] md:grid-cols-3 sm:grid-cols-2 grid-cols-1 lg:w-[700px] ">
               {categories && categories.length>0 &&categories.map((component) => (
                 <Link
                   key={component.id}
@@ -66,7 +40,7 @@ export function BrowsCategoryItems({categories}:propsTypes) {
                   href={`/search?categoryId=${component.id}`}
                   className="truncate flex items-center text-sm gap-2 border dark:border-dark-border border-light-border px-3 py-2 h-[3rem] bg-lightbg dark:bg-darkbg text-justify shadow-xl backdrop-blur-md shrink-0"
                 >
-                  {component.categoryTitle}
+                  {component.categoryTitle} <span className={`${component.jobs.length>0?"text-gradient-start":"hidden"}`}>({component.jobs.length})</span>
                 </Link>
               ))}
             </ul>

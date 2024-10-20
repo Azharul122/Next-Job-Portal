@@ -8,13 +8,14 @@ export const PATCH = async (req: Request) => {
     const userId = session?.user?.id;
 
     const jobId = await req.text();
+
     const profile = await db.userProfile.findUnique({
       where: {
         userId: userId as string,
       },
     });
-
     console.log(profile,jobId,userId)
+   
     if (!userId) {
       return new NextResponse("Not authenticated", { status: 401 });
     }

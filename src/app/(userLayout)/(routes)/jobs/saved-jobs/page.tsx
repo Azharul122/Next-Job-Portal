@@ -28,7 +28,7 @@ const SavedJobsPage = async ({ searchParams }: propsTypes) => {
     console.log(jobs)
 
     return (
-        <div>
+        <div className='pb-5'>
 
             <BreadCrumb breaderCrumbPage='Saved jobs' breadcrumbItems={[{ link: "/jobs", label: "jobs" }]} />
 
