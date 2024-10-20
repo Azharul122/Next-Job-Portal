@@ -2,12 +2,15 @@ import { auth } from "@/auth";
 import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
 
-export const PATCH = async (req: Request) => {
+export const PATCH = async (
+  req: Request,
+  { params }: { params: { userId: string } }
+) => {
   try {
-    const session = await auth();
-    const userId = session?.user?.id;
+    // const session = await auth();
+    // const userId = session?.user?.id;
 
-  
+    const { userId } = params;
 
     const value = await req.json();
 
@@ -29,14 +32,13 @@ export const PATCH = async (req: Request) => {
           userId,
         },
         data: {
-            
           ...value,
         },
       });
     } else {
       userProfile = await db.userProfile.create({
         data: {
-            userId,
+          userId,
           ...value,
         },
       });

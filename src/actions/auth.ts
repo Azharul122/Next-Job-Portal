@@ -1,4 +1,3 @@
-
 "use server";
 import { z } from "zod";
 import crypto from "crypto";
@@ -17,7 +16,7 @@ import {
   signInSchema,
 } from "@/utils/verificationSchema";
 import PassResetTokenModel from "@/model/passwordResetToken";
-
+import { db } from "@/lib/db";
 
 export const continueWithGoogle = async () => {
   await signIn("google", { redirectTo: "/" });
@@ -30,7 +29,6 @@ const handleVerificationToken = async (user: {
 }) => {
   const userId = user.id;
   const token = crypto.randomBytes(36).toString("hex");
- 
 
   await startDb();
   await VerificationTokenModel.findOneAndDelete({ userId });
@@ -79,6 +77,16 @@ export const signUp = async (
     verified: false,
   });
 
+  // Call the API to save the user profile with userId
+  const profileResponse = await saveUserProfile({
+    userId:user._id,
+    fullName: name,
+    email,
+  });
+  if (!profileResponse.success) {
+    console.error("Failed to save user profile:", profileResponse.error);
+  }
+
   await signIn("credentials", {
     email,
     password,
@@ -102,6 +110,43 @@ export const signUp = async (
   // redirect("/")
   return { success: true };
 };
+
+// const saveUserProfile = async (
+//   userId: string,
+//   profileData: { fullName: string; email: string }
+// ) => {
+//   const response = await fetch(`/api/users/${userId}`, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(profileData),
+//   });
+
+//   if (!response.ok) {
+//     throw new Error("Failed to save profile");
+//   }
+
+//   return await response.json();
+// };
+
+const saveUserProfile = async ( profileData: { userId:string,fullName: string; email: string }) => {
+  const response = await fetch(`http://localhost:3000/api/users/save-profile`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(profileData),
+  });
+
+  if (!response.ok) {
+    const errorMessage = await response.text(); // Get the error message for debugging
+    throw new Error(`Failed to save profile: ${errorMessage}`);
+  }
+
+  return await response.json();
+};
+
 
 export const continueWithCredentials = async (
   state: AuthResponse,
@@ -173,8 +218,6 @@ export const updateProfileInfo = async (data: FormData) => {
     if (result) {
       userInfo.avatar = { id: result.public_id, url: result.secure_url };
     }
-
- 
   }
 
   await startDb();
@@ -251,4 +294,3 @@ export const updatePassword = async (
   await PassResetTokenModel.findByIdAndDelete(resetToken._id);
   return { success: true };
 };
-

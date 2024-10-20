@@ -78,7 +78,7 @@ const JobDetailsContnts = ({ job, jobId, userProfile }: propsTypes) => {
             <div className="flex justify-between items-center mt-5">
                 <div className="flex gap-2 flex-col">
                     <p className="text-xl">{job.title}</p>
-                    <Link href={`companies/${job.companyId}`} passHref className="flex items-center gap-2">
+                    <Link href={`/companies/${job.companyId}`} passHref className="flex items-center gap-2">
                         {job.company?.logo ? (
                             <Image src={job.company?.logo} alt="" className="rounded-full" height={20} width={20} />
                         ) : (<p>No logo</p>)}

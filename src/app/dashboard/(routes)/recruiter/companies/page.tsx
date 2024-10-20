@@ -43,7 +43,7 @@ const CompanyPage = async () => {
     }
 
 
-    const formatDate = (dateStr: Date) => {
+    const formatDate:any = (dateStr: Date) => {
         const date = new Date(dateStr);
         const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'short', year: 'numeric' };
         return date.toLocaleDateString('en-GB', options);
@@ -66,7 +66,7 @@ const CompanyPage = async () => {
             <div className="py-10">
                 <div className=" flex flex-col gap-10">
                     <div className="flex justify-between items-center">
-                        <ButtonPlus icon={Plus} link={"companies/create-company"} title={"Create job"} />
+                        <ButtonPlus icon={Plus} link={"companies/create-company"} title={"Create company"} />
 
                         {/* Sort  */}
                         <Select>
