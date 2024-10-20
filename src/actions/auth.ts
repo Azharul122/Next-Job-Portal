@@ -115,7 +115,7 @@ export const signUp = async (
 
 const baseUrl = process.env.NODE_ENV === 'development'
     ? 'http://localhost:3000'  
-    : 'https://next-job-portal-murex.vercel.app/'; 
+    : 'https://next-job-portal-murex.vercel.app'; 
 
 const saveUserProfile = async ( profileData: { userId:string,fullName: string; email: string }) => {
   const response = await fetch(`${baseUrl}/api/users/save-profile`, {
