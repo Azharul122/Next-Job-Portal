@@ -16,7 +16,6 @@ import {
   signInSchema,
 } from "@/utils/verificationSchema";
 import PassResetTokenModel from "@/model/passwordResetToken";
-import { db } from "@/lib/db";
 
 export const continueWithGoogle = async () => {
   await signIn("google", { redirectTo: "/" });
@@ -59,7 +58,7 @@ export const signUp = async (
     password: data.get("password"),
   });
   if (!result.success) {
-    // Show error to the users
+
     return { success: false, errors: result.error.formErrors.fieldErrors };
   }
 
@@ -77,7 +76,7 @@ export const signUp = async (
     verified: false,
   });
 
-  // Call the API to save the user profile with userId
+  
   const profileResponse = await saveUserProfile({
     userId:user._id,
     fullName: name,
@@ -92,22 +91,9 @@ export const signUp = async (
     password,
     redirectTo: "/",
   });
-  // revalidatePath("/");
+  
 
-  // send verification email
-  // await handleVerificationToken({ email, id: user._id, name });
-  // await auth()
 
-  // if(useOk && useOk.ok){
-
-  // }
-
-  // // redirect("/")
-  // if (usersignIn && usersignIn.ok) {
-  //   // Redirect to home
-  //   redirect("/");
-  // }
-  // redirect("/")
   return { success: true };
 };
 
