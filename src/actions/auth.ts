@@ -111,27 +111,14 @@ export const signUp = async (
   return { success: true };
 };
 
-// const saveUserProfile = async (
-//   userId: string,
-//   profileData: { fullName: string; email: string }
-// ) => {
-//   const response = await fetch(`/api/users/${userId}`, {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(profileData),
-//   });
 
-//   if (!response.ok) {
-//     throw new Error("Failed to save profile");
-//   }
 
-//   return await response.json();
-// };
+const baseUrl = process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3000'  
+    : 'https://next-job-portal-murex.vercel.app/'; 
 
 const saveUserProfile = async ( profileData: { userId:string,fullName: string; email: string }) => {
-  const response = await fetch(`http://localhost:3000/api/users/save-profile`, {
+  const response = await fetch(`${baseUrl}/api/users/save-profile`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
