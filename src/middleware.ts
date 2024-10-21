@@ -17,7 +17,7 @@ export function middleware(request: NextRequest) {
   if (isProtected) {
  
 
-    const user = request.cookies.get("authjs.session-token");
+    const user = request.cookies.get(`${process.env.NODE_ENV==="development"?"authjs.session-token":"__Secure-authjs.session-token"}`);
 
     console.log(user)
 
