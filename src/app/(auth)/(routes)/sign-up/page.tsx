@@ -19,7 +19,7 @@ const SignIn: FC<Props> = () => {
   const [state, singUpAction] = useFormState(signUp, {});
   const { data, status } = useSession();
   const loading = status === "loading"
-  if (data || loading) {
+  if (data) {
     redirect("/")
   }
 

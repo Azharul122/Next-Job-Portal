@@ -10,6 +10,12 @@ import JobCard from '../../../search/_components/JobCard'
 const JobDetailsPage = async ({ params }: { params: { jobId: string } }) => {
     const session = await auth()
     const userId = session?.user.id 
+
+
+    if(!userId){
+        redirect("/sign-in")
+    }
+
     const job = await db.job.findUnique({
         where: {
             id: params.jobId

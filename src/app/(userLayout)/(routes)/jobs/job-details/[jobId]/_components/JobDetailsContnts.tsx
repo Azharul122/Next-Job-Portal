@@ -9,7 +9,7 @@ import Preview from "@/components/ui/Preview";
 import ApplyModal from "./ApplyModal";
 import { useState } from "react";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 
@@ -25,6 +25,10 @@ const JobDetailsContnts = ({ job, jobId, userProfile }: propsTypes) => {
 
     const { data } = useSession()
     const userId = data?.user.id
+
+    if(!userId){
+        redirect("/sign-in")
+    }
 
     const [open, setOpen] = useState(false)
     const router = useRouter()

@@ -15,7 +15,7 @@ const SignIn: FC<Props> = () => {
  
   const {data,status}=useSession();
   const loading=status==="loading"
-  if(data || loading){
+  if(data){
     redirect("/")
   }
   return (

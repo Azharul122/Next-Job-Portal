@@ -16,6 +16,7 @@ import {
   signInSchema,
 } from "@/utils/verificationSchema";
 import PassResetTokenModel from "@/model/passwordResetToken";
+import { NextResponse } from "next/server";
 
 export const continueWithGoogle = async () => {
   await signIn("google", { redirectTo: "/" });
@@ -113,8 +114,8 @@ const saveUserProfile = async ( profileData: { userId:string,fullName: string; e
   });
 
   if (!response.ok) {
-    const errorMessage = await response.text(); // Get the error message for debugging
-    throw new Error(`Failed to save profile: ${errorMessage}`);
+    const errorMessage = await response.text(); 
+    throw new NextResponse(`Failed to save profile: ${errorMessage}`);
   }
 
   return await response.json();
