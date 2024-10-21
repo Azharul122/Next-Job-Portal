@@ -15,8 +15,6 @@ interface props {
 
 const RecentlyHired = () => {
 
-
-
   return (
     <div className="">
       <div className="flex h-10 items-center">
@@ -63,12 +61,11 @@ const HorizontalScrollCarousel = () => {
   const shuffledCards = shuffleArray([...cards])
 
 
-
   const x = useTransform(scrollYProgress, [0, 1], ["1%", "-95%"]);
 
   return (
-    <section ref={targetRef} className="relative h-[300vh]   scroll-smooth">
-      <div className="sticky top-0 flex h-screen items-center overflow-hidden">
+    <section ref={targetRef} className="relative h-[270vh]   scroll-smooth">
+      <div className="sticky top-[10rem] md:top-0 flex h-[20rem] sm:h-[25rem] md:h-screen items-center overflow-hidden">
         <motion.div style={{ x }} className="flex gap-4">
           {shuffledCards.map((card) => {
             return <Card card={card} key={card.id} />;
@@ -83,7 +80,7 @@ const Card = ({ card }: any) => {
   return (
     <div
       key={card.id}
-      className="group relative md:h-[450px] h-[200px] md:w-[450px] w-[300px]  overflow-hidden "
+      className="group relative md:h-[450px] h-[300px] md:w-[450px] w-[300px]  overflow-hidden "
     >
       <div
         style={{

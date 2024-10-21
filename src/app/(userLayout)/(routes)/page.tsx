@@ -41,7 +41,6 @@ const HomePage = async () => {
     });
   } catch (error) {
     console.error("Error fetching categories:", error);
-    // Optionally, you can set a fallback value or handle the error appropriately
   }
 
 
@@ -53,8 +52,6 @@ const HomePage = async () => {
       <Jobs jobsData={jobs} userId={userId ? userId : ""} />
       <Categories categoriesData={categoriesData} />
       <FeaturedCompanies />
-     
-
     </div>
   )
 }
