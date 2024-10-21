@@ -3,21 +3,33 @@ import { continueWithCredentials } from "@/actions/auth";
 import AuthForm from "@/components/auth/AuthForm";
 import { Input } from "@/components/ui/input";
 import { useSession } from "next-auth/react";
-import { redirect } from "next/navigation";
-import { FC } from "react";
+import {  useRouter, useSearchParams } from "next/navigation";
+import { FC, useEffect } from "react";
 
 import { useFormState } from "react-dom";
+import { toast } from "sonner";
 
 interface Props { }
 
 const SignIn: FC<Props> = () => {
+  const router = useRouter()
   const [state, signInAction] = useFormState(continueWithCredentials, {});
+  const searchParams = useSearchParams();
+  const redirectPath = searchParams.get("redirect") || "/";
  
-  const {data,status}=useSession();
-  const loading=status==="loading"
-  if(data){
-    redirect("/")
+  if (state.success !== false ) { 
+    router.push(redirectPath)
+  }else{
+    toast.error("❌ Invalid credential")
   }
+
+  const { data, status } = useSession();
+  const loading = status === "loading"
+  useEffect(() => {
+    if (data) {
+      router.push(redirectPath);
+    }
+  }, [data, redirectPath, router]);
   return (
     <AuthForm
       footerItems={[

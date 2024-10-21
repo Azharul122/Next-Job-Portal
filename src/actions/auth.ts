@@ -136,10 +136,12 @@ export const continueWithCredentials = async (
 
     const { email, password } = result.data;
 
+    // const redirectTo = data.get("redirect") || "/";
     await signIn("credentials", {
       email,
       password,
-      redirectTo: "/",
+      // redirectTo:redirectTo
+      redirect:false
     });
     return { success: true };
   } catch (error) {

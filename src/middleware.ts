@@ -3,12 +3,16 @@ import type { NextRequest } from "next/server";
 
 const protectedPaths = [
   "/dashboard/:path*",
+  "/dashboard",
   "/jobs/:path*",
+  "/jobs",
   "/companies/:path*",
+  "/companies",
+  "/settings",
   "/settings/:path*",
   "/user-profile/:path*",
+  "/user-profile",
 ];
-
 
 function isPathProtected(pathname: string) {
   return protectedPaths.some((path) => {
@@ -22,14 +26,14 @@ function isPathProtected(pathname: string) {
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-
   if (isPathProtected(pathname)) {
-    const sessionToken = request.cookies.get("__Secure-authjs.session-token") || 
-    request.cookies.get("authjs.session-token");
+    const sessionToken =
+      request.cookies.get("__Secure-authjs.session-token") ||
+      request.cookies.get("authjs.session-token");
 
     if (!sessionToken) {
       const signInUrl = new URL("/sign-in", request.url);
-      signInUrl.searchParams.set("redirect", pathname); 
+      signInUrl.searchParams.set("redirect", pathname);
       return NextResponse.redirect(signInUrl);
     }
   }
@@ -40,9 +44,14 @@ export async function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     "/dashboard/:path*",
+    "/dashboard",
     "/jobs/:path*",
+    "/jobs",
     "/companies/:path*",
+    "/companies",
+    "/settings",
     "/settings/:path*",
     "/user-profile/:path*",
+    "/user-profile",
   ],
 };
