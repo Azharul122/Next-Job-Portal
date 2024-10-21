@@ -1,5 +1,3 @@
-
-import { getCsrfToken } from "next-auth/react";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
@@ -26,9 +24,10 @@ export async function middleware(request: NextRequest) {
 
 
   if (isPathProtected(pathname)) {
-    const token = await getCsrfToken(); 
+    const sessionToken = request.cookies.get("__Secure-authjs.session-token") || 
+    request.cookies.get("authjs.session-token");
 
-    if (!token) {
+    if (!sessionToken) {
       const signInUrl = new URL("/sign-in", request.url);
       signInUrl.searchParams.set("redirect", pathname); 
       return NextResponse.redirect(signInUrl);
