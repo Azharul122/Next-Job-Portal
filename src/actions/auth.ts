@@ -132,7 +132,7 @@ export const continueWithCredentials = async (
       password: data.get("password"),
     });
     if (!result.success)
-      return { success: false, errors: result.error.formErrors.fieldErrors };
+      return { success: false, errors: {email:["Email inalid"],password:["password at least 8 charactars"]}};
 
     const { email, password } = result.data;
 

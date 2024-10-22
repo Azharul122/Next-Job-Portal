@@ -25,7 +25,7 @@ const SavedJobsPage = async ({ searchParams }: propsTypes) => {
 
     const jobs = await getJobs({ ...searchParams, savedJobs: true })
 
-    console.log(jobs)
+    // console.log(jobs)
 
     return (
         <div className='pb-5'>

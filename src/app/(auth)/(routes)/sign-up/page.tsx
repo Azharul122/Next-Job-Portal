@@ -5,7 +5,7 @@ import { signUp } from "@/actions/auth";
 import AuthForm from "@/components/auth/AuthForm";
 import { Input } from "@/components/ui/input";
 import { useSession } from "next-auth/react";
-import { redirect } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
 
 import { FC } from "react";
 // import { Input } from "@nextui-org/react";
@@ -17,8 +17,10 @@ interface Props { }
 
 const SignIn: FC<Props> = () => {
   const [state, singUpAction] = useFormState(signUp, {});
+  const pathname=usePathname()
   const { data, status } = useSession();
   const loading = status === "loading"
+  console.log(pathname)
   if (data) {
     redirect("/")
   }

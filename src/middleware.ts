@@ -26,6 +26,10 @@ function isPathProtected(pathname: string) {
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  
+
+ 
+
   if (isPathProtected(pathname)) {
     const sessionToken =
       request.cookies.get("__Secure-authjs.session-token") ||
